@@ -13,6 +13,6 @@ root
 
 ```
 
-**REPOSITORY CONTENTS**
-As of 09/30/18, we pushed deliverable 1 in the Deliverables/1/ folder.
+**REPOSITORY CONTENTS**<br/>
+As of 09/30/18, we pushed deliverable 1 in the Deliverables/1/ folder.<br/>
 As of 10/14/18, we pushed deliverable 2 in the Deliverables/2/ folder. 
