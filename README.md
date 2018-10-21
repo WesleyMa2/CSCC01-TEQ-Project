@@ -7,12 +7,12 @@ For ease of Team 17 repository navigation, follow the folder structure outlined 
 root
   └──Deliverables
   |             └── 1
-  |					└── Deliverable-1.pdf
+  |					        └── Deliverable-1.pdf
   |             └── 2
-  |					└── Deliverable 2.pdf
-  |				└── 3
-  |					└── src
-  |						 └── GUI.java 
+  |					        └── Deliverable 2.pdf
+  |				      └── 3
+  |					        └── src
+  |						           └── GUI.java 
   └──README.md
   └──.gitignore 
 
