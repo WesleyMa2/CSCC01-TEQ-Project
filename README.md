@@ -20,6 +20,7 @@ root
 
 ### 10/21/18
   - Pushed first rendition of the GUI into the Deliverables/3/src folder.
+  - Created data holder classes with basic functions in the data package.
 ### 10/14/18
   - Pushed deliverable 2 into the Deliverables/2/ folder.
 ### 09/30/18
