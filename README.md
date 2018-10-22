@@ -5,14 +5,16 @@ For ease of Team 17 repository navigation, follow the folder structure outlined 
 ## Repository Contents
 ```bash
 root
-  └──Deliverables
+  └── Deliverables
   |             └── 1
   |             └── 2
   |             └── 3
-  |	            └── src
-  |		 
-  └──README.md
-  └──.gitignore 
+  └── src
+  |      └── main
+  |      └── test
+  └── README.md
+  └── .gitignore 
+  └── .travis.yml
 
 ```
 
