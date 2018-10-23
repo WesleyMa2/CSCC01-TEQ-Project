@@ -8,19 +8,19 @@ import java.util.List;
  */
 public class FiscalYearData {
 	
-	public List<VisitData> visitData = new ArrayList<PersonData>();
+	public List<VisitData> allVisitsData = new ArrayList<VisitData>();
 
 	public FiscalYearData() { }
 
 	public List<VisitData> getPeopleData() {
-		return visitData;
+		return allVisitsData;
 	}
 
-	public void setPeopleData(List<PersonData> peopleData) {
-		this.visitData = peopleData;
+	public void setPeopleData(List<VisitData> peopleData) {
+		this.allVisitsData = peopleData;
 	}
 
-	public void addPersonData(VisitData personData) {
-		visitData.add(personData);
+	public void addVisitData(VisitData visitData) {
+		allVisitsData.add(visitData);
 	}
 }
