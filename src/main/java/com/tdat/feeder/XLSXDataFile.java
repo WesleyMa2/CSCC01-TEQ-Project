@@ -19,8 +19,8 @@ public class XLSXDataFile implements DataFile {
 
 	public ArrayList<HashMap<String, String>> converter(String fileLocation) throws FileNotFoundException, IOException {
 		
-		// To be returned
-		ArrayList<HashMap<String, String>> services = new ArrayList<HashMap<String, String>>();
+		// To be returned: a list of all visits with each visit having a HashMap of information of that visit
+		ArrayList<HashMap<String, String>> allVisits = new ArrayList<HashMap<String, String>>();
 		// Holds all the keys for the HashMap (first row data)
 		ArrayList<String> keys = new ArrayList<String>();
 		
@@ -50,10 +50,10 @@ public class XLSXDataFile implements DataFile {
 		// Traverse each row of the XLSX file
 		while(rowIterator.hasNext()) {
 			// New HashMap
-			HashMap<String, String> currentService = new HashMap<String, String>();
+			HashMap<String, String> currentVisit = new HashMap<String, String>();
 			
 			// New counter
-			Integer counter = 0;
+			int counter = 0;
 			
 			// Gets the row object for this loop
 			Row row = rowIterator.next();
@@ -66,7 +66,7 @@ public class XLSXDataFile implements DataFile {
 				Cell cell = cellIterator.next();
 				
 				// Puts the current cell information into its row HashMap
-				currentService.put(keys.get(counter), cell.getStringCellValue());
+				currentVisit.put(keys.get(counter), cell.getStringCellValue());
 				
 				// Increase counter by 1
 				counter++;
@@ -89,13 +89,13 @@ public class XLSXDataFile implements DataFile {
 			}
 			
 			// Adds the current row into the list
-			services.add(currentService);
+			allVisits.add(currentVisit);
 		}
 		
 		// Close the workbook
-        workbook.close();
+		workbook.close();
         
-		return services;
+		return allVisits;
 	}
 
 }
