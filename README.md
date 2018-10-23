@@ -4,13 +4,13 @@
 
 **TDAT**, or the TEQ Data Aggregation Tool, is a program that aggregates agency data and generates reports for the TEQ. All files under this repository is developed as a project for the CSCC01 course.
 
-*Learn more about the project [here](../resources/Scarborough_Newcomers_Software_Engineering_Project.pdf "Project Presentation").*
+*Learn more about the project [here](../../tree/master/resources/Scarborough_Newcomers_Software_Engineering_Project.pdf "Project Presentation").*
 
 ## Repository Contents
 Follow the folder structure outlined below to easy navigation through the repository.
 ```bash
 root
-  └── Deliverables
+  └── deliverables
   |             └── 1
   |             └── 2
   |             └── 3
@@ -51,4 +51,4 @@ TDAT is developed by team **BRAW**, which is an acronym for all developers of th
 * **Wesley Ma** - Team Player/Developer - [Github](https://github.com/WesleyMa2 "Wesley's Github Page")
 * **Thierry Sans** - Professor - [Github](https://github.com/ThierrySans "Thierry's Github Page")
 
-*Learn about the BRAW team agreement [here](../deliverables/1/Deliverable-1.pdf "BRAW Team Agreement").*
+*Learn about the BRAW team agreement [here](../../tree/master/deliverables/1/Deliverable-1.pdf "BRAW Team Agreement").*
