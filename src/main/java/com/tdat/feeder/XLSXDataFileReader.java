@@ -1,12 +1,10 @@
 package com.tdat.feeder;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Iterator;
 
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -15,12 +13,12 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class XLSXDataFile implements DataFile {
+public class XLSXDataFileReader implements DataFileReader {
 
-	public ArrayList<HashMap<String, String>> converter(String fileLocation) throws FileNotFoundException, IOException {
+	public List<Map<String, String>> converter(File file) throws FileNotFoundException, IOException {
 		
 		// To be returned: a list of all visits with each visit having a HashMap of information of that visit
-		ArrayList<HashMap<String, String>> allVisits = new ArrayList<HashMap<String, String>>();
+		List<Map<String, String>> allVisits = new ArrayList<>();
 		// Holds all the keys for the HashMap (first row data)
 		ArrayList<String> keys = new ArrayList<String>();
 		
@@ -29,7 +27,7 @@ public class XLSXDataFile implements DataFile {
 		// https://poi.apache.org/apidocs/
 		// https://www.callicoder.com/java-read-excel-file-apache-poi/
 		
-		FileInputStream xlsxFile = new FileInputStream(new File(fileLocation));
+		FileInputStream xlsxFile = new FileInputStream(file);
 		// Gets the workbook of the xlsx file
 		XSSFWorkbook workbook = new XSSFWorkbook(xlsxFile);
 		// Gets the first sheet of the workbook
@@ -37,8 +35,10 @@ public class XLSXDataFile implements DataFile {
 		// Gets iterator to all the rows of the sheet
 		Iterator<Row> rowIterator = sheet.rowIterator();
 		
-		// Gather first row information and put it in a list
-		Row firstRow = rowIterator.next();
+		// Gather third row information and put it in a list
+		rowIterator.next();
+		rowIterator.next();
+        Row firstRow = rowIterator.next();
 		// Loops through each cell in this first row
 		Iterator<Cell> cellIteratorForFirst = firstRow.cellIterator();
 		while(cellIteratorForFirst.hasNext()) {		

@@ -1,6 +1,8 @@
 package com.tdat.gui;
 
 import com.tdat.app.App;
+import com.tdat.data.MasterData;
+import com.tdat.feeder.Uploader;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
@@ -36,6 +38,11 @@ public class UploadButtonListener implements ActionListener {
             System.out.println("FileType:\t" + App.selectedFileType);
             System.out.println("File:\t\t" + App.selectedFile.getName());
             System.out.println("FilePath:\t" + selectedFile.getAbsolutePath());
+
+            Uploader.upload(App.selectedYear, App.selectedFile);
+            MasterData.printYearData(App.selectedYear);
+
         }
     }
+
 }

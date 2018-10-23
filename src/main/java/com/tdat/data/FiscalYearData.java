@@ -12,7 +12,7 @@ public class FiscalYearData {
 
 	public FiscalYearData() { }
 
-	public List<VisitData> getPeopleData() {
+	public List<VisitData> getVisitsData() {
 		return allVisitsData;
 	}
 

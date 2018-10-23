@@ -1,11 +1,7 @@
 package com.tdat.data;
 
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 /**
@@ -27,11 +23,20 @@ public class MasterData {
 		return allData.get(year);
 	}
 
+	public static void printYearData(Year year){
+	    String result = year.toString() + ":\n";
+	    FiscalYearData currYear = getYearData(year);
+	    List<VisitData> visitData = currYear.getVisitsData();
+	    Set currCols = ((VisitData) visitData.get(0)).getData().keySet();
+        result += currCols.toString() + "\n";
+        System.out.println(result);
+    }
+
 	public static void setYearData(Year year, FiscalYearData yearData) {
 		allData.put(year, yearData);
 	}
 	
-	public static void setYearData(Year year, ArrayList<HashMap<String, String>> allVisits) {
+	public static void setYearData(Year year, List<Map<String, String>> allVisits) {
 		FiscalYearData yearData;
 		if(yearExists(year)) {
 			yearData = allData.get(year);
