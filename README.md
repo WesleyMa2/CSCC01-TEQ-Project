@@ -10,7 +10,7 @@
 Follow the folder structure outlined below to easy navigation through the repository.
 ```bash
 root
-  └── deliverables
+  └── Deliverables
   |             └── 1
   |             └── 2
   |             └── 3
