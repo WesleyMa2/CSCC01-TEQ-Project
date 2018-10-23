@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 
 public class GUI extends JFrame {
 	
@@ -18,6 +19,7 @@ public class GUI extends JFrame {
 	private String[] fileTypes = {"Excel (.xlsx)"};
 	private JComboBox fileTypeDropdown = new JComboBox(fileTypes);
 	private JButton uploadButton = new JButton("Upload");
+
 
 	public static void main(String[] args){
 		//populate fiscalYears
@@ -46,11 +48,14 @@ public class GUI extends JFrame {
 		mainPanel.add(fiscalYearDropdown);
 		mainPanel.add(fileTypeDropdown);
 		mainPanel.add(uploadButton);
+		// BUTTON ACTIONS
+		uploadButton.addActionListener(new UploadButtonListener(fiscalYearDropdown.getSelectedItem().toString(), fileTypeDropdown.getSelectedItem().toString()));
 		this.add(mainPanel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+
+
 	}
-	
 	
 	/*
 	 * The method below was going to be used if we allowed the user to input individual fiscal years themselves 
