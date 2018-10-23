@@ -32,7 +32,7 @@ root
 ```
 
 ## Change Log
-This change log is to be updated from the top for any changes make in the master branch.
+This change log is in order from the top for the latest changes in the master branch.
 
 Date | Change
 --- | ---
