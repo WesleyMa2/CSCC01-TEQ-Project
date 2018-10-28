@@ -15,6 +15,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class XLSXDataFileReader implements DataFileReader {
 
+    /**
+     * A
+     * @param file
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
 	public List<Map<String, String>> converter(File file) throws FileNotFoundException, IOException {
 		
 		// To be returned: a list of all visits with each visit having a HashMap of information of that visit

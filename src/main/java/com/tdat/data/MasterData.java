@@ -2,46 +2,45 @@ package com.tdat.data;
 
 import java.time.Year;
 import java.util.*;
-import java.util.Map.Entry;
 
 /**
  * A class to hold all the raw data uploaded to the system.
  */
 public class MasterData {
 	
-	public static Map<Year, FiscalYearData> allData = new HashMap<Year, FiscalYearData>();
+	public static Map<Year, TableData> allData = new HashMap<Year, TableData>();
 
 	private static boolean yearExists(Year year) {
 		return allData.containsKey(year);
 	}
 	
-	public static Map<Year, FiscalYearData> getAllData() {
+	public static Map<Year, TableData> getAllData() {
 		return allData;
 	}
 
-	public static FiscalYearData getYearData(Year year) {
+	public static TableData getYearData(Year year) {
 		return allData.get(year);
 	}
 
 	public static void printYearData(Year year){
 	    String result = year.toString() + ":\n";
-	    FiscalYearData currYear = getYearData(year);
+	    TableData currYear = getYearData(year);
 	    List<VisitData> visitData = currYear.getVisitsData();
 	    Set currCols = ((VisitData) visitData.get(0)).getData().keySet();
         result += currCols.toString() + "\n";
         System.out.println(result);
     }
 
-	public static void setYearData(Year year, FiscalYearData yearData) {
+	public static void setYearData(Year year, TableData yearData) {
 		allData.put(year, yearData);
 	}
 	
 	public static void setYearData(Year year, List<Map<String, String>> allVisits) {
-		FiscalYearData yearData;
+		TableData yearData;
 		if(yearExists(year)) {
 			yearData = allData.get(year);
 		} else {
-			yearData = new FiscalYearData();
+			yearData = new TableData();
 		}
 		
 		for(int a = 0; a < allVisits.size(); a++) {
@@ -55,8 +54,8 @@ public class MasterData {
 		allData.put(year, yearData);
 	}
 
-	public static List<FiscalYearData> getRangeOfYear(Year startYear, Year endYear){
-		List<FiscalYearData> subRange = new ArrayList<FiscalYearData>();
+	public static List<TableData> getRangeOfYear(Year startYear, Year endYear){
+		List<TableData> subRange = new ArrayList<TableData>();
 		for (Year year: allData.keySet()) {
 			if (year.compareTo(startYear) > 0 && year.compareTo(endYear) < 0){
 				subRange.add(allData.get(year));

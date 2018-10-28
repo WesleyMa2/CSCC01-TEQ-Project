@@ -1,6 +1,5 @@
 package com.tdat.app;
 
-import com.tdat.data.MasterData;
 import com.tdat.gui.GUI;
 import java.io.File;
 import java.time.Year;

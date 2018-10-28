@@ -6,17 +6,17 @@ import java.util.List;
 /**
  * A class to hold all entries (rows) entered within a given year.
  */
-public class FiscalYearData {
+public class TableData {
 	
 	public List<VisitData> allVisitsData = new ArrayList<VisitData>();
 
-	public FiscalYearData() { }
+	public TableData() { }
 
 	public List<VisitData> getVisitsData() {
 		return allVisitsData;
 	}
 
-	public void setPeopleData(List<VisitData> peopleData) {
+	public void Data(List<VisitData> peopleData) {
 		this.allVisitsData = peopleData;
 	}
 
