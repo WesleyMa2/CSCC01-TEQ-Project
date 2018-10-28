@@ -16,9 +16,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class XLSXDataFileReader implements DataFileReader {
 
     /**
-     * A
-     * @param file
-     * @return
+     * A Class that reads an iCare file into a java object.
+     * @param file file to read
+     * @return a list(rows) of maps<ColumnName: entry>
      * @throws FileNotFoundException
      * @throws IOException
      */
@@ -37,46 +37,48 @@ public class XLSXDataFileReader implements DataFileReader {
 		FileInputStream xlsxFile = new FileInputStream(file);
 		// Gets the workbook of the xlsx file
 		XSSFWorkbook workbook = new XSSFWorkbook(xlsxFile);
-		// Gets the first sheet of the workbook
-		XSSFSheet sheet = workbook.getSheetAt(0);
-		// Gets iterator to all the rows of the sheet
-		Iterator<Row> rowIterator = sheet.rowIterator();
-		
-		// Gather third row information and put it in a list
-		rowIterator.next();
-		rowIterator.next();
-        Row firstRow = rowIterator.next();
-		// Loops through each cell in this first row
-		Iterator<Cell> cellIteratorForFirst = firstRow.cellIterator();
-		while(cellIteratorForFirst.hasNext()) {		
-			// Gets the cell object for this cell
-			Cell cell = cellIteratorForFirst.next();
-			keys.add(cell.getStringCellValue());
-		}
-		
-		// Traverse each row of the XLSX file
-		while(rowIterator.hasNext()) {
-			// New HashMap
-			HashMap<String, String> currentVisit = new HashMap<String, String>();
-			
-			// New counter
-			int counter = 0;
-			
-			// Gets the row object for this loop
-			Row row = rowIterator.next();
-			
-			// Loops through each cell in this row
-			Iterator<Cell> cellIterator = row.cellIterator();
-			while(cellIterator.hasNext()) {
-					
-				// Gets the cell object for this cell
-				Cell cell = cellIterator.next();
-				
-				// Puts the current cell information into its row HashMap
-				currentVisit.put(keys.get(counter), cell.getStringCellValue());
-				
-				// Increase counter by 1
-				counter++;
+
+		for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
+            // Gets the first sheet of the workbook
+            XSSFSheet sheet = workbook.getSheetAt(0);
+            // Gets iterator to all the rows of the sheet
+            Iterator<Row> rowIterator = sheet.rowIterator();
+
+            // Gather third row information and put it in a list
+            rowIterator.next();
+            rowIterator.next();
+            Row firstRow = rowIterator.next();
+            // Loops through each cell in this first row
+            Iterator<Cell> cellIteratorForFirst = firstRow.cellIterator();
+            while (cellIteratorForFirst.hasNext()) {
+                // Gets the cell object for this cell
+                Cell cell = cellIteratorForFirst.next();
+                keys.add(cell.getStringCellValue());
+            }
+
+            // Traverse each row of the XLSX file
+            while (rowIterator.hasNext()) {
+                // New HashMap
+                HashMap<String, String> currentVisit = new HashMap<String, String>();
+
+                // New counter
+                int counter = 0;
+
+                // Gets the row object for this loop
+                Row row = rowIterator.next();
+
+                // Loops through each cell in this row
+                Iterator<Cell> cellIterator = row.cellIterator();
+                while (cellIterator.hasNext()) {
+
+                    // Gets the cell object for this cell
+                    Cell cell = cellIterator.next();
+
+                    // Puts the current cell information into its row HashMap
+                    currentVisit.put(keys.get(counter), cell.getStringCellValue());
+
+                    // Increase counter by 1
+                    counter++;
 				
 				/*
 				For different types.
@@ -93,12 +95,12 @@ public class XLSXDataFileReader implements DataFileReader {
 					default:	
 				}
 				*/
-			}
-			
-			// Adds the current row into the list
-			allVisits.add(currentVisit);
-		}
-		
+                }
+
+                // Adds the current row into the list
+                allVisits.add(currentVisit);
+            }
+        }
 		// Close the workbook
 		workbook.close();
         
