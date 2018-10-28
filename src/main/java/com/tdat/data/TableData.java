@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class TableData {
 	
-	public List<VisitData> allVisitsData = new ArrayList<VisitData>();
+	private List<VisitData> allVisitsData = new ArrayList<VisitData>();
 
 	public TableData() { }
 

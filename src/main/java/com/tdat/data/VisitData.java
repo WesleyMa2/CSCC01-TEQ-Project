@@ -7,7 +7,7 @@ import java.util.Map;
  * A class to represent an individual's entry (row) on a iCare spreadsheet
  */
 public class VisitData {
-	public Map<String, String> data = new HashMap<String, String>();
+	private Map<String, String> data = new HashMap<String, String>();
 
 	public VisitData(){ }
 
