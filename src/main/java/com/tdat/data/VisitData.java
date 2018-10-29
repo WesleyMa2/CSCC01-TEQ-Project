@@ -22,4 +22,14 @@ public class VisitData {
 	public void addColumnData(String columnName, String value) {
 		this.data.put(columnName, value);
 	}
+	
+	public boolean columnDataExists(String columnName) {
+		boolean exists = true;
+		
+		if(this.data.get(columnName) == null) {
+			exists = false;
+		}
+		
+		return exists;
+	}
 }

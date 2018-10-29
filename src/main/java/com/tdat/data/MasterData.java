@@ -10,7 +10,7 @@ public class MasterData {
 	
 	public static Map<Year, TableData> allData = new HashMap<Year, TableData>();
 
-	private static boolean yearExists(Year year) {
+	public static boolean yearExists(Year year) {
 		return allData.containsKey(year);
 	}
 	
