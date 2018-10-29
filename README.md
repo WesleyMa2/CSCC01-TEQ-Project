@@ -21,9 +21,16 @@ root
   |                         └── tdat
   |                                └── app
   |                                └── data
+  |                                     └── analysis
   |                                └── feeder
   |                                └── gui
-  |     └── test (TBA)
+  |     └── test
+  |             └── java
+  |                  └── com
+  |                        └── tdat
+  |                               └── data
+  |                                     └── analysis
+  |
   └── README.md
   └── .gitignore
   └── .travis.yml
@@ -36,6 +43,7 @@ This change log is in order from the top for the latest changes in the master br
 
 Date | Change
 --- | ---
+2018-10-28 | <ul><li>Created class to provide basic info on a given TableData object, along with its unit tests</li><li>Added jUnit to dependancy list</li></ul>
 2018-10-23 | <ul><li>Completed feeder directory, all needs to be done is testing</li><li>Made significant changes to the folder structure to be more consistant and follow the Maven structure</li><li>Changed up the README.md file to be more friendly to new readers</li></ul>
 2018-10-22 | <ul><li>Pushed the first version of the configuration file, pom.xml file into the master repository</li></ul>
 2018-10-21 | <ul><li>Pushed first rendition of the GUI into the deliverables/3/src folder.</li><li>Created data holder classes with basic functions in the data package.</li></ul>
