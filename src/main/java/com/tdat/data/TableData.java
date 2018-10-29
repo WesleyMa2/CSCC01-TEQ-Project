@@ -16,11 +16,11 @@ public class TableData {
 		return allVisitsData;
 	}
 
-	public void Data(List<VisitData> peopleData) {
-		this.allVisitsData = peopleData;
+	public void Data(List<VisitData> data) {
+		this.allVisitsData = data;
 	}
 
-	public void addVisitData(VisitData visitData) {
-		allVisitsData.add(visitData);
+	public void addVisitData(VisitData data) {
+		allVisitsData.add(data);
 	}
 }
