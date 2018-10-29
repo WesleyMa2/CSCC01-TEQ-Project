@@ -6,10 +6,14 @@ import com.tdat.feeder.Uploader;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
+
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.time.Year;
+import java.util.Calendar;
 
 /**
  * When upload is clicked, performs sends info back to main.
@@ -34,6 +38,11 @@ public class UploadButtonListener implements ActionListener {
             App.selectedFile = selectedFile;
             App.selectedFileType = this.selectedFileType;
             App.selectedYear = (Year.of(Integer.parseInt(this.selectedYear.substring(0,4))));
+            String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+            String historyEntry = "Date: " + timeStamp + "   Filename: " + selectedFile.getName() + "   Filetype: " + this.selectedFileType + 
+            					"   Fiscal year: " + this.selectedYear;
+            GUI.DLM.addElement(historyEntry);
+            GUI.fileUploadDict.put(historyEntry, this.selectedFile);
             System.out.println("Year:\t\t" + App.selectedYear);
             System.out.println("FileType:\t" + App.selectedFileType);
             System.out.println("File:\t\t" + App.selectedFile.getName());
