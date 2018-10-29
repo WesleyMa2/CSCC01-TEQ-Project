@@ -81,15 +81,15 @@ public class TableDataCreatorTest {
 		MasterData.setYearData(year2, tableData2);
 	}
     
-	//@Test
-	//@DisplayName("Year does not exist in master")
-	//void noYear() throws YearNotFoundException {
-	//	setUp();
-	//	ArrayList<String> columns = new ArrayList<String>();
-	//	ArrayList<Year> years1 = new ArrayList<Year>();
-	//	years1.add(year3);
-	//	assertThrows(YearNotFoundException.class, ()->{TableDataCreator.customize(master, columns, years1);});
-	//}
+	@Test
+	@DisplayName("Year does not exist in master")
+	void noYear() throws YearNotFoundException {
+		setUp();
+		ArrayList<String> columns = new ArrayList<String>();
+		ArrayList<Year> years1 = new ArrayList<Year>();
+		years1.add(year3);
+		assertThrows(YearNotFoundException.class, ()->{TableDataCreator.customize(master, columns, years1);});
+	}
 	
 	@Test
 	@DisplayName("Creating a custom DataTable object with one year")
@@ -102,7 +102,11 @@ public class TableDataCreatorTest {
 		ArrayList<Year> years = new ArrayList<Year>();
 		years.add(year1);
 		TableData tabledata4 = TableDataCreator.customize(master, columns, years);
-		System.out.println(tabledata4.getVisitsData());
+		List<VisitData> allVisitsData4 = tabledata4.getVisitsData();
+		List<VisitData> allVisitsData3 = tableData3.getVisitsData();
+		for(int i = 0; i < allVisitsData4.size(); i++) {
+			assertEquals(allVisitsData3.get(i), allVisitsData4.get(i));
+		}
 	}
     
 }
