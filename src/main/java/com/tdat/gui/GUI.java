@@ -2,6 +2,7 @@ package com.tdat.gui;
 
 //import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.io.File;
 import java.util.*;
 
 import javax.swing.*;
@@ -19,8 +20,16 @@ public class GUI extends JFrame {
 	private String[] fileTypes = {"Excel (.xlsx)"};
 	private JComboBox fileTypeDropdown = new JComboBox(fileTypes);
 	private JButton uploadButton = new JButton("Upload");
+	private JButton reportGenerateButton = new JButton("Generate Report");
+	
+	static DefaultListModel DLM = new DefaultListModel();	
+	JList historyList = new JList(DLM);
+	
+	// A dictionary to map upload time to the actual file object uploaded. This is to be used in conjunction with the "Generate Report" button
+	// so that we can generate reports for specific files uploaded
+	static HashMap<String, File> fileUploadDict = new HashMap<String, File>();
 
-
+	
 	public static void main(String[] args){
 		//populate fiscalYears
 		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -29,6 +38,8 @@ public class GUI extends JFrame {
 			fiscalYears[counter] = (Integer.toString(i) + "-" + Integer.toString(i+1));
 			counter++;
 		}
+		
+		
 		new GUI();
 	}
 
@@ -47,9 +58,12 @@ public class GUI extends JFrame {
 		mainPanel.add(topHeading);
 		mainPanel.add(fiscalYearDropdown);
 		mainPanel.add(fileTypeDropdown);
+		mainPanel.add(historyList);
 		mainPanel.add(uploadButton);
+		mainPanel.add(reportGenerateButton);
 		// BUTTON ACTIONS
 		uploadButton.addActionListener(new UploadButtonListener(fiscalYearDropdown.getSelectedItem().toString(), fileTypeDropdown.getSelectedItem().toString()));
+		reportGenerateButton.addActionListener(new GenerateReportButtonListener());
 		this.add(mainPanel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
