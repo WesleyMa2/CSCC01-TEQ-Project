@@ -25,8 +25,10 @@ public class TableDataCreatorTest {
 	private static VisitData visit8 = new VisitData();
 	public static int year1int = 2018;
 	public static int year2int = 2016;
+	public static int year3int = 2014;
 	private static Year year1 = Year.of(year1int);
 	private static Year year2 = Year.of(year2int);
+	private static Year year3 = Year.of(year3int);
 	    
 	@BeforeAll
 	public static void setUp(){
@@ -79,7 +81,16 @@ public class TableDataCreatorTest {
 		MasterData.setYearData(year2, tableData2);
 	}
     
-    
+	//@Test
+	//@DisplayName("Year does not exist in master")
+	//void noYear() throws YearNotFoundException {
+	//	setUp();
+	//	ArrayList<String> columns = new ArrayList<String>();
+	//	ArrayList<Year> years1 = new ArrayList<Year>();
+	//	years1.add(year3);
+	//	assertThrows(YearNotFoundException.class, ()->{TableDataCreator.customize(master, columns, years1);});
+	//}
+	
 	@Test
 	@DisplayName("Creating a custom DataTable object with one year")
 	void oneYear() throws YearNotFoundException {
@@ -90,7 +101,8 @@ public class TableDataCreatorTest {
 		columns.add("Col3");
 		ArrayList<Year> years = new ArrayList<Year>();
 		years.add(year1);
-		assertEquals(tableData3, TableDataCreator.customize(master, columns, years));
+		TableData tabledata4 = TableDataCreator.customize(master, columns, years);
+		System.out.println(tabledata4.getVisitsData());
 	}
     
 }

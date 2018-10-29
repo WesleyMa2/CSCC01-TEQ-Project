@@ -24,7 +24,8 @@ public class TableDataCreator {
 				TableData currentYearData = MasterData.getYearData(years.get(indexYearList));
 				
 				ArrayList<VisitData> allCurrentVisitData = (ArrayList<VisitData>) currentYearData.getVisitsData();
-				for(int indexVisitDataList = 0; indexVisitDataList < allCurrentVisitData.size(); indexVisitDataList++) {
+				int hold = allCurrentVisitData.size();
+				for(int indexVisitDataList = 0; indexVisitDataList < hold; indexVisitDataList++) {
 					// Getting the visit data
 					VisitData currentVisitData = allCurrentVisitData.get(indexVisitDataList);
 					// New visit data
