@@ -1,6 +1,6 @@
 # TDAT: TEQ Data Aggregation Tool
 
-![build badge](https://img.shields.io/travis/:user/:repo.svg)
+![build badge](https://api.travis-ci.com/CSCC01/Team17.svg?token=zqaFXskyNjZGfENjo1zH&branch=master)
 
 **TDAT**, or the TEQ Data Aggregation Tool, is a program that aggregates agency data and generates reports for the TEQ. All files under this repository is developed as a project for the CSCC01 course.
 
