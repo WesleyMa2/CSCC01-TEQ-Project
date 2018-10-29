@@ -8,6 +8,7 @@ import java.io.IOException;
 
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 // import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -75,7 +76,11 @@ public class XLSXDataFileReader implements DataFileReader {
                     Cell cell = cellIterator.next();
 
                     // Puts the current cell information into its row HashMap
-                    currentVisit.put(keys.get(counter), cell.getStringCellValue());
+                    if (cell.getCellType() == CellType.STRING) {
+                        currentVisit.put(keys.get(counter), cell.getStringCellValue());
+                    } else if (cell.getCellType() == CellType.NUMERIC){
+                        currentVisit.put(keys.get(counter), Double.toString(cell.getNumericCellValue()));
+                    }
 
                     // Increase counter by 1
                     counter++;
