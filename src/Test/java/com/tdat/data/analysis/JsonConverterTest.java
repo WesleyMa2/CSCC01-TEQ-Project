@@ -4,6 +4,8 @@ import com.tdat.data.ColumnNotFoundException;
 import com.tdat.data.JsonConverter;
 import com.tdat.data.TableData;
 import com.tdat.data.VisitData;
+
+import org.json.JSONException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -82,5 +84,13 @@ class JsonConverterTest {
         HashMap<String, Integer> actual = JsonConverter.DeserializeObject("{\"8\":3,\"12\":7,\"9\":4,\"6\":1,\"10\":5}");
         
         assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Test creating hashmap from a conflicted json object")
+    void deserializeWithErrors() throws JSONException {
+        assertThrows(JSONException.class, ()-> {
+            JsonConverter.DeserializeObject("{\"8\":3,\"8\":7,\"10\":5}"); 
+        });
     }
 }
