@@ -76,7 +76,7 @@ class JsonConverterTest {
 
 
     @Test
-    @DisplayName("Test creating hashamp from a json object")
+    @DisplayName("Test creating hashmap from a json object")
     void deserializeColumns() throws ColumnNotFoundException {
         Map<String, Integer> expected = tableReader.columnEntriesCount("Number of Children");
         HashMap<String, Integer> actual = JsonConverter.DeserializeObject("{\"8\":3,\"12\":7,\"9\":4,\"6\":1,\"10\":5}");
