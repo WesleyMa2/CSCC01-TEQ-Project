@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.text.ParseException;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,8 +46,17 @@ class JsonConverterTest {
     @DisplayName("Test creating json object with null object")
     void dneColumnEntries() throws ColumnNotFoundException {
         String expected = "{}";
-
         String actual = JsonConverter.SerializeObject(null);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Test creating null json object into hashmap object")
+    void emptyColumnEntries() throws ColumnNotFoundException {
+        HashMap<String, Integer> expected = new HashMap<String, Integer>();
+        HashMap<String, Integer> actual = JsonConverter.DeserializeObject("{}");
+
         assertEquals(expected, actual);
     }
 
@@ -60,7 +70,17 @@ class JsonConverterTest {
 
         Map<String, Integer> data = tableReader.columnEntriesCount("Number of Children");
         String actual = JsonConverter.SerializeObject(data);
-        assertFalse(actual.contains("99999"));
-        assertFalse(actual.contains("Another Column"));
+        assertTrue(!actual.contains("99999"));
+        assertTrue(!actual.contains("Another Column"));
+    }
+
+
+    @Test
+    @DisplayName("Test creating hashamp from a json object")
+    void deserializeColumns() throws ColumnNotFoundException {
+        Map<String, Integer> expected = tableReader.columnEntriesCount("Number of Children");
+        HashMap<String, Integer> actual = JsonConverter.DeserializeObject("{\"8\":3,\"12\":7,\"9\":4,\"6\":1,\"10\":5}");
+        
+        assertEquals(expected, actual);
     }
 }
