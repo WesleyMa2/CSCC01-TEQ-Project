@@ -19,12 +19,11 @@ public class JsonConverter {
         Map<String, Object> json = new JSONObject(data).toMap();
 
         for (Map.Entry<String, Object> entry : json.entrySet()) {
-            System.out.println(entry.toString());
-            Integer convert = Integer.getInteger(entry.getValue().toString());
-            if (convert == null) {
-                System.out.println(entry.getValue() + " error.");
+            if (!(entry.getValue() instanceof Integer)) {
+                System.out.println(entry.getValue() + " error in data, while parsing to integer.");
                 return null;
             }
+            Integer convert = (Integer) entry.getValue();
             String key = entry.getKey();
 
             if (!result.containsKey(key)) {
