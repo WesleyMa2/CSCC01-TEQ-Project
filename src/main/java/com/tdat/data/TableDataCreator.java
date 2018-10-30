@@ -13,36 +13,48 @@ public class TableDataCreator {
 	 */
 	public static TableData customize(MasterData master, ArrayList<String> columns, ArrayList<Year> years) throws YearNotFoundException {
 
+		// Customized TableData object
 		TableData custom = new TableData();
 		
-		// Loops through all the years required
+		// Loops through all the years that wanted to be constrained
 		for(int indexYearList = 0; indexYearList < years.size(); indexYearList++) {
-			// Throw a YearNotFoundException if year is not listed in master
+			// Throw a YearNotFoundException if year constraint does not exist in master
 			if(!MasterData.yearExists(years.get(indexYearList))) {
 				throw new YearNotFoundException(years.get(indexYearList).toString());
 			} else {
+				
+				// Gets the current year data from the master
 				TableData currentYearData = MasterData.getYearData(years.get(indexYearList));
 				
+				// Gets the current year data but in ArrayList form with each item being a visit (VisitData)
 				ArrayList<VisitData> allCurrentVisitData = (ArrayList<VisitData>) currentYearData.getVisitsData();
-				int hold = allCurrentVisitData.size();
-				for(int indexVisitDataList = 0; indexVisitDataList < hold; indexVisitDataList++) {
+				
+				// Loops through each visit the current year
+				for(int indexVisitDataList = 0; indexVisitDataList < allCurrentVisitData.size(); indexVisitDataList++) {
+					
 					// Getting the visit data
 					VisitData currentVisitData = allCurrentVisitData.get(indexVisitDataList);
-					// New visit data
+					
+					// New visit data to be inserted into customizable TableData object
 					VisitData newVisitData = new VisitData();
+					
 					// Loop through all the columns in the visit data
 					for(int indexColumnsList = 0; indexColumnsList < columns.size(); indexColumnsList++) {
+						
 						// If the column specified in the parameters is found, add its value to the new visit data
 						if(currentVisitData.columnDataExists(columns.get(indexColumnsList))) {
 							newVisitData.addColumnData(columns.get(indexColumnsList), currentVisitData.getColumnData(columns.get(indexColumnsList)));
 						}
+						
 					}
+					
 					// Add the visit data to the table
-					currentYearData.addVisitData(newVisitData);
+					custom.addVisitData(newVisitData);
 				}
 			}
 		}
 		
+		// Return customized TableData object
 		return custom;
 		
 	}
