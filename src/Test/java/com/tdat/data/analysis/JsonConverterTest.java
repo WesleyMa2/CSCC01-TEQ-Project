@@ -49,4 +49,18 @@ class JsonConverterTest {
         String actual = JsonConverter.SerializeObject(null);
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Test creating json object including extra column entries")
+    void extraColumnEntriesCount() throws ColumnNotFoundException {
+        String expected = "{\"8\":3,\"12\":7,\"9\":4,\"6\":1,\"10\":5}";
+
+        visit1.addColumnData("Another Column", "99999");
+        tableData.addVisitData(visit1);
+
+        Map<String, Integer> data = tableReader.columnEntriesCount("Number of Children");
+        String actual = JsonConverter.SerializeObject(data);
+        assertFalse(actual.contains("99999"));
+        assertFalse(actual.contains("Another Column"));
+    }
 }
