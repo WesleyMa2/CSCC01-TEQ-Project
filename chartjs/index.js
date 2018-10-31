@@ -1,20 +1,19 @@
-var http = require('http');
-var fs = require('fs');
+const http = require('http');
+const fs = require('fs');
+const express = require('express');
+const bodyParser = require('body-parser');
+const uuid = require('short-uuid')();
+const helpers = require('./helpers.js');
 
-var chartColors = {
-    blue: "rgb(54, 162, 235)",
-    green: "rgb(75, 192, 192)",
-    grey: "rgb(201, 203, 207)",
-    orange: "rgb(255, 159, 64)",
-    purple: "rgb(153, 102, 255)",
-    red: "rgb(255, 99, 132)",
-    yellow: "rgb(255, 205, 86)"
-}
+const app = express();
+app.use(bodyParser.json({
+    limit: "5mb"
+}));
 
-http.createServer(function (req, res) {
+const shortLinks = {};
+
+app.post('/', function (req, res, next) {
     fs.readFile('./index.html', 'utf-8', function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-
         var chartData = [];
         for (var i = 0; i < 12; i++)
             chartData.push(Math.random() * 50);
@@ -27,15 +26,15 @@ http.createServer(function (req, res) {
             labels: ["January", "February", "March", "April", "May", "June", "July", "September", "October", "November", "December"],
             datasets: [{
                 label: '# of Wastemans',
-                backgroundColor: chartColors.red,
-                borderColor: chartColors.red,
+                backgroundColor: helpers.chartColors.red,
+                borderColor: helpers.chartColors.red,
                 data: chartData,
                 fill: false
             },
             {
                 label: '# of Children',
-                backgroundColor: chartColors.blue,
-                borderColor: chartColors.blue,
+                backgroundColor: helpers.chartColors.blue,
+                borderColor: helpers.chartColors.blue,
                 data: chartData2,
                 fill: false
             }]
@@ -79,9 +78,29 @@ http.createServer(function (req, res) {
         };
 
         result = data.replace('{{config}}', JSON.stringify(config, 0, 2));
-        res.write(result);
-        res.end();
-    });
-}).listen(3000, '127.0.0.1');
 
-console.log('Server running at http://127.0.0.1:3000/');
+        var link = uuid.new();
+        shortLinks[link] = result;
+        return res.send('http://localhost:3000/' + link);
+    });
+});
+
+app.get('/:id/', function (req, res, next) {
+    if (req.params.id in shortLinks) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(shortLinks[req.params.id]);
+        return res.end();
+    }
+    return res.json({error: "invalid id: " + req.params.id });
+});
+
+app.use(function (req, res, next) {
+    res.status(501).end("Invalid API endpoint: " + req.url);
+    console.log("HTTP Response", res.statusCode);
+});
+
+const PORT = 3000;
+http.createServer(app).listen(PORT, function (err) {
+    if (err) console.log(err);
+    else console.log("HTTP server on http://localhost:%s", PORT);
+});
