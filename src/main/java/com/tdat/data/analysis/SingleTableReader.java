@@ -23,6 +23,7 @@ public class SingleTableReader {
      */
     public Map<String, Integer> columnEntriesCount(String column) throws ColumnNotFoundException {
         Map<String, Integer> columnEntriesData = new HashMap<>();
+      
         if (!tableData.getColumnList().contains(column)) {
             throw new ColumnNotFoundException(column);
         }
@@ -30,8 +31,8 @@ public class SingleTableReader {
         for (String entry: allColumnEntries){
             if (!columnEntriesData.containsKey(entry)){
                 columnEntriesData.put(entry, 1);
-            }else {
-                columnEntriesData.put(entry, columnEntriesData.get(entry)+1);
+            } else {
+                columnEntriesData.put(entry, columnEntriesData.get(entry) + 1);
             }
         }
         return columnEntriesData;
@@ -45,7 +46,8 @@ public class SingleTableReader {
      */
     public Map<String,Map<String, Integer>> multiColumnEntriesCount(List<String> columnsList) throws ColumnNotFoundException {
         Map<String, Map<String, Integer>> result = new HashMap<>();
-        for (String column: columnsList){
+        
+        for (String column: columnsList) {
             result.put(column, columnEntriesCount(column));
         }
         return result;

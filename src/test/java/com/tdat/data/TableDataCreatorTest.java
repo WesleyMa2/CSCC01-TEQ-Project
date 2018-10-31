@@ -72,8 +72,6 @@ public class TableDataCreatorTest {
 		tableData2.addVisitData(visit3);
 		tableData2.addVisitData(visit4);
         
-		tableData3.addVisitData(visit5);
-		tableData3.addVisitData(visit6);
 		tableData3.addVisitData(visit7);
 		tableData3.addVisitData(visit8);
 		
@@ -100,12 +98,16 @@ public class TableDataCreatorTest {
 		columns.add("Col2");
 		columns.add("Col3");
 		ArrayList<Year> years = new ArrayList<Year>();
-		years.add(year1);
+		years.add(year2);
 		TableData tabledata4 = TableDataCreator.customize(master, columns, years);
 		List<VisitData> allVisitsData4 = tabledata4.getVisitsData();
-		List<VisitData> allVisitsData3 = tableData3.getVisitsData();
-		for(int i = 0; i < allVisitsData4.size(); i++) {
-			assertEquals(allVisitsData3.get(i), allVisitsData4.get(i));
+		List<VisitData> allVisitsData3 = tableData2.getVisitsData();
+		for(int a = 0; a < allVisitsData4.size(); a++) {
+			Map<String, String> data4 = allVisitsData4.get(a).getData();
+			Map<String, String> data3 = allVisitsData3.get(a).getData();
+			for(String key : data4.keySet()) {
+				assertEquals(data3.get(key), data4.get(key));
+			}
 		}
 	}
     

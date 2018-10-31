@@ -17,8 +17,8 @@ public class TableData {
 		return allVisitsData;
 	}
 
-	public void Data(List<VisitData> peopleData) {
-		this.allVisitsData = peopleData;
+	public void Data(List<VisitData> data) {
+		this.allVisitsData = data;
 	}
 
 	public List<String> getColumnList(){return columnList;}

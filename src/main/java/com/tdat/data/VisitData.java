@@ -33,12 +33,6 @@ public class VisitData {
 	}
 
 	public boolean columnDataExists(String columnName) {
-		boolean exists = true;
-		
-		if(this.data.get(columnName) == null) {
-			exists = false;
-		}
-		
-		return exists;
+		return this.data.containsKey(columnName);
 	}
 }

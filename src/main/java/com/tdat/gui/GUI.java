@@ -28,6 +28,10 @@ public class GUI extends JFrame {
 	// A dictionary to map upload time to the actual file object uploaded. This is to be used in conjunction with the "Generate Report" button
 	// so that we can generate reports for specific files uploaded
 	static HashMap<String, File> fileUploadDict = new HashMap<String, File>();
+	
+	// A dictionary to map the number of times a value occurs in a column chosen as part of this GUI
+	static Map<String, Integer> columnValueInstanceCounterMap = new HashMap<String, Integer>();
+	
 
 	
 	public static void main(String[] args){
