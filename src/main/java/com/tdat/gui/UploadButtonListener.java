@@ -1,19 +1,19 @@
 package com.tdat.gui;
 
-import com.tdat.app.App;
-import com.tdat.data.MasterData;
-import com.tdat.feeder.Uploader;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
-
-import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.Calendar;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileSystemView;
+
+import com.tdat.app.App;
+import com.tdat.data.MasterData;
+import com.tdat.feeder.Uploader;
 
 /**
  * When upload is clicked, performs sends info back to main.
@@ -25,13 +25,14 @@ public class UploadButtonListener implements ActionListener {
     private File selectedFile;
 
     public UploadButtonListener(String selectedYear, String selectedFileType){
-        this.selectedFileType = selectedFileType;
+        jfc.setPreferredSize(new Dimension(800, 500));
+        
+    	this.selectedFileType = selectedFileType;
         this.selectedYear = selectedYear;
     }
 
     public void actionPerformed(ActionEvent e) {
         int returnValue = jfc.showOpenDialog(null);
-        // int returnValue = jfc.showSaveDialog(null);
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             this.selectedFile = jfc.getSelectedFile();

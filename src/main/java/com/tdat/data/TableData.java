@@ -11,7 +11,9 @@ public class TableData {
 	private List<VisitData> allVisitsData = new ArrayList<VisitData>();
 	private List<String> columnList = new ArrayList<>();
 
-	public TableData() { }
+	public TableData() {
+		allVisitsData = new ArrayList<VisitData>();
+	}
 
 	public List<VisitData> getVisitsData() {
 		return allVisitsData;

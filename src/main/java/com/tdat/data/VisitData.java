@@ -9,9 +9,11 @@ import java.util.Map;
  * A class to represent an individual's entry (row) on a iCare spreadsheet
  */
 public class VisitData {
-	private Map<String, String> data = new HashMap<String, String>();
+	private Map<String, String> data;
 
-	public VisitData(){ }
+	public VisitData() { 
+		data = new HashMap<String, String>();
+	}
 
 	public Map<String, String> getData() {
 		return data;

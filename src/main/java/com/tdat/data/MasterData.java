@@ -17,6 +17,10 @@ public class MasterData {
 	public static Map<Year, TableData> getAllData() {
 		return allData;
 	}
+	
+	public static void clear() {
+		allData.clear();
+	}
 
 	public static TableData getYearData(Year year) {
 		return allData.get(year);
@@ -35,7 +39,6 @@ public class MasterData {
         for (String column: columns){
             System.out.println("[" + column + "]:\t" + yearData.getColumnEntries(column));
         }
-
     }
 
 	public static void setYearData(Year year, TableData yearData) {
