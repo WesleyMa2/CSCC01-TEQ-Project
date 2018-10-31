@@ -19,7 +19,7 @@ import com.tdat.feeder.Uploader;
  * When upload is clicked, performs sends info back to main.
  */
 public class UploadButtonListener implements ActionListener {
-    private JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+    private JFileChooser jfc = new JFileChooser();
     private String selectedYear;
     private String selectedFileType;
     private File selectedFile;

@@ -35,7 +35,8 @@ public class GenerateReportButtonListener implements ActionListener{
     	
     	String json;
 		try {
-			json = JsonConverter.serializeObject("", tableReader.columnEntriesCount(""));
+			String column = "Date of Birth (YYYY-MM-DD)";
+			json = JsonConverter.serializeObject(column, tableReader.columnEntriesCount(column));
 	    	
 	    	System.out.println("JSON:\t\t" + json);
 	    	jsonObjectSerializedToString.add(json);

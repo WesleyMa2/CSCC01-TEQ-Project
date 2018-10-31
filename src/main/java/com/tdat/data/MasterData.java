@@ -27,12 +27,6 @@ public class MasterData {
 	}
 
 	public static void printYearData(Year year){
-//	    String result = year.toString() + ":\n";
-//	    TableData currYear = getYearData(year);
-//	    List<VisitData> visitData = currYear.getVisitsData();
-//	    Set currCols = ((VisitData) visitData.get(0)).getData().keySet();
-//        result += currCols.toString() + "\n";
-//        System.out.println(result);
         TableData yearData = getYearData(year);
         List<String> columns = yearData.getColumnList();
         System.out.println("Data for year of " + year);

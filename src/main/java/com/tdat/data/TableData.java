@@ -8,11 +8,12 @@ import java.util.List;
  */
 public class TableData {
 	
-	private List<VisitData> allVisitsData = new ArrayList<VisitData>();
-	private List<String> columnList = new ArrayList<>();
+	private List<VisitData> allVisitsData;
+	private List<String> columnList;
 
 	public TableData() {
 		allVisitsData = new ArrayList<VisitData>();
+		columnList = new ArrayList<>();
 	}
 
 	public List<VisitData> getVisitsData() {
@@ -23,7 +24,9 @@ public class TableData {
 		this.allVisitsData = data;
 	}
 
-	public List<String> getColumnList(){return columnList;}
+	public List<String> getColumnList(){
+		return columnList;
+	}
 
     /**
      * Will ensure the column list is up to date.

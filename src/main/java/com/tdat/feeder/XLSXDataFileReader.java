@@ -16,6 +16,16 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class XLSXDataFileReader implements DataFileReader {
 
+	//https://stackoverflow.com/questions/12217047/how-to-determine-empty-row
+	public static boolean isRowEmpty(Row row) {
+	    for (int c = row.getFirstCellNum(); c < row.getLastCellNum(); c++) {
+	        Cell cell = row.getCell(c);
+	        if (cell != null && cell.getCellType() != CellType.BLANK)
+	            return false;
+	    }
+	    return true;
+	}
+	
     /**
      * A Class that reads an iCare file into a java object.
      * @param file file to read
@@ -67,14 +77,18 @@ public class XLSXDataFileReader implements DataFileReader {
 
                 // Gets the row object for this loop
                 Row row = rowIterator.next();
-
+                
+                if (isRowEmpty(row)) {
+                	break;
+                }
+                
                 // Loops through each cell in this row
                 Iterator<Cell> cellIterator = row.cellIterator();
                 while (cellIterator.hasNext()) {
 
                     // Gets the cell object for this cell
                     Cell cell = cellIterator.next();
-
+                    
                     // Puts the current cell information into its row HashMap
                     if (cell.getCellType() == CellType.STRING) {
                         currentVisit.put(keys.get(counter), cell.getStringCellValue());
