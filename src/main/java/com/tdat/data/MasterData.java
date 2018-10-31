@@ -23,35 +23,45 @@ public class MasterData {
 	}
 
 	public static void printYearData(Year year){
-	    String result = year.toString() + ":\n";
-	    TableData currYear = getYearData(year);
-	    List<VisitData> visitData = currYear.getVisitsData();
-	    Set currCols = ((VisitData) visitData.get(0)).getData().keySet();
-        result += currCols.toString() + "\n";
-        System.out.println(result);
+//	    String result = year.toString() + ":\n";
+//	    TableData currYear = getYearData(year);
+//	    List<VisitData> visitData = currYear.getVisitsData();
+//	    Set currCols = ((VisitData) visitData.get(0)).getData().keySet();
+//        result += currCols.toString() + "\n";
+//        System.out.println(result);
+        TableData yearData = getYearData(year);
+        List<String> columns = yearData.getColumnList();
+        System.out.println("Data for year of " + year);
+        for (String column: columns){
+            System.out.println("[" + column + "]:\t" + yearData.getColumnEntries(column));
+        }
+
     }
 
 	public static void setYearData(Year year, TableData yearData) {
 		allData.put(year, yearData);
 	}
-	
+
+    /**
+     * Given a TableData and it's corresponding year,
+     * adds that on to the existing table under that year in the master data
+     * @param year
+     * @param allVisits
+     */
 	public static void setYearData(Year year, List<Map<String, String>> allVisits) {
-		TableData yearData;
+		TableData existingYearData;
 		if(yearExists(year)) {
-			yearData = allData.get(year);
+			existingYearData = allData.get(year);
 		} else {
-			yearData = new TableData();
+			existingYearData = new TableData();
 		}
+		for (Map<String,String> visitKeyValue: allVisits){
+		    VisitData visitToAdd = new VisitData();
+		    visitToAdd.setData(visitKeyValue);
+		    existingYearData.addVisitData(visitToAdd);
+        }
 		
-		for(int a = 0; a < allVisits.size(); a++) {
-			VisitData visitData = new VisitData();
-			for(String key: allVisits.get(a).keySet()) {
-				visitData.addColumnData(key, allVisits.get(a).get(key));
-			}
-			yearData.addVisitData(visitData);
-		}
-		
-		allData.put(year, yearData);
+		allData.put(year, existingYearData);
 	}
 
 	public static List<TableData> getRangeOfYear(Year startYear, Year endYear){
