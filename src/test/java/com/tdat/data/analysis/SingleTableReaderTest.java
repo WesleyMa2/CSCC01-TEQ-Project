@@ -64,12 +64,6 @@ class SingleTableReaderTest {
     }
 
     @Test
-    void listAllColumns() {
-        Set<String> testResult = tableReader.listAllColumns();
-        assertTrue(testResult.contains("Col1") && testResult.contains("Col2"));
-    }
-
-    @Test
     void getNumColumns() {
         assertEquals(2, tableReader.getNumColumns());
     }

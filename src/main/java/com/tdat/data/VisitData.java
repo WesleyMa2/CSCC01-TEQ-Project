@@ -1,5 +1,7 @@
 package com.tdat.data;
 
+import com.tdat.app.App;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,13 +18,20 @@ public class VisitData {
 	}
 
 	public String getColumnData(String columnName) {
+		if (!this.data.containsKey(columnName)){
+			return App.EMPTY;
+		}
 		return this.data.get(columnName);
 	}
 
 	public void addColumnData(String columnName, String value) {
 		this.data.put(columnName, value);
 	}
-	
+
+	public void setData(Map<String, String> data) {
+		this.data = data;
+	}
+
 	public boolean columnDataExists(String columnName) {
 		boolean exists = true;
 		

@@ -6,6 +6,7 @@ import java.time.Year;
 import java.util.ArrayList;
 
 public class App {
+	public static String EMPTY = "N/A";
 	public static File selectedFile;
     public static Year selectedYear;
 	public static String selectedFileType;

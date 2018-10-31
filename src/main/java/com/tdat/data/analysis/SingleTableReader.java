@@ -13,11 +13,10 @@ import java.util.Set;
  * Provides various measures of data on a given table
  */
 public class SingleTableReader {
-    private List<VisitData> visitDataList;
+    private TableData tableData;
 
-    public SingleTableReader(TableData tableData){
-        this.visitDataList = tableData.getVisitsData();
-    }
+    public SingleTableReader(TableData tableData){this.tableData = tableData;}
+
 
     /**
      * Counts the #of times each entry occurs for a given column
@@ -26,18 +25,28 @@ public class SingleTableReader {
      */
     public Map<String, Integer> columnEntriesCount(String column) throws ColumnNotFoundException {
         Map<String, Integer> columnEntriesData = new HashMap<>();
-
-        for (VisitData singleVisit: visitDataList){
-            String entry = singleVisit.getColumnData(column);
-            if (!listAllColumns().contains(column)){
-                throw new ColumnNotFoundException(column);
-            }
+        if (!tableData.getColumnList().contains(column)) {
+            throw new ColumnNotFoundException(column);
+        }
+        List<String> allColumnEntries = tableData.getColumnEntries(column);
+        for (String entry: allColumnEntries){
             if (!columnEntriesData.containsKey(entry)){
                 columnEntriesData.put(entry, 1);
             }else {
                 columnEntriesData.put(entry, columnEntriesData.get(entry)+1);
             }
         }
+//        for (VisitData singleVisit: visitDataList){
+//            String entry = singleVisit.getColumnData(column);
+//            if (!listAllColumns().contains(column)){
+//                throw new ColumnNotFoundException(column);
+//            }
+//            if (!columnEntriesData.containsKey(entry)){
+//                columnEntriesData.put(entry, 1);
+//            }else {
+//                columnEntriesData.put(entry, columnEntriesData.get(entry)+1);
+//            }
+//        }
         return columnEntriesData;
     }
 
@@ -56,14 +65,11 @@ public class SingleTableReader {
     }
 
     public int getNumEntries(){
-        return visitDataList.size();
+        return tableData.getVisitsData().size();
     }
 
-    public Set<String> listAllColumns(){
-        return visitDataList.get(0).getData().keySet();
-    }
 
     public int getNumColumns(){
-        return listAllColumns().size();
+        return tableData.getColumnList().size();
     }
 }
