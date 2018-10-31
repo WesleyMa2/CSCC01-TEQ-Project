@@ -4,6 +4,8 @@ import com.tdat.app.App;
 import com.tdat.data.MasterData;
 import com.tdat.data.TableData;
 import com.tdat.data.VisitData;
+import com.tdat.data.analysis.SingleTableReader;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,6 +21,10 @@ class UploaderTest {
     File testICare1 = new File("./src/test/resources/Test 1.xlsx");
     File testICare2 = new File("./src/test/resources/Test 2.xlsx");
 
+    @BeforeAll
+    public static void setUp() {
+        MasterData.clear();
+    }
 
     @Test
     @DisplayName("Test uploading single iCare file")

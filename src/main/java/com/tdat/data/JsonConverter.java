@@ -1,6 +1,5 @@
 package com.tdat.data;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -10,28 +9,33 @@ import org.json.JSONObject;
  */
 public class JsonConverter {
     
-    public static String SerializeObject(Map<String, Integer> data) {
-        return new JSONObject(data).toString();
+    public static String serializeObject(String column, Map<String, Integer> mapData) {
+    	JSONObject json = new JSONObject();
+    	json.put("name", column);
+        json.put("data", new JSONObject(mapData));
+
+        return json.toString();
     }
 
-    public static HashMap<String, Integer> DeserializeObject(String data) {
-        HashMap<String, Integer> result = new HashMap<String, Integer>();
-        Map<String, Object> json = new JSONObject(data).toMap();
-
-        for (Map.Entry<String, Object> entry : json.entrySet()) {
-            if (!(entry.getValue() instanceof Integer)) {
-                System.out.println(entry.getValue() + " error in data, while parsing to integer.");
-                return null;
-            }
-            Integer convert = (Integer) entry.getValue();
-            String key = entry.getKey();
-
-            if (!result.containsKey(key)) {
-                result.put(key, convert);
-            }
-        }
-
-        return result;
-    }
+// 	Unused method
+//    public static HashMap<String, Integer> deserializeObject(String data) {
+//        HashMap<String, Integer> result = new HashMap<String, Integer>();
+//        Map<String, Object> json = new JSONObject(data).toMap();
+//
+//        for (Map.Entry<String, Object> entry : json.entrySet()) {
+//            if (!(entry.getValue() instanceof Integer)) {
+//                System.out.println(entry.getValue() + " error in data, while parsing to integer.");
+//                return null;
+//            }
+//            Integer convert = (Integer) entry.getValue();
+//            String key = entry.getKey();
+//
+//            if (!result.containsKey(key)) {
+//                result.put(key, convert);
+//            }
+//        }
+//
+//        return result;
+//    }
 
 }
