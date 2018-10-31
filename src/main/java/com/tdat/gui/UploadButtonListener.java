@@ -48,7 +48,9 @@ public class UploadButtonListener implements ActionListener {
             System.out.println("File:\t\t" + App.selectedFile.getName());
             System.out.println("FilePath:\t" + selectedFile.getAbsolutePath());
 
-            Uploader.upload(App.selectedYear, App.selectedFile);
+            if (!Uploader.upload(App.selectedYear, App.selectedFile)){
+                System.out.println("File Not Found!");
+            };
             MasterData.printYearData(App.selectedYear);
 
         }
