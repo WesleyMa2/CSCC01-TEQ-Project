@@ -8,6 +8,12 @@ var chartColours = {
     yellow: "rgb(255, 205, 86)"
 };
 
+/**
+ * Returns an {amount} amount of colours to be used in the chart
+ * If we enter an amount greater than chartColours, just return empty set
+ * We cannot have duplicate colours in the chart
+ * @param {number} amount Amount of random colours to return
+ */
 function getRandomColour(amount) {
     var result = [];
     var keys = Object.keys(chartColours);
@@ -24,6 +30,10 @@ function getRandomColour(amount) {
     return result;
 }
 
+/**
+ * Configuration stub to be injected into the chart template
+ * @param {*} body body in the request
+ */
 function getConfigStub(body) {
     var config = {
         type: body.type,
