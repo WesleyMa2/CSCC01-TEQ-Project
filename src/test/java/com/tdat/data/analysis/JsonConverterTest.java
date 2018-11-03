@@ -1,74 +1,49 @@
 package com.tdat.data.analysis;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
+import com.tdat.data.ChartData;
+import com.tdat.data.ColumnNotFoundException;
+import com.tdat.data.JsonConverter;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.tdat.data.ColumnNotFoundException;
-import com.tdat.data.JsonConverter;
-import com.tdat.data.MasterData;
-import com.tdat.data.TableData;
-import com.tdat.data.VisitData;
-
 class JsonConverterTest {
-    private static TableData tableData = new TableData();
-    private static VisitData visit1 = new VisitData();
-    private static SingleTableReader tableReader;
-
-    @BeforeAll
-    public static void setUp() {
-        MasterData.clear();
-        
-        int[] max = new int[] {5, 3, 7, 4, 1};
-        for (int i = 0; i < max.length; i++) {
-            
-            for (int j = 0; j < max[i]; j++) {
-                VisitData data = new VisitData();
-                data.addColumnData("Number of Children", (max[i] + 5) + "");
-                tableData.addVisitData(data);
-            }
-        }
-
-        tableReader = new SingleTableReader(tableData);
-    }
 
     @Test
-    @DisplayName("Test creating json object using columns entries")
+    @DisplayName("Test creating json object using entries")
     void jsonColumnEntriesCount() throws ColumnNotFoundException {
-        String expected = "{\"data\":{\"8\":3,\"12\":7,\"9\":4,\"6\":1,\"10\":5},\"name\":\"Number of Children\"}";
+        List<String> labels = Arrays.asList("label1", "label2", "label3");
 
-        Map<String, Integer> data = tableReader.columnEntriesCount("Number of Children");
-        String actual = JsonConverter.serializeObject("Number of Children", data);
+        String expected = "{\"xAxisLabels\":[\"label1\",\"label2\",\"label3\"],\"xAxisTitle\":\"x axis title\",\"type\":\"type of graph\",\"dataSet\":[{\"data\":[1,2,3,4],\"header\":\"a header\"}],\"yAxisTitle\":\"y axis title\"}";
+
+        List<ChartData> data = new ArrayList<>(Arrays.asList(
+            new ChartData("a header", Arrays.asList(1,2,3,4))));
+
+        String actual = JsonConverter.serializeObject("type of graph", "x axis title", labels, "y axis title", data);
         assertEquals(expected, actual);
     }
 
     @Test
-    @DisplayName("Test creating json object with null object")
-    void dneColumnEntries() throws ColumnNotFoundException {
-        String expected = "{\"data\":{}}";
-        String actual = JsonConverter.serializeObject(null, null);
+    @DisplayName("Test creating json object with null input")
+    void dneColumnEntries() throws NullPointerException, IllegalStateException {
 
-        assertEquals(expected, actual);
-    }
+        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject(null, null, null, null, null); });
 
-    @Test
-    @DisplayName("Test creating json object including extra column entries")
-    void extraColumnEntriesCount() throws ColumnNotFoundException {
-    	String column = "Number of Children";
-    	
-        visit1.addColumnData("Another Column", "99999");
-        tableData.addVisitData(visit1);
-        tableReader = new SingleTableReader(tableData);
-        
-        Map<String, Integer> data = tableReader.columnEntriesCount(column);
-        String actual = JsonConverter.serializeObject(column, data);
-        
-        assertTrue(!actual.contains("99999"));
-        assertTrue(!actual.contains("Another Column"));
+        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", null, null, null, null); });
+
+        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "x axis title", null, null, null); });
+
+        assertThrows(IllegalStateException.class, () -> { JsonConverter.serializeObject("a type", "x axis title", new ArrayList<String>(), null, null); });
+
+        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "x axis title", Arrays.asList("x axis label"), null, null); });
+
+        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "x axis title", Arrays.asList("x axis label"), "y axis title", null); });
     }
 }

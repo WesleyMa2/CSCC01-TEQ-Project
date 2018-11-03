@@ -3,8 +3,10 @@ package com.tdat.gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.tdat.app.App;
+import com.tdat.data.ChartData;
 import com.tdat.data.ColumnNotFoundException;
 import com.tdat.data.JsonConverter;
 import com.tdat.data.MasterData;
@@ -34,16 +36,11 @@ public class GenerateReportButtonListener implements ActionListener{
     	tableReader = new SingleTableReader(data);
     	
     	String json;
-		try {
-			String column = "Date of Birth (YYYY-MM-DD)";
-			json = JsonConverter.serializeObject(column, tableReader.columnEntriesCount(column));
-	    	
-	    	System.out.println("JSON:\t\t" + json);
-	    	jsonObjectSerializedToString.add(json);
-		} catch (ColumnNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		String column = "Date of Birth (YYYY-MM-DD)";
+		json = JsonConverter.serializeObject("line", "x axis title", Arrays.asList("asd"), "y axis title", new ArrayList<ChartData>());
+
+		System.out.println("JSON:\t\t" + json);
+		jsonObjectSerializedToString.add(json);
     	
     }
     

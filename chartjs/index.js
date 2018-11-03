@@ -12,7 +12,16 @@ app.use(bodyParser.json({
 
 const shortLinks = {};
 
-//curl -X POST -H "Content-Type: application/json" -d '{ "type": "bar", "xAxisTitle": "# Of Children", "xAxisLabels": ["1", "2", "3", "4", "5+"], "yAxisTitle": "Value", "dataSet": [{ "header": "2018", "data": [3, 6, 1, 7, 8] }, { "header": "2017", "data": [2, 8, 3, 12, 6] }] }' http://localhost:3000/
+app.get('/:id/', function (req, res, next) {
+    if (req.params.id in shortLinks) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(shortLinks[req.params.id]);
+        return res.end();
+    }
+    return res.json({error: "invalid id: " + req.params.id });
+});
+
+//curl -X POST -H "Content-Type: application/json" -d '{ "type": "line", "xAxisTitle": "# Of Children", "xAxisLabels": ["1", "2", "3", "4", "5+"], "yAxisTitle": "Value", "dataSet": [{ "header": "2018", "data": [3, 6, 1, 7, 8] }, { "header": "2017", "data": [2, 8, 3, 12, 6] }] }' http://localhost:3000/
 app.post('/', function (req, res, next) {
     fs.readFile('./index.html', 'utf-8', function (err, data) {
         if (err) {
@@ -28,8 +37,8 @@ app.post('/', function (req, res, next) {
                 label: req.body.dataSet[i].header,
                 backgroundColor: colours[i].replace(')', ', 0.5)'),
                 borderColor: colours[i],
-                borderWidth: 1,
                 data: req.body.dataSet[i].data,
+                borderWidth: 1,
                 fill: false
             }
         }
@@ -40,15 +49,6 @@ app.post('/', function (req, res, next) {
         shortLinks[link] = result;
         return res.redirect('http://localhost:3000/' + link);
     });
-});
-
-app.get('/:id/', function (req, res, next) {
-    if (req.params.id in shortLinks) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(shortLinks[req.params.id]);
-        return res.end();
-    }
-    return res.json({error: "invalid id: " + req.params.id });
 });
 
 app.use(function (req, res, next) {
