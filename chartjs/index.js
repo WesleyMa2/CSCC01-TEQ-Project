@@ -12,72 +12,30 @@ app.use(bodyParser.json({
 
 const shortLinks = {};
 
+//curl -X POST -H "Content-Type: application/json" -d '{ "type": "bar", "xAxisTitle": "# Of Children", "xAxisLabels": ["1", "2", "3", "4", "5+"], "yAxisTitle": "Value", "dataSet": [{ "header": "2018", "data": [3, 6, 1, 7, 8] }, { "header": "2017", "data": [2, 8, 3, 12, 6] }] }' http://localhost:3000/
 app.post('/', function (req, res, next) {
     fs.readFile('./index.html', 'utf-8', function (err, data) {
-        var chartData = [];
-        for (var i = 0; i < 12; i++)
-            chartData.push(Math.random() * 50);
+        if (err) {
+            return res.json({ error: err });
+        }
 
-        var chartData2 = [];
-        for (var i = 0; i < 12; i++)
-            chartData2.push(Math.random() * 50);
+        var limit = req.body.dataSet.length;
+        var config = helpers.getConfigStub(req.body);
+        var colours = helpers.getRandomColour(limit);
 
-        var valueData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July", "September", "October", "November", "December"],
-            datasets: [{
-                label: '# of Wastemans',
-                backgroundColor: helpers.chartColors.red,
-                borderColor: helpers.chartColors.red,
-                data: chartData,
+        for (var i = 0; i < limit && colours.length <= limit; i++) {
+            config.data.datasets[i] = { 
+                label: req.body.dataSet[i].header,
+                backgroundColor: colours[i].replace(')', ', 0.5)'),
+                borderColor: colours[i],
+                data: req.body.dataSet[i].data,
                 fill: false
-            },
-            {
-                label: '# of Children',
-                backgroundColor: helpers.chartColors.blue,
-                borderColor: helpers.chartColors.blue,
-                data: chartData2,
-                fill: false
-            }]
-        };
+            }
+        }
 
-        var config = {
-            type: 'line',
-            responsive: true,
-            data: valueData,
-            options: {
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'TEQ Report'
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false,
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Month'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Value'
-                        }
-                    }]
-                }
-            },
-        };
+        result = data.replace('{{config}}', JSON.stringify(config));
 
-        result = data.replace('{{config}}', JSON.stringify(config, 0, 2));
+        console.log();
 
         var link = uuid.new();
         shortLinks[link] = result;
