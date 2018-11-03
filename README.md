@@ -15,6 +15,7 @@ root
   |             └── 1
   |             └── 2
   |             └── 3
+  └── reports
   └── src
   |     └── main 
   |            └── java

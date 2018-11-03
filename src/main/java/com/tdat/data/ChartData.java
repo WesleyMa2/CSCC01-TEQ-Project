@@ -3,7 +3,7 @@ package com.tdat.data;
 import java.util.List;
 
 /**
- * A class to represent a each type of
+ * A class to represent each type of data to be shown in the chart
  */
 public class ChartData {
 	private String header;

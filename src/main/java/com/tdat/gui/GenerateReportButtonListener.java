@@ -39,7 +39,7 @@ public class GenerateReportButtonListener implements ActionListener{
 		ChartData data1 = new ChartData("2016", Arrays.asList(1,2,3,4,5));
 		ChartData data2 = new ChartData("2017", Arrays.asList(6,7,8,9,10));
 		ChartData data3 = new ChartData("2018", Arrays.asList(1,3,5,7,9));
-		String json = JsonConverter.serializeObject("bar", "# Of Children", Arrays.asList("1","2", "3", "4"), "Value", Arrays.asList(data1, data2, data3));
+		String json = JsonConverter.serializeObject("line", "# Of Children", Arrays.asList("1","2", "3", "4"), "Value", Arrays.asList(data1, data2, data3));
 
 		System.out.println("JSON:\t\t" + json);
 		jsonObjectSerializedToString.add(json);

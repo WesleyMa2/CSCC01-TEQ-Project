@@ -42,7 +42,6 @@ app.post('/', function (req, res, next) {
 
 app.use(function (req, res, next) {
     res.status(501).end("Invalid API endpoint: " + req.url);
-    console.log("HTTP Response", res.statusCode);
 });
 
 const PORT = 3000;
