@@ -19,9 +19,10 @@ app.post('/', function (req, res, next) {
         }
 
         var limit = req.body.dataSet.length;
-        var config = helpers.getConfigStub(req.body);
         var colours = helpers.getRandomColour(limit);
+        var config = helpers.getConfigStub(req.body);
 
+        // Foreach data we want to import, create another dataset into the chart
         for (var i = 0; i < limit && colours.length <= limit; i++) {
             config.data.datasets[i] = { 
                 label: req.body.dataSet[i].header,
