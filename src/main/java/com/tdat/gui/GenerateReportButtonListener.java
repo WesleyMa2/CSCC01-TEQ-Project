@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 import com.tdat.app.App;
 import com.tdat.data.ChartData;
+import com.tdat.data.ChartJS;
 import com.tdat.data.ColumnNotFoundException;
 import com.tdat.data.JsonConverter;
 import com.tdat.data.MasterData;
@@ -35,13 +36,16 @@ public class GenerateReportButtonListener implements ActionListener{
     	System.out.println(App.selectedYear);
     	tableReader = new SingleTableReader(data);
     	
-    	String json;
-		String column = "Date of Birth (YYYY-MM-DD)";
-		json = JsonConverter.serializeObject("line", "x axis title", Arrays.asList("asd"), "y axis title", new ArrayList<ChartData>());
+		ChartData data1 = new ChartData("2016", Arrays.asList(1,2,3,4,5));
+		ChartData data2 = new ChartData("2017", Arrays.asList(6,7,8,9,10));
+		ChartData data3 = new ChartData("2018", Arrays.asList(1,3,5,7,9));
+		String json = JsonConverter.serializeObject("bar", "# Of Children", Arrays.asList("1","2", "3", "4"), "Value", Arrays.asList(data1, data2, data3));
 
 		System.out.println("JSON:\t\t" + json);
 		jsonObjectSerializedToString.add(json);
-    	
+
+		String path = ChartJS.create(json);
+		System.out.println("PATH:\t\t" + path);
     }
     
 

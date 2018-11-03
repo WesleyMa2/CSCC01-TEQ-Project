@@ -10,6 +10,7 @@
 Follow the folder structure outlined below to easy navigation through the repository.
 ```bash
 root
+  └── chartjs
   └── deliverables
   |             └── 1
   |             └── 2

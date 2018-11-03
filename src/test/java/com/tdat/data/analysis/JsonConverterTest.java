@@ -23,8 +23,7 @@ class JsonConverterTest {
 
         String expected = "{\"xAxisLabels\":[\"label1\",\"label2\",\"label3\"],\"xAxisTitle\":\"x axis title\",\"type\":\"type of graph\",\"dataSet\":[{\"data\":[1,2,3,4],\"header\":\"a header\"}],\"yAxisTitle\":\"y axis title\"}";
 
-        List<ChartData> data = new ArrayList<>(Arrays.asList(
-            new ChartData("a header", Arrays.asList(1,2,3,4))));
+        List<ChartData> data = new ArrayList<>(Arrays.asList(new ChartData("a header", Arrays.asList(1,2,3,4))));
 
         String actual = JsonConverter.serializeObject("type of graph", "x axis title", labels, "y axis title", data);
         assertEquals(expected, actual);
