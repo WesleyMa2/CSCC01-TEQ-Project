@@ -28,18 +28,17 @@ app.post('/', function (req, res, next) {
                 label: req.body.dataSet[i].header,
                 backgroundColor: colours[i].replace(')', ', 0.5)'),
                 borderColor: colours[i],
+                borderWidth: 1,
                 data: req.body.dataSet[i].data,
                 fill: false
             }
         }
 
-        result = data.replace('{{config}}', JSON.stringify(config));
-
-        console.log();
+        result = data.replace('{{config}}', JSON.stringify(config, 0, 4));
 
         var link = uuid.new();
         shortLinks[link] = result;
-        return res.send('http://localhost:3000/' + link);
+        return res.redirect('http://localhost:3000/' + link);
     });
 });
 
