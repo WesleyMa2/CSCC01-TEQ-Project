@@ -2,24 +2,14 @@ const http = require('http');
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
-const uuid = require('short-uuid')();
+const morgan = require('morgan');
 const helpers = require('./helpers.js');
 
 const app = express();
+app.use(morgan('dev'));
 app.use(bodyParser.json({
     limit: "5mb"
 }));
-
-const shortLinks = {};
-
-app.get('/:id/', function (req, res, next) {
-    if (req.params.id in shortLinks) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(shortLinks[req.params.id]);
-        return res.end();
-    }
-    return res.json({error: "invalid id: " + req.params.id });
-});
 
 //curl -X POST -H "Content-Type: application/json" -d '{ "type": "line", "xAxisTitle": "# Of Children", "xAxisLabels": ["1", "2", "3", "4", "5+"], "yAxisTitle": "Value", "dataSet": [{ "header": "2018", "data": [3, 6, 1, 7, 8] }, { "header": "2017", "data": [2, 8, 3, 12, 6] }] }' http://localhost:3000/
 app.post('/', function (req, res, next) {
@@ -44,10 +34,9 @@ app.post('/', function (req, res, next) {
         }
 
         result = data.replace('{{config}}', JSON.stringify(config, 0, 4));
-
-        var link = uuid.new();
-        shortLinks[link] = result;
-        return res.redirect('http://localhost:3000/' + link);
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(result);
+        return res.end();
     });
 });
 
