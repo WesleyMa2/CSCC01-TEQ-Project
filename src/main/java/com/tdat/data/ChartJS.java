@@ -9,6 +9,11 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.UUID;
 
 import org.apache.http.HttpResponse;
@@ -26,11 +31,11 @@ public class ChartJS {
 
     private static String API_URL = "http://localhost:3000/";
 
-    public static String shortUUID() {
-        UUID uuid = UUID.randomUUID();
-        long l = ByteBuffer.wrap(uuid.toString().getBytes()).getLong();
-        return Long.toString(l, Character.MAX_RADIX);
-    } 
+    public static String getDate() {
+        DateFormat dateFormat = new SimpleDateFormat("MMM-dd HH-mm");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 
     public static String create(String json) {
         HttpClient httpClient = HttpClientBuilder.create().build();
@@ -44,7 +49,7 @@ public class ChartJS {
             InputStream in = response.getEntity().getContent();
 
             Path directoryPath = Paths.get(System.getProperty("user.dir"), "reports");
-            Path filePath = Paths.get(directoryPath.toString(), "report-" + shortUUID() + ".html");
+            Path filePath = Paths.get(directoryPath.toString(), "report-" + getDate() + ".html");
             if (!Files.exists(directoryPath)) {
                 Files.createDirectory(directoryPath);
             }
@@ -55,6 +60,7 @@ public class ChartJS {
             while((length = in.read(buffer)) > 0) {
                 fos.write(buffer, 0, length);
             }
+            fos.close();
 
             return filePath.toString();
         } catch (ClientProtocolException e) {
