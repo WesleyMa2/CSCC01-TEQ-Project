@@ -79,6 +79,7 @@ public class GUI extends JFrame {
 		mainPanel.add(historyList);
 		mainPanel.add(uploadButton);
 		mainPanel.add(reportGenerateButton);
+
 		// BUTTON ACTIONS
 		fiscalYearDropdown.addActionListener(new ActionListener() {
 			@Override

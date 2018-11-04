@@ -25,6 +25,7 @@ public class UploadButtonListener implements ActionListener {
     private File selectedFile;
 
     public UploadButtonListener(){
+        jfc.setCurrentDirectory(new File(System.getProperty("user.dir")));
         jfc.setPreferredSize(new Dimension(800, 500));
     }
 
@@ -39,10 +40,12 @@ public class UploadButtonListener implements ActionListener {
             					"   Fiscal year: " + App.selectedYear;
             GUI.DLM.addElement(historyEntry);
             GUI.fileUploadDict.put(historyEntry, this.selectedFile);
-            System.out.println("Year:\t\t" + App.selectedYear);
-            System.out.println("FileType:\t" + App.selectedFileType);
-            System.out.println("File:\t\t" + App.selectedFile.getName());
-            System.out.println("FilePath:\t" + selectedFile.getAbsolutePath());
+            System.out.println("\n[File Uploaded]");
+            System.out.println(" File:\t\t" + App.selectedFile.getName());
+            System.out.println(" Type:\t" + App.selectedFileType);
+            System.out.println(" Path:\t" + selectedFile.getAbsolutePath());
+            System.out.println(" Year:\t" + App.selectedYear);
+
 
             if (!Uploader.upload(App.selectedYear, App.selectedFile)){
                 System.out.println("File Not Found!");
