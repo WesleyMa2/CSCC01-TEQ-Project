@@ -6,11 +6,11 @@ public abstract class ChartScheme {
     private String mainTitle = "";
     private String xTitle = "";
     private String yTitle = "";
-    private boolean graphOrNot;
+    private boolean isGraph;
     private String graphType;
 
-    public ChartScheme(boolean graphOrNot, String graphType){
-        this.graphOrNot = graphOrNot;
+    public ChartScheme(boolean isGraph, String graphType){
+        this.isGraph = isGraph;
         this.graphType = graphType;
     }
 
@@ -30,7 +30,7 @@ public abstract class ChartScheme {
         return this;
     }
 
-    public boolean graphOrNot(){return graphOrNot;}
+    public boolean graphOrNot(){return isGraph;}
 
     public abstract String toJson();
 
