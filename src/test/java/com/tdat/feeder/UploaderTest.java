@@ -1,21 +1,19 @@
 package com.tdat.feeder;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.File;
+import java.time.Year;
+import java.util.Arrays;
+import java.util.HashSet;
+
 import com.tdat.app.App;
 import com.tdat.data.MasterData;
 import com.tdat.data.TableData;
-import com.tdat.data.VisitData;
-import com.tdat.data.analysis.SingleTableReader;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
-import java.lang.reflect.Array;
-import java.time.Year;
-import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UploaderTest {
     File testICare1 = new File("./src/test/resources/Test 1.xlsx");
