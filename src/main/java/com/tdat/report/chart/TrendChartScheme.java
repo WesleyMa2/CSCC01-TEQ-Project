@@ -13,6 +13,8 @@ public class TrendChartScheme extends ChartScheme {
         this.dataSet = dataSet;
     }
 
+    public String toJson(){return null;}
+
     public Map<String, String> getDataSetToGraph() {
         return dataSet;
     }

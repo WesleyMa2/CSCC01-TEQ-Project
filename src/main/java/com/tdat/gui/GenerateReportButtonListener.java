@@ -36,7 +36,7 @@ public class GenerateReportButtonListener implements ActionListener {
 //		ChartDataset data3 = new ChartDataset("2018", Arrays.asList(1,3,5,7,9));
 //      String json = JsonConverter.serializeObject(testGraph.getGraphType(), testGraph.getxTitle(), columnEntriesCount.keySet(), testGraph.getyTitle(), Arrays.asList(data1, data2, data3));
 
-        String json = ((DistributionChartScheme) testGraph).toJson();
+        String json = testGraph.toJson();
         System.out.println("JSON:\t\t" + json);
         jsonObjectSerializedToString.add(json);
 

@@ -32,6 +32,8 @@ public abstract class ChartScheme {
 
     public boolean graphOrNot(){return graphOrNot;}
 
+    public abstract String toJson();
+
     public String getMainTitle() {
         return mainTitle;
     }
