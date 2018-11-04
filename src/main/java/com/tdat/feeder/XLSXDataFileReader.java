@@ -98,7 +98,8 @@ public class XLSXDataFileReader implements DataFileReader {
                         if (cell.getCellType() == CellType.STRING) {
                             currentVisit.put(keys.get(counter), cell.getStringCellValue());
                         } else if (cell.getCellType() == CellType.NUMERIC) {
-                            currentVisit.put(keys.get(counter), Double.toString(cell.getNumericCellValue()));
+                            // Assuming all numerical values are integers
+                            currentVisit.put(keys.get(counter), Integer.toString((int) cell.getNumericCellValue()));
                         }
                     } catch (NullPointerException e) {
                         currentVisit.put(keys.get(counter), App.EMPTY);
