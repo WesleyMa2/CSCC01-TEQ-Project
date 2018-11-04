@@ -24,11 +24,8 @@ public class UploadButtonListener implements ActionListener {
     private String selectedFileType;
     private File selectedFile;
 
-    public UploadButtonListener(String selectedYear, String selectedFileType){
+    public UploadButtonListener(){
         jfc.setPreferredSize(new Dimension(800, 500));
-        
-    	this.selectedFileType = selectedFileType;
-        this.selectedYear = selectedYear;
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -37,11 +34,9 @@ public class UploadButtonListener implements ActionListener {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             this.selectedFile = jfc.getSelectedFile();
             App.selectedFile = selectedFile;
-            App.selectedFileType = this.selectedFileType;
-            App.selectedYear = (Year.of(Integer.parseInt(this.selectedYear.substring(0,4))));
             String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
-            String historyEntry = "Date: " + timeStamp + "   Filename: " + selectedFile.getName() + "   Filetype: " + this.selectedFileType + 
-            					"   Fiscal year: " + this.selectedYear;
+            String historyEntry = "Date: " + timeStamp + "   Filename: " + selectedFile.getName() + "   Filetype: " + App.selectedFileType +
+            					"   Fiscal year: " + App.selectedYear;
             GUI.DLM.addElement(historyEntry);
             GUI.fileUploadDict.put(historyEntry, this.selectedFile);
             System.out.println("Year:\t\t" + App.selectedYear);

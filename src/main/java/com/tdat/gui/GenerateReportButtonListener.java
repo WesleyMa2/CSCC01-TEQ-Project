@@ -2,51 +2,47 @@ package com.tdat.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
-import com.tdat.app.App;
-import com.tdat.data.ChartData;
-import com.tdat.data.ChartJS;
-import com.tdat.data.ColumnNotFoundException;
-import com.tdat.data.JsonConverter;
-import com.tdat.data.MasterData;
-import com.tdat.data.TableData;
+import com.tdat.report.ChartJS;
 import com.tdat.data.analysis.SingleTableReader;
+import com.tdat.report.chart.DistributionChartScheme;
+import com.tdat.report.chart.ChartScheme;
 
 
 /*
- * When the "Generate Report" button is clicked, the code in this.actionPerformed() is executed 
+ * When the "Generate Report" button is clicked, the code in this.actionPerformed() is executed
  */
-public class GenerateReportButtonListener implements ActionListener{
-	ArrayList<String> jsonObjectSerializedToString = new ArrayList<String>();
+public class GenerateReportButtonListener implements ActionListener {
+    ArrayList<String> jsonObjectSerializedToString = new ArrayList<String>();
     private SingleTableReader tableReader;
-	
+
     public GenerateReportButtonListener() {
 
     }
-    
+
     public void actionPerformed(ActionEvent e) {
-    	/* add Bekzod's JSON file generator in actionPerformed
-    	 * If a file is selected in the JList, generate a report for that single uploaded file as mapped in fileUploadDict in GUI.java
-    	 * If no file is selected in the JList, generate a report based on all uploaded files. 
-    	 */
-    	
-    	TableData data = MasterData.getYearData(App.selectedYear);
-    	System.out.println(App.selectedYear);
-    	tableReader = new SingleTableReader(data);
-    	
-		ChartData data1 = new ChartData("2016", Arrays.asList(1,2,3,4,5));
-		ChartData data2 = new ChartData("2017", Arrays.asList(6,7,8,9,10));
-		ChartData data3 = new ChartData("2018", Arrays.asList(1,3,5,7,9));
-		String json = JsonConverter.serializeObject("line", "# Of Children", Arrays.asList("1","2", "3", "4"), "Value", Arrays.asList(data1, data2, data3));
+        /* add Bekzod's JSON file generator in actionPerformed
+         * If a file is selected in the JList, generate a report for that single uploaded file as mapped in fileUploadDict in GUI.java
+         * If no file is selected in the JList, generate a report based on all uploaded files.
+         */
 
-		System.out.println("JSON:\t\t" + json);
-		jsonObjectSerializedToString.add(json);
+        ChartScheme testGraph = new DistributionChartScheme("children", true, ChartScheme.BAR);
+        testGraph.setMainTitle("Test Graph").setXTitle("Num children").setYTitle("Count");
 
-		String path = ChartJS.create(json);
-		System.out.println("PATH:\t\t" + path);
+
+//		ChartDataset data1 = new ChartDataset("2016", Arrays.asList(1,2,3,4,5));
+//		ChartDataset data2 = new ChartDataset("2017", Arrays.asList(6,7,8,9,10));
+//		ChartDataset data3 = new ChartDataset("2018", Arrays.asList(1,3,5,7,9));
+//      String json = JsonConverter.serializeObject(testGraph.getGraphType(), testGraph.getxTitle(), columnEntriesCount.keySet(), testGraph.getyTitle(), Arrays.asList(data1, data2, data3));
+
+        String json = ((DistributionChartScheme) testGraph).toJson();
+        System.out.println("JSON:\t\t" + json);
+        jsonObjectSerializedToString.add(json);
+
+        String path = ChartJS.create(json);
+        System.out.println("PATH:\t\t" + path);
     }
-    
+
 
 }

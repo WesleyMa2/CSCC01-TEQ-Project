@@ -1,28 +1,31 @@
-package com.tdat.graph;
+package com.tdat.report.chart;
 
-import java.util.Map;
-
-public abstract class GraphScheme {
+public abstract class ChartScheme {
+    public static String LINE = "line";
+    public static String BAR = "bar";
     private String mainTitle = "";
     private String xTitle = "";
     private String yTitle = "";
     private boolean graphOrNot;
+    private String graphType;
 
-    public GraphScheme( boolean graphOrNot){
+    public ChartScheme(boolean graphOrNot, String graphType){
         this.graphOrNot = graphOrNot;
+        this.graphType = graphType;
     }
 
-    public GraphScheme setMainTitle (String title){
+    public ChartScheme setMainTitle (String title){
         this.mainTitle = title;
+        this.graphType = graphType;
         return this;
     }
 
-    public GraphScheme setXTitle (String title){
+    public ChartScheme setXTitle (String title){
         this.xTitle = title;
         return this;
     }
 
-    public GraphScheme setYTitle (String title){
+    public ChartScheme setYTitle (String title){
         this.yTitle = title;
         return this;
     }
@@ -40,6 +43,11 @@ public abstract class GraphScheme {
     public String getyTitle() {
         return yTitle;
     }
+
+    public String getGraphType() {
+        return graphType;
+    }
+
 
 
 }

@@ -1,15 +1,15 @@
-package com.tdat.data;
+package com.tdat.report.chart;
 
 import java.util.List;
 
 /**
  * A class to represent each type of data to be shown in the chart
  */
-public class ChartData {
+public class ChartDataset {
 	private String header;
 	private List<Integer> data;
 
-	public ChartData(String header, List<Integer> data) { 
+	public ChartDataset(String header, List<Integer> data) {
 		this.header = header;
 		this.data = data;
 	}

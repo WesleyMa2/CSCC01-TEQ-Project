@@ -1,15 +1,15 @@
-package com.tdat.graph;
+package com.tdat.report.chart;
 
 import java.util.Map;
 
 /**
  * Graph to show the trend of various column entries over the years
  */
-public class TrendGraphScheme extends GraphScheme{
+public class TrendChartScheme extends ChartScheme {
     private Map<String, String> dataSet;
 
-    public TrendGraphScheme(Map<String, String> dataSet, boolean graphOrNot) {
-        super(graphOrNot);
+    public TrendChartScheme(Map<String, String> dataSet, boolean graphOrNot, String graphType) {
+        super(graphOrNot, graphType);
         this.dataSet = dataSet;
     }
 
