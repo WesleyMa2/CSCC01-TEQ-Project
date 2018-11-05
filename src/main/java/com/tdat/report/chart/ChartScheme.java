@@ -1,16 +1,15 @@
 package com.tdat.report.chart;
 
 public abstract class ChartScheme {
-    public static String LINE = "line";
-    public static String BAR = "bar";
+//    public static String LINE = "line";
+//    public static String BAR = "bar";
+//    public static String TABLE = "table";
     private String mainTitle = "";
     private String xTitle = "";
     private String yTitle = "";
-    private boolean isGraph;
     private String graphType;
 
-    public ChartScheme(boolean isGraph, String graphType){
-        this.isGraph = isGraph;
+    public ChartScheme(String graphType){
         this.graphType = graphType;
     }
 
@@ -29,8 +28,6 @@ public abstract class ChartScheme {
         this.yTitle = title;
         return this;
     }
-
-    public boolean graphOrNot(){return isGraph;}
 
     public abstract String toJson();
 

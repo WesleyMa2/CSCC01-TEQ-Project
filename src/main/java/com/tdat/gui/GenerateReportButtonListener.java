@@ -1,5 +1,6 @@
 package com.tdat.gui;
 
+import com.tdat.report.chart.ChartType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
@@ -27,15 +28,9 @@ public class GenerateReportButtonListener implements ActionListener {
          * If no file is selected in the JList, generate a report based on all uploaded files.
          */
 
-        ChartScheme testGraph = new DistributionChartScheme("children", true, ChartScheme.BAR);
+        //TEST CODE
+        ChartScheme testGraph = new DistributionChartScheme("children", ChartType.BAR.getjsonCode());
         testGraph.setMainTitle("Test Graph").setXTitle("Num children").setYTitle("Count");
-
-
-//		ChartDataset data1 = new ChartDataset("2016", Arrays.asList(1,2,3,4,5));
-//		ChartDataset data2 = new ChartDataset("2017", Arrays.asList(6,7,8,9,10));
-//		ChartDataset data3 = new ChartDataset("2018", Arrays.asList(1,3,5,7,9));
-//      String json = JsonConverter.serializeObject(testGraph.getGraphType(), testGraph.getxTitle(), columnEntriesCount.keySet(), testGraph.getyTitle(), Arrays.asList(data1, data2, data3));
-
         String json = testGraph.toJson();
         System.out.println("JSON:\t\t" + json);
         jsonObjectSerializedToString.add(json);

@@ -8,8 +8,8 @@ import java.util.Map;
 public class TrendChartScheme extends ChartScheme {
     private Map<String, String> dataSet;
 
-    public TrendChartScheme(Map<String, String> dataSet, boolean graphOrNot, String graphType) {
-        super(graphOrNot, graphType);
+    public TrendChartScheme(Map<String, String> dataSet, String graphType) {
+        super( graphType);
         this.dataSet = dataSet;
     }
 

@@ -13,8 +13,8 @@ import java.util.*;
 public class DistributionChartScheme extends ChartScheme {
     private String column;
 
-    public DistributionChartScheme(String column, boolean graphOrNot, String graphType){
-        super(graphOrNot, graphType);
+    public DistributionChartScheme(String column, String graphType){
+        super(graphType);
         this.column = column;
     }
 
