@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 //import javax.swing.JCheckBox;
@@ -16,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import com.tdat.data.MasterData;
 
 @SuppressWarnings("serial")
 public class GenerateGraphGUI extends JFrame  {
@@ -113,7 +116,7 @@ public class GenerateGraphGUI extends JFrame  {
 			JLabel columnToGraphLabel = new JLabel("Select Column to Graph");
 			columnToGraphLabel.setFont(regular);
 			mainPanel.add(columnToGraphLabel);
-			String[] columnToGraph = {"Line Graph", "Bar Graph"};
+			String[] columnToGraph = MasterData.getAllColumns().toArray(new String[0]);
 			JComboBox<String[]> columnToGraphDropdown = new JComboBox(columnToGraph);
 			mainPanel.add(columnToGraphDropdown);
 			
@@ -125,6 +128,7 @@ public class GenerateGraphGUI extends JFrame  {
 			JComboBox<String[]> styleOfGraphsDropdown = new JComboBox(styleOfGraph);
 			mainPanel.add(styleOfGraphsDropdown);
 			
+			// Generate graph button
 			JButton generateButton = new JButton("Generate Graph");
 			generateButton.setFont(regular);
 			mainPanel.add(generateButton);
