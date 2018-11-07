@@ -1,11 +1,12 @@
 package com.tdat.gui;
 
-//import java.awt.FlowLayout;
 import com.tdat.app.App;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Dimension;
 import java.io.File;
 import java.time.Year;
 import java.util.Calendar;
@@ -18,13 +19,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class GUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	private static final String applicationTitle = "TEQ Data Aggregation Tool (TDAT)";
+	private static final String Dimension = null;
+	
+	// Container
 	private JPanel mainPanel = new JPanel();
-	private JLabel topHeading = new JLabel(
-			"Welcome to TEQ Data Aggregator - please select a fiscal year and file type, then upload a file to continue");
+	// Label with name of the application
+	private JLabel applicationTitleLabel = new JLabel(applicationTitle);
+	// Label with basic instructions
+	private JLabel topHeading = new JLabel("Please select a fiscal year and file type, then upload a file to continue.");
 
 	// Allow 20 fiscal years max to be stored in application in order to not
 	// overload memory, this represents a 20 year period
@@ -61,9 +69,13 @@ public class GUI extends JFrame {
 	}
 
 	public GUI() {
-		super("TEQ Data Aggregation Tool (TDAT)");
-		setSize(800, 300);
+		super(applicationTitle);
+		Dimension windowMinSize = new Dimension(400, 300);
+		setMinimumSize(windowMinSize);
+		setSize(windowMinSize);
 		setResizable(true);
+		mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		mainPanel.setBackground(Color.white);
 
 		// use FlowLayout manager to organize panel components in a straight line (does
 		// not support window resizing without messing up order of components)
@@ -73,6 +85,7 @@ public class GUI extends JFrame {
 		// window resizing
 		GridLayout gridLayout = new GridLayout(0, 1);
 		mainPanel.setLayout(gridLayout);
+		mainPanel.add(applicationTitleLabel);
 		mainPanel.add(topHeading);
 		mainPanel.add(fiscalYearDropdown);
 		mainPanel.add(fileTypeDropdown);
