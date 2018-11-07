@@ -7,15 +7,14 @@ public abstract class ChartScheme {
     private String mainTitle = "";
     private String xTitle = "";
     private String yTitle = "";
-    private String graphType;
+    private ChartType graphType;
 
-    public ChartScheme(String graphType){
+    public ChartScheme(ChartType graphType){
         this.graphType = graphType;
     }
 
     public ChartScheme setMainTitle (String title){
         this.mainTitle = title;
-        this.graphType = graphType;
         return this;
     }
 
@@ -43,7 +42,7 @@ public abstract class ChartScheme {
         return yTitle;
     }
 
-    public String getGraphType() {
+    public ChartType getGraphType() {
         return graphType;
     }
 
