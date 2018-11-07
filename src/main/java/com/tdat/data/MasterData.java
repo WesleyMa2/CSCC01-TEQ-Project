@@ -70,4 +70,26 @@ public class MasterData {
 		}
 		return subRange;
 	}
+	
+	/*
+	 * Returns all the columns in allData without any duplicates
+	 */
+	public static List<String> getAllColumns() {
+		// Set empty list of all columns in allData
+		List<String> allColumns = new ArrayList<String>();
+		
+		// Loop through each table
+		for (TableData table: allData.values()) {
+			// Get the list of columns in the current table
+			List<String> columnsInTable = table.getColumnList();
+			// Loop through each column in the current table
+			for (int eachColumn = 0; eachColumn < columnsInTable.size(); eachColumn++) {
+				// If the current column is not in the list of all columns, then add it
+				if(!allColumns.contains(columnsInTable.get(eachColumn))) {
+					allColumns.add(columnsInTable.get(eachColumn));
+				}
+			}
+		}
+		return allColumns;
+	}
 }
