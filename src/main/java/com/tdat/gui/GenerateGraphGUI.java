@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -19,6 +20,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.tdat.data.MasterData;
+import com.tdat.report.ChartJS;
+import com.tdat.report.chart.ChartScheme;
+import com.tdat.report.chart.ChartType;
+import com.tdat.report.chart.DistributionChartScheme;
 
 @SuppressWarnings("serial")
 public class GenerateGraphGUI extends JFrame  {
@@ -97,50 +102,57 @@ public class GenerateGraphGUI extends JFrame  {
 		JComboBox<String[]> typeOfGraphsDropdown = new JComboBox(typeOfGraphs);
 		mainPanel.add(typeOfGraphsDropdown);
 		
-		// Listens to the selection of type of graph
-		typeOfGraphsDropdown.addActionListener(new ActionListener() {
+		
+		// DISTRIBUTION PANEL
+		
+		// Drop down of all available columns
+		JLabel columnToGraphLabel = new JLabel("Select Column to Graph");
+		columnToGraphLabel.setFont(regular);
+		mainPanel.add(columnToGraphLabel);
+		String[] columnToGraph = MasterData.getAllColumns().toArray(new String[0]);
+		JComboBox<String[]> columnToGraphDropdown = new JComboBox(columnToGraph);
+		mainPanel.add(columnToGraphDropdown);
+			
+		// Style of graph Label and Selection
+		JLabel styleOfGraphLabel = new JLabel("Style of Graph");
+		styleOfGraphLabel.setFont(regular);
+		mainPanel.add(styleOfGraphLabel);
+		String[] styleOfGraph = {"Line Graph", "Bar Graph"};
+		JComboBox<String[]> styleOfGraphsDropdown = new JComboBox(styleOfGraph);
+		mainPanel.add(styleOfGraphsDropdown);
+			
+		// Generate graph button
+		JButton generateDistributionButton = new JButton("Generate Graph");
+		generateDistributionButton.setFont(regular);
+		mainPanel.add(generateDistributionButton);
+			
+		// Listens for when the generate button is clicked
+		generateDistributionButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(typeOfGraphsDropdown.getSelectedItem().toString().equals("Trend")) {
-					distributionSelected = false;
-				} else {
-					distributionSelected = true;
+					
+				// Get the graph type (bar or line)
+				String graphType = ChartType.BAR.getjsonCode();
+				if(styleOfGraphsDropdown.getSelectedItem().toString().equals("Line Graph")) {
+					graphType = ChartType.LINE.getjsonCode();
 				}
+					
+				// Create a chart scheme and add its properties
+				ChartScheme chartScheme = new DistributionChartScheme(columnToGraphDropdown.getSelectedItem().toString(), graphType);
+				chartScheme.setMainTitle(reportTitleTextField.getText().toString());
+				chartScheme.setXTitle(xTitleTextField.getText().toString());
+				chartScheme.setYTitle(yTitleTextField.getText().toString());
+					
+				// Put the chart scheme into JSON format
+				String json = chartScheme.toJson();
+				String path = ChartJS.create(json);
+			        
+				// FOR TESTING PURPOSES
+				System.out.println("JSON:\t\t" + json);
+				System.out.println("PATH:\t\t" + path);
 			}
 		});
-		
-		// If the type of graph is distribution
-		if(distributionSelected) {
-			
-			// Drop down of all available columns
-			JLabel columnToGraphLabel = new JLabel("Select Column to Graph");
-			columnToGraphLabel.setFont(regular);
-			mainPanel.add(columnToGraphLabel);
-			String[] columnToGraph = MasterData.getAllColumns().toArray(new String[0]);
-			JComboBox<String[]> columnToGraphDropdown = new JComboBox(columnToGraph);
-			mainPanel.add(columnToGraphDropdown);
-			
-			// Style of graph Label and Selection
-			JLabel styleOfGraphLabel = new JLabel("Style of Graph");
-			styleOfGraphLabel.setFont(regular);
-			mainPanel.add(styleOfGraphLabel);
-			String[] styleOfGraph = {"Line Graph", "Bar Graph"};
-			JComboBox<String[]> styleOfGraphsDropdown = new JComboBox(styleOfGraph);
-			mainPanel.add(styleOfGraphsDropdown);
-			
-			// Generate graph button
-			JButton generateButton = new JButton("Generate Graph");
-			generateButton.setFont(regular);
-			mainPanel.add(generateButton);
-			
-		} else {
-			// INCOMPLETE
-			JButton generateButton = new JButton("Generate Graph (TO BE DEVELOPED)");
-			generateButton.setFont(regular);
-			mainPanel.add(generateButton);
-		}
-		
-		
+
 		this.add(mainPanel);
 	}
 
