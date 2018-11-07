@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,7 +43,8 @@ public class GUI extends JFrame {
 	private String[] fileTypes = { "Excel (.xlsx)" };
 	private JComboBox fileTypeDropdown = new JComboBox(fileTypes);
 	private JButton uploadButton = new JButton("Upload");
-	private JButton reportGenerateButton = new JButton("Generate Report");
+	private JButton graphGenerateButton = new JButton("Generate Graph");
+	private JButton reportGenerateButton = new JButton("Generate Report(s)");
 
 	static DefaultListModel DLM = new DefaultListModel();
 	JList historyList = new JList(DLM);
@@ -91,6 +93,7 @@ public class GUI extends JFrame {
 		mainPanel.add(fileTypeDropdown);
 		mainPanel.add(historyList);
 		mainPanel.add(uploadButton);
+		mainPanel.add(graphGenerateButton);
 		mainPanel.add(reportGenerateButton);
 
 		// BUTTON ACTIONS
@@ -109,6 +112,14 @@ public class GUI extends JFrame {
 		});
 
 		uploadButton.addActionListener(new UploadButtonListener());
+		
+		graphGenerateButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new GenerateGraphGUI().setVisible(true);
+			}
+		});
+		
 		reportGenerateButton.addActionListener(new GenerateReportButtonListener());
 		this.add(mainPanel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
