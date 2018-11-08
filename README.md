@@ -6,6 +6,13 @@
 
 *Learn more about the project [here](../../tree/master/resources/Scarborough_Newcomers_Software_Engineering_Project.pdf "Project Presentation").*
 
+## Instructions (shell)
+1. In the shell, make sure you are in root of the repo
+2. Start the web app with ```cd chartjs``` then ``` $ node index.js```
+3. In separate shell, from root, execute jar file with ```$ mvn exec:java -D exec.mainClass=com.tdat.app.App```
+4. To test out the program, we recommend using the test files in ```./src/test/resources```
+5. Generated reports are located in ```./reports```
+
 ## Repository Contents
 Follow the folder structure outlined below to easy navigation through the repository.
 ```bash
@@ -15,6 +22,7 @@ root
   |             └── 1
   |             └── 2
   |             └── 3
+  |             └── 4
   └── reports
   └── src
   |     └── main 
@@ -26,12 +34,17 @@ root
   |                                     └── analysis
   |                                └── feeder
   |                                └── gui
+  |                                └── report
+  |                                     └── chart
+  |            └── resources 
   |     └── test
-  |             └── java
-  |                  └── com
-  |                        └── tdat
-  |                               └── data
-  |                                     └── analysis
+  |            └── java
+  |                 └── com
+  |                       └── tdat
+  |                              └── data
+  |                                    └── analysis
+  |                              └── feeder
+  |            └── resources 
   |
   └── README.md
   └── .gitignore

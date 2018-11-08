@@ -29,9 +29,9 @@ public class MasterData {
 	public static void printYearData(Year year){
         TableData yearData = getYearData(year);
         List<String> columns = yearData.getColumnList();
-        System.out.println("Data for year of " + year);
+        System.out.println("\n[Data for year of " + year + "]");
         for (String column: columns){
-            System.out.println("[" + column + "]:\t" + yearData.getColumnEntries(column));
+            System.out.println(" '" + column + "':\t" + yearData.getColumnEntries(column));
         }
     }
 

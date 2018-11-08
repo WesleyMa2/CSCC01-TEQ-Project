@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.tdat.data.ChartData;
+import com.tdat.report.chart.ChartDataset;
 import com.tdat.data.ColumnNotFoundException;
-import com.tdat.data.JsonConverter;
+import com.tdat.report.JsonConverter;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,11 +21,11 @@ class JsonConverterTest {
     void jsonColumnEntriesCount() throws ColumnNotFoundException {
         List<String> labels = Arrays.asList("label1", "label2", "label3");
 
-        String expected = "{\"xAxisLabels\":[\"label1\",\"label2\",\"label3\"],\"xAxisTitle\":\"x axis title\",\"type\":\"type of graph\",\"dataSet\":[{\"data\":[1,2,3,4],\"header\":\"a header\"}],\"yAxisTitle\":\"y axis title\"}";
+        String expected = "{\"xAxisLabels\":[\"label1\",\"label2\",\"label3\"],\"xAxisTitle\":\"x axis title\",\"type\":\"type of chart\",\"dataSet\":[{\"data\":[1,2,3,4],\"header\":\"a header\"}],\"yAxisTitle\":\"y axis title\"}";
 
-        List<ChartData> data = new ArrayList<>(Arrays.asList(new ChartData("a header", Arrays.asList(1,2,3,4))));
+        List<ChartDataset> data = new ArrayList<>(Arrays.asList(new ChartDataset("a header", Arrays.asList(1,2,3,4))));
 
-        String actual = JsonConverter.serializeObject("type of graph", "x axis title", labels, "y axis title", data);
+        String actual = JsonConverter.serializeObject("type of chart", "x axis title", labels, "y axis title", data);
         assertEquals(expected, actual);
     }
 

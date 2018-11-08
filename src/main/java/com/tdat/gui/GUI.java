@@ -1,8 +1,13 @@
 package com.tdat.gui;
 
 //import java.awt.FlowLayout;
+import com.tdat.app.App;
+
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.time.Year;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -74,9 +79,23 @@ public class GUI extends JFrame {
 		mainPanel.add(historyList);
 		mainPanel.add(uploadButton);
 		mainPanel.add(reportGenerateButton);
+
 		// BUTTON ACTIONS
-		uploadButton.addActionListener(new UploadButtonListener(fiscalYearDropdown.getSelectedItem().toString(),
-				fileTypeDropdown.getSelectedItem().toString()));
+		fiscalYearDropdown.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				App.selectedYear = (Year.of(Integer.parseInt((fiscalYearDropdown.getSelectedItem().toString()).substring(0,4))));
+			}
+		});
+
+		fileTypeDropdown.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				App.selectedFileType = fileTypeDropdown.getSelectedItem().toString();
+			}
+		});
+
+		uploadButton.addActionListener(new UploadButtonListener());
 		reportGenerateButton.addActionListener(new GenerateReportButtonListener());
 		this.add(mainPanel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
