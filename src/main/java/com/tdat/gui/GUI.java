@@ -81,22 +81,15 @@ public class GUI extends JFrame {
 		mainPanel.add(reportGenerateButton);
 
 		// BUTTON ACTIONS
-		fiscalYearDropdown.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				App.selectedYear = (Year.of(Integer.parseInt((fiscalYearDropdown.getSelectedItem().toString()).substring(0,4))));
-			}
-		});
+		fiscalYearDropdown.addActionListener(
+				e -> App.selectedYear = (Year.of(Integer.parseInt((fiscalYearDropdown.getSelectedItem().toString()).substring(0,4)))));
 
-		fileTypeDropdown.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				App.selectedFileType = fileTypeDropdown.getSelectedItem().toString();
-			}
-		});
+		fileTypeDropdown.addActionListener(
+				e -> App.selectedFileType = fileTypeDropdown.getSelectedItem().toString());
 
 		uploadButton.addActionListener(new UploadButtonListener());
 		reportGenerateButton.addActionListener(new GenerateReportButtonListener());
+
 		this.add(mainPanel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);

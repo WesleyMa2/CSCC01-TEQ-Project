@@ -3,7 +3,7 @@ package com.tdat.report.chart;
 import java.util.List;
 
 /**
- * A class to represent each type of data to be shown in the chart
+ * A class to hold the y values of a given data set, with the title of the data set
  */
 public class ChartDataset {
 	private String header;
