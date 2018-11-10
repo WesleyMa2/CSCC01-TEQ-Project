@@ -2,17 +2,21 @@ package com.tdat.app;
 
 import java.io.File;
 import java.time.Year;
+import java.util.HashMap;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import com.tdat.gui.GUI;
+import com.tdat.gui.MainWindow;
 
 public class App {
 	public static String EMPTY = "N/A";
 	public static File selectedFile;
 	public static Year selectedYear = Year.of(2018);
 	public static String selectedFileType = ".xlsx";
+	public static HashMap<String, File> fileUploadDict = new HashMap<String, File>();
+	public static String appTitle = "TEQ Data Aggregation Tool (TDAT)";
 
 	public static void main(String[] args) {
 
@@ -29,7 +33,7 @@ public class App {
 			// handle exception
 		}
 
-		GUI.main(null);
+		new MainWindow();
 	}
 
 }

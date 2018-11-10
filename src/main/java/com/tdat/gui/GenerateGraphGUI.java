@@ -47,7 +47,7 @@ public class GenerateGraphGUI extends JFrame  {
 	public GenerateGraphGUI() {
 		// Set the basics of the window title, look and size
 		super(applicationTitle);
-		Dimension windowMinSize = new Dimension(400, 300);
+		Dimension windowMinSize = new Dimension(400, 400);
 		setMinimumSize(windowMinSize);
 		setSize(windowMinSize);
 		setResizable(true);
