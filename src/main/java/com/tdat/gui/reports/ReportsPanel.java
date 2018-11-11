@@ -27,12 +27,8 @@ public class ReportsPanel extends GenericPanel {
 		// Panel Title
 		panelTitle = "Reports";
 		
-		// Layout such that all content is on the top left
-		this.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-		// Panel where all the content is
-		JPanel allContent = new JPanel(new GridBagLayout());
-		allContent.setBackground(Color.white);
+		this.setLayout(new GridBagLayout());
+		this.setBackground(Color.white);
 		GridBagConstraints layoutConstraints = new GridBagConstraints();
 		
 		// Header section of the panel
@@ -42,21 +38,24 @@ public class ReportsPanel extends GenericPanel {
 		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
 		layoutConstraints.gridx = 0;
 		layoutConstraints.gridy = 0;
-		allContent.add(headerHTML, layoutConstraints);
+		layoutConstraints.weightx = 1;
+		layoutConstraints.weighty = 1;
+		layoutConstraints.anchor = GridBagConstraints.NORTHWEST;
+		this.add(headerHTML, layoutConstraints);
 		
 		// Query section of the panel
 		JLabel tdatqlHTML = new JLabel("<html><br/><h3 style='margin:0'>TDATQL</h3><small>"
 				+ "Enter a TDATQL query below to perform specific actions.</small></html>");
 		layoutConstraints.gridy = 1;
 		layoutConstraints.ipady = 20;
-		allContent.add(tdatqlHTML, layoutConstraints);
+		this.add(tdatqlHTML, layoutConstraints);
 		JTextField tdatqlQuery = new JTextField();
 		layoutConstraints.gridy = 2;
 		layoutConstraints.ipady = 5;
-		allContent.add(tdatqlQuery, layoutConstraints);
+		this.add(tdatqlQuery, layoutConstraints);
 		JButton submitQuery = new JButton("Run Query");
 		layoutConstraints.gridy = 3;
-		allContent.add(submitQuery, layoutConstraints);
+		this.add(submitQuery, layoutConstraints);
 		submitQuery.addActionListener(new TDATQLListener(tdatqlQuery.getText()));
 		
 		// Reports to be generated list section of the panel
@@ -64,7 +63,7 @@ public class ReportsPanel extends GenericPanel {
 				+ "Below, you can see a list of reports to be generated.</small></html>");
 		layoutConstraints.gridy = 4;
 		layoutConstraints.ipady = 20;
-		allContent.add(currentReportsHTML, layoutConstraints);
+		this.add(currentReportsHTML, layoutConstraints);
 		String tr[][] = {{"Row 1 Column 1","Row 1 Column 2","Row 1 Column 2"}, {"Row 2 Column 1","Row 2 Column 2","Row 2 Column 2"}};    
 		String th[] = {"Report Title","Type of Report","Column Selected"}; 
 		JTable currentReportsTable = new JTable();
@@ -79,31 +78,35 @@ public class ReportsPanel extends GenericPanel {
 		layoutConstraints.gridy = 5;
 		layoutConstraints.ipadx = 0;
 		layoutConstraints.ipady = 0;
-		allContent.add(scrollPane, layoutConstraints);
+		this.add(scrollPane, layoutConstraints);
 		
 		// Add button
-		JButton addButton = new JButton("Add Report");
+		JButton addTrendsButton = new JButton("Add Trends Chart Report");
 		layoutConstraints.gridy = 6;
 		layoutConstraints.insets = new Insets(10,0,0,0);
-		allContent.add(addButton, layoutConstraints);
-		addButton.addActionListener(new AddReportListener());
+		this.add(addTrendsButton, layoutConstraints);
+		addTrendsButton.addActionListener(new AddReportListener());
+		
+		// Add button
+		JButton addDistributionButton = new JButton("Add Distribution Chart Report");
+		layoutConstraints.gridy = 7;
+		layoutConstraints.insets = new Insets(0,0,0,0);
+		this.add(addDistributionButton, layoutConstraints);
+		addDistributionButton.addActionListener(new AddReportListener());
 		
 		// Remove button
 		JButton removeButton = new JButton("Remove Report");
-		layoutConstraints.gridy = 7;
-		layoutConstraints.insets = new Insets(0,0,0,0);
-		allContent.add(removeButton, layoutConstraints);
+		layoutConstraints.gridy = 8;
+		this.add(removeButton, layoutConstraints);
 		removeButton.addActionListener(new RemoveReportListener());
 		
 		// Generate Button
 		JButton generateButton = new JButton("Generate Report(s)");
 		layoutConstraints.insets = new Insets(20,0,0,0);
-		layoutConstraints.gridy = 8;
-		allContent.add(generateButton, layoutConstraints);
+		layoutConstraints.gridy = 9;
+		this.add(generateButton, layoutConstraints);
 		generateButton.addActionListener(new GenerateReportListener());
 		
-		// Add all content to the panel
-		this.add(allContent);
 	}
 	
 }

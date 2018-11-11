@@ -5,9 +5,8 @@ import java.awt.event.ActionListener;
 
 public class AddReportListener implements ActionListener {
 
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
+		new AddReportWindow();
 	}
 
 }
