@@ -4,13 +4,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -19,6 +21,8 @@ import javax.swing.border.EmptyBorder;
 import com.tdat.app.App;
 import com.tdat.data.MasterData;
 import com.tdat.report.chart.ChartScheme;
+import com.tdat.report.chart.ChartType;
+import com.tdat.report.chart.DistributionChartScheme;
 import com.tdat.report.chart.TrendChartScheme;
 
 public class AddTrendsReportWindow {
@@ -26,7 +30,7 @@ public class AddTrendsReportWindow {
 	private final JFrame frame;
 	
 	public AddTrendsReportWindow() {
-		frame = new JFrame(App.appTitle + ": Add Trend Report");
+		frame = new JFrame(App.appTitle + ": Add Trends Report");
 		frame.setMinimumSize(new Dimension(400, 400));
 		frame.setResizable(true);
 		
@@ -36,7 +40,7 @@ public class AddTrendsReportWindow {
 		GridBagConstraints layoutConstraints = new GridBagConstraints();
 		
 		// Add section title
-		JLabel sectionTitleLabel = new JLabel("<html><h2 style='margin:0'>Add Trend Report</h2>"
+		JLabel sectionTitleLabel = new JLabel("<html><h2 style='margin:0'>Add Trends Report</h2>"
 				+ "<small>Enter the details of the new report below.</small></html>");
 		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
 		layoutConstraints.gridx = 0;
@@ -76,50 +80,68 @@ public class AddTrendsReportWindow {
 		layoutConstraints.insets = new Insets(5,0,0,0);
 		mainPanel.add(yTitleTextField, layoutConstraints);
 				
-		// Type of Graph Label and Selection
-		JLabel typeOfGraphLabel = new JLabel("Type of Graph");
-		layoutConstraints.gridy = 7;
-		layoutConstraints.insets = new Insets(10,0,0,0);
-		mainPanel.add(typeOfGraphLabel, layoutConstraints);
-		String[] typeOfGraphs = {"Distribution", "Trend"};
-		JComboBox<String[]> typeOfGraphsDropdown = new JComboBox(typeOfGraphs);
-		layoutConstraints.gridy = 8;
-		layoutConstraints.insets = new Insets(5,0,0,0);
-		mainPanel.add(typeOfGraphsDropdown, layoutConstraints);
-				
 		// Drop down of all available columns
 		JLabel columnToGraphLabel = new JLabel("Select Column to Graph");
-		layoutConstraints.gridy = 9;
+		layoutConstraints.gridy = 7;
 		layoutConstraints.insets = new Insets(10,0,0,0);
 		mainPanel.add(columnToGraphLabel, layoutConstraints);
 		String[] columnToGraph = MasterData.getAllColumns().toArray(new String[0]);
 		JComboBox<String[]> columnToGraphDropdown = new JComboBox(columnToGraph);
-		layoutConstraints.gridy = 10;
+		layoutConstraints.gridy = 8;
 		layoutConstraints.insets = new Insets(5,0,0,0);
 		mainPanel.add(columnToGraphDropdown, layoutConstraints);
 					
 		// Style of graph Label and Selection
 		JLabel styleOfGraphLabel = new JLabel("Style of Graph");
-		layoutConstraints.gridy = 11;
+		layoutConstraints.gridy = 9;
 		layoutConstraints.insets = new Insets(10,0,0,0);
 		mainPanel.add(styleOfGraphLabel, layoutConstraints);
-		String[] styleOfGraph = {"Line Graph", "Bar Graph"};
-		JComboBox<String[]> styleOfGraphsDropdown = new JComboBox(styleOfGraph);
-		layoutConstraints.gridy = 12;
+		ChartType[] styleOfGraph = {ChartType.BAR, ChartType.LINE};
+		JComboBox<ChartType[]> styleOfGraphsDropdown = new JComboBox(styleOfGraph);
+		layoutConstraints.gridy = 10;
 		layoutConstraints.insets = new Insets(5,0,0,0);
 		mainPanel.add(styleOfGraphsDropdown, layoutConstraints);
 					
 		// Generate graph button
-		JButton addTrendButton = new JButton("Add Graphical Report");
-		layoutConstraints.gridy = 13;
+		JButton addDistributionButton = new JButton("Add Graphical Report");
+		layoutConstraints.gridy = 11;
 		layoutConstraints.insets = new Insets(10,0,0,0);
-		mainPanel.add(addTrendButton, layoutConstraints);
-		
+		mainPanel.add(addDistributionButton, layoutConstraints);
+		addDistributionButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					//addReport(
+					//		reportTitleTextField.getText(),
+					//		xTitleTextField.getText(),
+					//		yTitleTextField.getText(),
+					//		columnToGraphDropdown.getSelectedItem().toString(),
+					//		(ChartType)styleOfGraphsDropdown.getSelectedItem());
+					//String[] row = {Integer.toString(App.reportsList.size()),
+					//		App.reportsList.get(App.reportsList.size()-1).getMainTitle(),
+					//		App.reportsList.get(App.reportsList.size()-1).getGraphType()
+					//		};
+					//ReportsPanel.tableModel.addRow(row);
+					frame.setVisible(false);
+				} catch(NullPointerException a) {
+					JFrame errorFrame = new JFrame();
+					JOptionPane.showMessageDialog(errorFrame, "Please fill in all fields.");
+				}
+			}
+		});
 		
 		JScrollPane scrollPane = new JScrollPane(mainPanel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         frame.add(scrollPane);
         frame.setVisible(true);
 	}
+	
+	//private void addReport(String reportTitle, String xAxis, String yAxis, String column, ChartType chartType) {
+	//	ChartScheme chartScheme = new TrendChartScheme(column, chartType.getjsonCode());
+	//	chartScheme.setMainTitle(reportTitle);
+	//	chartScheme.setXTitle(xAxis);
+	//	chartScheme.setYTitle(yAxis);
+	//	App.reportsList.add(chartScheme);
+	//}
 	
 }

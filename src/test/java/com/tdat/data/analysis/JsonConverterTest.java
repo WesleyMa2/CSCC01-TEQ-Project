@@ -21,11 +21,11 @@ class JsonConverterTest {
     void jsonColumnEntriesCount() throws ColumnNotFoundException {
         List<String> labels = Arrays.asList("label1", "label2", "label3");
 
-        String expected = "{\"xAxisLabels\":[\"label1\",\"label2\",\"label3\"],\"xAxisTitle\":\"x axis title\",\"type\":\"type of chart\",\"dataSet\":[{\"data\":[1,2,3,4],\"header\":\"a header\"}],\"yAxisTitle\":\"y axis title\"}";
+        String expected = "{\"xAxisLabels\":[\"label1\",\"label2\",\"label3\"],\"mainTitle\":\"main title\",\"xAxisTitle\":\"x axis title\",\"type\":\"type of chart\",\"dataSet\":[{\"data\":[1,2,3,4],\"header\":\"a header\"}],\"yAxisTitle\":\"y axis title\"}";
 
         List<ChartDataset> data = new ArrayList<>(Arrays.asList(new ChartDataset("a header", Arrays.asList(1,2,3,4))));
 
-        String actual = JsonConverter.serializeObject("type of chart", "x axis title", labels, "y axis title", data);
+        String actual = JsonConverter.serializeObject("type of chart", "main title", "x axis title", labels, "y axis title", data);
         assertEquals(expected, actual);
     }
 
@@ -33,16 +33,18 @@ class JsonConverterTest {
     @DisplayName("Test creating json object with null input")
     void dneColumnEntries() throws NullPointerException, IllegalStateException {
 
-        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject(null, null, null, null, null); });
+        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject(null, null, null, null, null, null); });
 
-        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", null, null, null, null); });
+        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", null, null, null, null, null); });
 
-        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "x axis title", null, null, null); });
+        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "main title", null, null, null, null); });
+        
+        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "main title", "x axis title", null, null, null); });
 
-        assertThrows(IllegalStateException.class, () -> { JsonConverter.serializeObject("a type", "x axis title", new ArrayList<String>(), null, null); });
+        assertThrows(IllegalStateException.class, () -> { JsonConverter.serializeObject("a type", "main title", "x axis title", new ArrayList<String>(), null, null); });
 
-        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "x axis title", Arrays.asList("x axis label"), null, null); });
+        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "main title", "x axis title", Arrays.asList("x axis label"), null, null); });
 
-        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "x axis title", Arrays.asList("x axis label"), "y axis title", null); });
+        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "main title", "x axis title", Arrays.asList("x axis label"), "y axis title", null); });
     }
 }

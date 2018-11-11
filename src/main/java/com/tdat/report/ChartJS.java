@@ -26,7 +26,7 @@ public class ChartJS {
     private static String API_URL = "http://localhost:3000/";
 
     public static String getDate() {
-        DateFormat dateFormat = new SimpleDateFormat("MMM-dd HH-mm");
+        DateFormat dateFormat = new SimpleDateFormat("MMM-dd-HH-mm-ss");
         Date date = new Date();
         return dateFormat.format(date);
     }
