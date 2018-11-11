@@ -19,6 +19,7 @@ public class MainWindow {
 	public MainWindow() {
 		frame = new JFrame(App.appTitle);
 		frame.setMinimumSize(new Dimension(800, 600));
+		frame.setSize(new Dimension(800, 600));
 		frame.setResizable(true);
 
 		JTabbedPane tabbedPane = new JTabbedPane();
@@ -34,7 +35,7 @@ public class MainWindow {
         
         tabbedPane.setTabPlacement(JTabbedPane.LEFT);
         JScrollPane scrollPane = new JScrollPane(tabbedPane);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        //scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         frame.add(scrollPane);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
