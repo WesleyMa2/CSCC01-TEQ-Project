@@ -23,6 +23,14 @@ public class RemoveReportWindow {
 				if(indexReport != null) {
 					App.reportsList.remove(Integer.parseInt(indexReport) - 1);
 					removed = true;
+					String tr[][] = new String[App.reportsList.size()][3];
+					for(int index = 0; index < App.reportsList.size(); index++) {
+						tr[index][0] = (Integer.toString(index+1));
+						tr[index][1] = App.reportsList.get(index).getMainTitle();
+						tr[index][2] = App.reportsList.get(index).getGraphType();
+					} 
+					String th[] = {"Report Menu", "Report Title","Type of Report"}; 
+					ReportsPanel.tableModel.setDataVector(tr, th);
 				} else {
 					canceled = true;
 				}

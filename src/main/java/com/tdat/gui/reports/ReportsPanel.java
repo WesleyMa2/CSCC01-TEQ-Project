@@ -2,19 +2,18 @@ package com.tdat.gui.reports;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import com.tdat.app.App;
 import com.tdat.gui.GenericPanel;
 
 /*
@@ -22,6 +21,13 @@ import com.tdat.gui.GenericPanel;
  */
 @SuppressWarnings("serial")
 public class ReportsPanel extends GenericPanel {
+	
+	protected static DefaultTableModel tableModel = new DefaultTableModel() {
+		@Override
+	    public boolean isCellEditable(int row, int column) {
+	       return false;
+	    }
+	};
 	
 	public ReportsPanel() {
 		// Panel Title
@@ -64,15 +70,16 @@ public class ReportsPanel extends GenericPanel {
 		layoutConstraints.gridy = 4;
 		layoutConstraints.ipady = 20;
 		this.add(currentReportsHTML, layoutConstraints);
-		String tr[][] = {{"Row 1 Column 1","Row 1 Column 2","Row 1 Column 2"}, {"Row 2 Column 1","Row 2 Column 2","Row 2 Column 2"}};    
-		String th[] = {"Report Title","Type of Report","Column Selected"}; 
+		String tr[][] = new String[App.reportsList.size()][3];
+		for(int index = 0; index < App.reportsList.size(); index++) {
+			tr[index][0] = (Integer.toString(index+1));
+			tr[index][1] = App.reportsList.get(index).getMainTitle();
+			tr[index][2] = App.reportsList.get(index).getGraphType();
+		} 
+		String th[] = {"Report Menu", "Report Title","Type of Report"}; 
 		JTable currentReportsTable = new JTable();
-		currentReportsTable.setModel(new DefaultTableModel(tr,th) {
-			@Override
-		    public boolean isCellEditable(int row, int column) {
-		       return false;
-		    }
-		});
+		tableModel.setDataVector(tr, th);
+		currentReportsTable.setModel(tableModel);
 		JScrollPane scrollPane = new JScrollPane(currentReportsTable);
 		scrollPane.setPreferredSize(new Dimension(600, 100));
 		layoutConstraints.gridy = 5;
@@ -85,14 +92,14 @@ public class ReportsPanel extends GenericPanel {
 		layoutConstraints.gridy = 6;
 		layoutConstraints.insets = new Insets(10,0,0,0);
 		this.add(addTrendsButton, layoutConstraints);
-		addTrendsButton.addActionListener(new AddReportListener());
+		addTrendsButton.addActionListener(new AddTrendReportListener());
 		
 		// Add button
 		JButton addDistributionButton = new JButton("Add Distribution Chart Report");
 		layoutConstraints.gridy = 7;
 		layoutConstraints.insets = new Insets(0,0,0,0);
 		this.add(addDistributionButton, layoutConstraints);
-		addDistributionButton.addActionListener(new AddReportListener());
+		addDistributionButton.addActionListener(new AddDistributionReportListener());
 		
 		// Remove button
 		JButton removeButton = new JButton("Remove Report");
