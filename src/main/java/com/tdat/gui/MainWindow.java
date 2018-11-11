@@ -2,12 +2,12 @@ package com.tdat.gui;
 
 import java.awt.Dimension;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import com.tdat.app.App;
+import com.tdat.gui.reports.ReportsPanel;
 
 /*
  * This is the window that holds all major views. These views include these panels: MainPanel, UploadPanel and ReportsPanel.
@@ -18,9 +18,7 @@ public class MainWindow {
 	
 	public MainWindow() {
 		frame = new JFrame(App.appTitle);
-		Dimension windowMinSize = new Dimension(600, 500);
-		frame.setMinimumSize(windowMinSize);
-		frame.setSize(windowMinSize);
+		frame.setMinimumSize(new Dimension(800, 600));
 		frame.setResizable(true);
 
 		JTabbedPane tabbedPane = new JTabbedPane();
@@ -35,7 +33,10 @@ public class MainWindow {
         tabbedPane.addTab(reportsPanel.getPanelTitle(), reportsPanel);
         
         tabbedPane.setTabPlacement(JTabbedPane.LEFT);
-        frame.add(tabbedPane);
+        JScrollPane scrollPane = new JScrollPane(tabbedPane);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        frame.add(scrollPane);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 	}
 	

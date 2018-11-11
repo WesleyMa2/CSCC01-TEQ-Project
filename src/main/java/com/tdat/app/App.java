@@ -7,7 +7,6 @@ import java.util.HashMap;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import com.tdat.gui.GUI;
 import com.tdat.gui.MainWindow;
 
 public class App {
