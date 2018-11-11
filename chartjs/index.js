@@ -18,23 +18,41 @@ app.post('/', function (req, res, next) {
             return res.json({ error: err });
         }
 
-        var limit = req.body.dataSet.length;
-        var colours = helpers.getRandomColour(limit);
-        var config = helpers.getConfigStub(req.body);
+        htmlReplacement = "";
+        jsReplacement = "";
 
-        // Foreach data we want to import, create another dataset into the chart
-        for (var i = 0; i < limit && colours.length <= limit; i++) {
-            config.data.datasets[i] = { 
-                label: req.body.dataSet[i].header,
-                backgroundColor: colours[i].replace(')', ', 0.5)'),
-                borderColor: colours[i],
-                data: req.body.dataSet[i].data,
-                borderWidth: 1,
-                fill: false
-            }
+        for(var rIndex = 0; rIndex < req.body.generateThese.length; rIndex++) {
+        	var limit = req.body.generateThese[rIndex].dataSet.length;
+        	var colours = helpers.getRandomColour(limit);
+        	var config = helpers.getConfigStub(req.body.generateThese[rIndex]);
+
+        	// Foreach data we want to import, create another dataset into the chart
+        	for (var i = 0; i < limit && colours.length <= limit; i++) {
+           		config.data.datasets[i] = { 
+                	label: req.body.generateThese[rIndex].dataSet[i].header,
+                	backgroundColor: colours[i].replace(')', ', 0.5)'),
+                	borderColor: colours[i],
+                	data: req.body.generateThese[rIndex].dataSet[i].data,
+                	borderWidth: 1,
+                	fill: false
+            	}
+        	}
+
+        	// The ID of the current chart
+        	chartId = "chart".concat((rIndex + 1).toString());
+        	// The html of the current chart
+        	htmlReplacement += "<div class=\"col-md-6 p-3 border\"><canvas id=\"".concat(chartId,"\"></canvas></div>");
+        	// The javascript of the current chart
+        	jsReplacement += "new Chart(document.getElementById(\"".concat(chartId, "\").getContext(\"2d\"), ").concat(JSON.stringify(config, 0, 4), ");");
         }
 
-        result = data.replace('{{config}}', JSON.stringify(config, 0, 4));
+        result = data.replace("{{generationTime}}", req.body.generationTime);
+        result = result.replace("{{numberPeople}}", req.body.totalPeople);
+        result = result.replace("{{numberVisits}}", req.body.totalVisits);
+        result = result.replace("{{years}}", req.body.years);
+        result = result.replace('{{htmlReplacement}}', htmlReplacement);
+        result = result.replace('{{jsReplacement}}', jsReplacement);
+
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(result);
         return res.end();

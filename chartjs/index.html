@@ -15,40 +15,25 @@
 	<div class="container">
         <div class="row justify-content-md-center">
             <div class="pt-5 px-5 pb-4 text-center col-md-auto">
-                <!-- To be modified -->
                 <h1 class="h2">TDAT Generated Report</h1>
                 <ul class="list-unstyled mt-2">
-                    <li><strong>Generated at:</strong> 2018-11-11 2:17 AM</li>
-                    <li><strong>Total number of people:</strong> 35</li>
-                    <li><strong>Total number of visits:</strong> 554</li>
-                    <li><strong>Years:</strong> 2018, 2017, 2015</li>
+                    <li><strong>Generated at:</strong> {{generationTime}}</li>
+                    <li><strong>Total number of people:</strong> {{numberPeople}}</li>
+                    <li><strong>Total number of visits:</strong> {{numberVisits}}</li>
+                    <li><strong>Years:</strong> {{years}}</li>
                     <li><a href="#" onClick="window.print();">Print This</a></li>
                 </ul>
             </div>
+        </div>
         <div class="row">
-            <div class="col-md-6 p-3 border">
-    	       <canvas id="myChart"></canvas>
-            </div>
-            <div class="col-md-6 p-3 border">
-               <img src="https://d33wubrfki0l68.cloudfront.net/cc541f9cbdd7e0c8f14c2fde762ff38c00e9d62b/fc921/images/angular/ng2-charts/chart-example.png" class="img-fluid">
-            </div>
-            <div class="col-md-6 p-3 border">
-               <img src="https://d33wubrfki0l68.cloudfront.net/cc541f9cbdd7e0c8f14c2fde762ff38c00e9d62b/fc921/images/angular/ng2-charts/chart-example.png" class="img-fluid">
-            </div>
-            <div class="col-md-6 p-3 border">
-               <img src="https://d33wubrfki0l68.cloudfront.net/cc541f9cbdd7e0c8f14c2fde762ff38c00e9d62b/fc921/images/angular/ng2-charts/chart-example.png" class="img-fluid">
-            </div>
-            <div class="col-md-6 p-3 border">
-               <img src="https://d33wubrfki0l68.cloudfront.net/cc541f9cbdd7e0c8f14c2fde762ff38c00e9d62b/fc921/images/angular/ng2-charts/chart-example.png" class="img-fluid">
-            </div>
+            {{htmlReplacement}}
         </div>
 	</div>
     <footer class="p-5 text-center">
-        <small>Developed by Team BRAW. Copyright 2019.</small>
+        <small>TDAT developed by Team BRAW. Copyright 2019.</small>
     </footer>
     <script>
-        var ctx = document.getElementById("myChart").getContext("2d");
-        var myNewChart = new Chart(ctx, {{config}});
+        {{jsReplacement}}
     </script>
 </body>
 </html>

@@ -9,7 +9,7 @@ public class TrendChartScheme extends ChartScheme {
     private Map<String, String> dataSet;
 
     public TrendChartScheme(Map<String, String> dataSet, String graphType) {
-        super( graphType);
+        super(graphType);
         this.dataSet = dataSet;
     }
 
