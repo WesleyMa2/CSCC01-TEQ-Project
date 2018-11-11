@@ -20,11 +20,11 @@ import javax.swing.border.EmptyBorder;
 
 import com.tdat.app.App;
 import com.tdat.data.MasterData;
-import com.tdat.report.chart.ChartScheme;
 import com.tdat.report.chart.ChartType;
-import com.tdat.report.chart.DistributionChartScheme;
-import com.tdat.report.chart.TrendChartScheme;
 
+/*
+ * NEEDS TO BE COMPLETED
+ */
 public class AddTrendsReportWindow {
 
 	private final JFrame frame;
