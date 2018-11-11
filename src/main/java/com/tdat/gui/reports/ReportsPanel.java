@@ -92,7 +92,7 @@ public class ReportsPanel extends GenericPanel {
 		layoutConstraints.gridy = 6;
 		layoutConstraints.insets = new Insets(10,0,0,0);
 		this.add(addTrendsButton, layoutConstraints);
-		addTrendsButton.addActionListener(new AddTrendReportListener());
+		addTrendsButton.addActionListener(new AddTrendsReportListener());
 		
 		// Add button
 		JButton addDistributionButton = new JButton("Add Distribution Chart Report");

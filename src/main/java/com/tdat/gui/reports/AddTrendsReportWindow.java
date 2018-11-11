@@ -21,11 +21,11 @@ import com.tdat.data.MasterData;
 import com.tdat.report.chart.ChartScheme;
 import com.tdat.report.chart.TrendChartScheme;
 
-public class AddTrendReportWindow {
+public class AddTrendsReportWindow {
 
 	private final JFrame frame;
 	
-	public AddTrendReportWindow() {
+	public AddTrendsReportWindow() {
 		frame = new JFrame(App.appTitle + ": Add Trend Report");
 		frame.setMinimumSize(new Dimension(400, 400));
 		frame.setResizable(true);
