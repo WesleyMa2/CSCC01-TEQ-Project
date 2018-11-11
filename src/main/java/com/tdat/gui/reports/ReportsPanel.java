@@ -57,6 +57,7 @@ public class ReportsPanel extends GenericPanel {
 		JButton submitQuery = new JButton("Run Query");
 		layoutConstraints.gridy = 3;
 		allContent.add(submitQuery, layoutConstraints);
+		submitQuery.addActionListener(new TDATQLListener(tdatqlQuery.getText()));
 		
 		// Reports to be generated list section of the panel
 		JLabel currentReportsHTML = new JLabel("<html><br/><h3 style='margin:0'>Reports to be Generated</h3><small>"
@@ -85,18 +86,21 @@ public class ReportsPanel extends GenericPanel {
 		layoutConstraints.gridy = 6;
 		layoutConstraints.insets = new Insets(10,0,0,0);
 		allContent.add(addButton, layoutConstraints);
+		addButton.addActionListener(new AddReportListener());
 		
 		// Remove button
 		JButton removeButton = new JButton("Remove Report");
 		layoutConstraints.gridy = 7;
 		layoutConstraints.insets = new Insets(0,0,0,0);
 		allContent.add(removeButton, layoutConstraints);
+		removeButton.addActionListener(new RemoveReportListener());
 		
 		// Generate Button
 		JButton generateButton = new JButton("Generate Report(s)");
 		layoutConstraints.insets = new Insets(20,0,0,0);
 		layoutConstraints.gridy = 8;
 		allContent.add(generateButton, layoutConstraints);
+		generateButton.addActionListener(new GenerateReportListener());
 		
 		// Add all content to the panel
 		this.add(allContent);
