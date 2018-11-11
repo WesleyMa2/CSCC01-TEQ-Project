@@ -8,6 +8,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import com.tdat.gui.MainWindow;
+import com.tdat.report.chart.ChartScheme;
 
 public class App {
 	public static String EMPTY = "N/A";
@@ -15,6 +16,7 @@ public class App {
 	public static Year selectedYear = Year.of(2018);
 	public static String selectedFileType = ".xlsx";
 	public static HashMap<String, File> fileUploadDict = new HashMap<String, File>();
+	public static HashMap<String, ChartScheme> reportsDict = new HashMap<String, ChartScheme>();
 	public static String appTitle = "TEQ Data Aggregation Tool (TDAT)";
 
 	public static void main(String[] args) {
