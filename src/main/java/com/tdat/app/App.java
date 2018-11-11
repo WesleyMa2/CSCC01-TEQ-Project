@@ -2,6 +2,7 @@ package com.tdat.app;
 
 import java.io.File;
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.UIManager;
@@ -16,7 +17,7 @@ public class App {
 	public static Year selectedYear = Year.of(2018);
 	public static String selectedFileType = ".xlsx";
 	public static HashMap<String, File> fileUploadDict = new HashMap<String, File>();
-	public static HashMap<String, ChartScheme> reportsDict = new HashMap<String, ChartScheme>();
+	public static ArrayList<ChartScheme> reportsList = new ArrayList<ChartScheme>();
 	public static String appTitle = "TEQ Data Aggregation Tool (TDAT)";
 
 	public static void main(String[] args) {
