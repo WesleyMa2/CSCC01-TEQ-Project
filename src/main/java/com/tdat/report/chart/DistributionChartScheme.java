@@ -13,7 +13,7 @@ import java.util.*;
 public class DistributionChartScheme extends ChartScheme {
     private String column;
 
-    public DistributionChartScheme(String column, String graphType){
+    public DistributionChartScheme(String column, ChartType graphType){
         super(graphType);
         this.column = column;
     }
@@ -52,8 +52,8 @@ public class DistributionChartScheme extends ChartScheme {
             }
             chartDataList.add(new ChartDataset(year.toString(),listOfCounts));
         }
-        return JsonConverter.serializeObject(this.getGraphType(), this.getMainTitle(), 
-        		this.getxTitle(), entries, this.getyTitle(), chartDataList);
+        return JsonConverter.serializeObject(getGraphType().getjsonCode(), this.getMainTitle(),
+        		getxTitle(), entries, getyTitle(), chartDataList);
 
     }
 }

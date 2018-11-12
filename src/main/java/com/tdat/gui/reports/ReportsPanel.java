@@ -74,7 +74,7 @@ public class ReportsPanel extends GenericPanel {
 		for(int index = 0; index < App.reportsList.size(); index++) {
 			tr[index][0] = (Integer.toString(index+1));
 			tr[index][1] = App.reportsList.get(index).getMainTitle();
-			tr[index][2] = App.reportsList.get(index).getGraphType();
+			tr[index][2] = App.reportsList.get(index).getGraphType().getjsonCode();
 		} 
 		String th[] = {"Report Menu", "Report Title","Type of Report"}; 
 		JTable currentReportsTable = new JTable();

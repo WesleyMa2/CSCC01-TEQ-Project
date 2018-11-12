@@ -119,7 +119,7 @@ public class AddDistributionReportWindow {
 							(ChartType)styleOfGraphsDropdown.getSelectedItem());
 					String[] row = {Integer.toString(App.reportsList.size()),
 							App.reportsList.get(App.reportsList.size()-1).getMainTitle(),
-							App.reportsList.get(App.reportsList.size()-1).getGraphType()
+							App.reportsList.get(App.reportsList.size()-1).getGraphType().getjsonCode()
 							};
 					ReportsPanel.tableModel.addRow(row);
 					frame.setVisible(false);
@@ -137,7 +137,7 @@ public class AddDistributionReportWindow {
 	}
 	
 	private void addReport(String reportTitle, String xAxis, String yAxis, String column, ChartType chartType) {
-		ChartScheme chartScheme = new DistributionChartScheme(column, chartType.getjsonCode());
+		ChartScheme chartScheme = new DistributionChartScheme(column, chartType);
 		chartScheme.setMainTitle(reportTitle);
 		chartScheme.setXTitle(xAxis);
 		chartScheme.setYTitle(yAxis);

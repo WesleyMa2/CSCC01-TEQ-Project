@@ -132,9 +132,9 @@ public class GenerateGraphGUI extends JFrame  {
 			public void actionPerformed(ActionEvent e) {
 					
 				// Get the graph type (bar or line)
-				String graphType = ChartType.BAR.getjsonCode();
+				ChartType graphType = ChartType.BAR;
 				if(styleOfGraphsDropdown.getSelectedItem().toString().equals("Line Graph")) {
-					graphType = ChartType.LINE.getjsonCode();
+					graphType = ChartType.LINE;
 				}
 					
 				// Create a chart scheme and add its properties

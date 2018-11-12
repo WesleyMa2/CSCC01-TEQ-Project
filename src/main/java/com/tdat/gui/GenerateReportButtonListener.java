@@ -29,9 +29,10 @@ public class GenerateReportButtonListener implements ActionListener {
          */
 
         //TEST CODE
-        ChartScheme testGraph = new DistributionChartScheme("children", ChartType.BAR.getjsonCode());
+        ChartScheme testGraph = new DistributionChartScheme("children", ChartType.BAR);
         testGraph.setMainTitle("Test Graph").setXTitle("Num children").setYTitle("Count");
         String json = testGraph.toJson();
+
         System.out.println("JSON:\t\t" + json);
         jsonObjectSerializedToString.add(json);
 
