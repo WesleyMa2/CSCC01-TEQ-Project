@@ -2,6 +2,7 @@ package com.tdat.query.handler;
 
 
 import com.tdat.query.InvalidQueryException;
+import com.tdat.report.chart.ChartScheme;
 import com.tdat.report.chart.ChartType;
 import java.util.Arrays;
 import java.util.List;
@@ -23,13 +24,24 @@ public abstract class ChartHandler implements Handler {
   }
 
   /**
-   * Abstract method to return a ChartScheme abject in json form based off user query
+   * Abstract method to add a chartScheme abject to list of ones to be generated based off user
+   * query
    *
    * @param arguments user query
    * @return json
    * @throws InvalidQueryException when query is invalid
    */
-  public abstract String handle(String[] arguments) throws InvalidQueryException;
+  public abstract void handle(String[] arguments) throws InvalidQueryException;
+
+  /**
+   * Abstract method to return a ChartScheme abject based off user query
+   *
+   * @param arguments user query
+   * @return json
+   * @throws InvalidQueryException when query is invalid
+   */
+  protected abstract ChartScheme generateChartScheme(String[] arguments)
+      throws InvalidQueryException;
 
   /**
    * A method to check that a given query contains key(param name), as well as the arguments that

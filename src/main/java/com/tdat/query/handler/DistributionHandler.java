@@ -1,6 +1,8 @@
 package com.tdat.query.handler;
 
+import com.tdat.app.App;
 import com.tdat.query.InvalidQueryException;
+import com.tdat.report.chart.ChartScheme;
 import com.tdat.report.chart.DistributionChartScheme;
 
 /**
@@ -12,8 +14,7 @@ public class DistributionHandler extends ChartHandler {
     super("distribution");
   }
 
-  @Override
-  public String handle(String[] arguments) throws InvalidQueryException {
+  protected ChartScheme generateChartScheme(String[] arguments) throws InvalidQueryException {
     int columnIndex = checkForKey(arguments, "of");
     if(columnIndex == -1){
       throw new InvalidQueryException();
@@ -24,6 +25,12 @@ public class DistributionHandler extends ChartHandler {
         getChartType(arguments));
     result.setMainTitle(getTitle(arguments)).setXTitle(getXTitle(arguments))
         .setYTitle(getYTitle(arguments));
-    return result.toJson();
+    return result;
+  }
+
+  @Override
+  public void handle(String[] arguments) throws InvalidQueryException {
+
+    App.reportsList.add(generateChartScheme(arguments));
   }
 }
