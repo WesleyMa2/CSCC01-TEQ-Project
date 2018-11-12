@@ -19,8 +19,8 @@ public class DistributionHandler extends ChartHandler {
       throw new InvalidQueryException();
     }
     System.out.println("Creating a Distribution chart:");
-    System.out.println("[Column]: " + arguments[columnIndex]);
-    DistributionChartScheme result = new DistributionChartScheme(arguments[columnIndex],
+    System.out.println("[Column]: " + arguments[columnIndex].replace("-", " "));
+    DistributionChartScheme result = new DistributionChartScheme(arguments[columnIndex].replace("-", " "),
         getChartType(arguments));
     result.setMainTitle(getTitle(arguments)).setXTitle(getXTitle(arguments))
         .setYTitle(getYTitle(arguments));
