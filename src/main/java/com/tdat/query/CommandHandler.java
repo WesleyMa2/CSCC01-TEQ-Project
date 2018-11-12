@@ -16,7 +16,7 @@ public class CommandHandler {
   /**
    * Add new handlers here
    */
-  public void setupHandlers() {
+  public static void setupHandlers() {
     registerHandler(new DistributionHandler());
   }
 
@@ -24,7 +24,7 @@ public class CommandHandler {
   /**
    * A method to add new handlers to the map of registered commands
    */
-  private void registerHandler(Handler newHandler) {
+  private static void registerHandler(Handler newHandler) {
     handlers.put(newHandler.getKeyword(), newHandler);
   }
 
