@@ -30,7 +30,7 @@ public class CommandHandler {
   }
 
   public static void handle(String input) {
-    String[] splitInput = input.toLowerCase().split("\\s");
+    String[] splitInput = input.toLowerCase().trim().split("\\s");
     String command = splitInput[0];
     String[] args = Arrays.copyOfRange(splitInput, 1, splitInput.length);
 
@@ -38,7 +38,6 @@ public class CommandHandler {
       if (handlers.containsKey(command.toLowerCase())) {
         handlers.get(command).handle(args);
       }
-      throw new InvalidQueryException();
     } catch (InvalidQueryException e) {
       System.out.println("The query has syntax errors");
     }

@@ -7,16 +7,10 @@ import java.awt.event.ActionListener;
 
 public class TDATQLListener implements ActionListener {
 
-	private String uncleanedQuery;
-	
-	public TDATQLListener(String query) {
-		this.uncleanedQuery = query;
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		CommandHandler.handle(uncleanedQuery);
+		CommandHandler.handle(ReportsPanel.getTdatqlQuery().getText());
 	}
 
 }
