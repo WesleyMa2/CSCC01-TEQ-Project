@@ -60,7 +60,7 @@ public class ReportsPanel extends GenericPanel {
 
     // Query section of the panel
     JLabel tdatqlHTML = new JLabel("<html><br/><h3 style='margin:0'>TDATQL</h3><small>"
-        + "Enter a TDATQL query below to perform specific actions.</small></html>");
+        + "Enter a TDATQL query below to perform specific actions.<br/> Try 'distribution of children with children-Over-Time;num-children;value as bar'</small></html>");
     layoutConstraints.gridy = 1;
     layoutConstraints.ipady = 20;
     this.add(tdatqlHTML, layoutConstraints);

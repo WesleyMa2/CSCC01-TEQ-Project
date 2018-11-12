@@ -11,6 +11,11 @@ public class TDATQLListener implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		CommandHandler.handle(ReportsPanel.getTdatqlQuery().getText());
+		String[] row = {Integer.toString(App.reportsList.size()),
+						App.reportsList.get(App.reportsList.size()-1).getMainTitle(),
+						App.reportsList.get(App.reportsList.size()-1).getGraphType().getjsonCode()
+						};
+		ReportsPanel.tableModel.addRow(row);
 	}
 
 }
