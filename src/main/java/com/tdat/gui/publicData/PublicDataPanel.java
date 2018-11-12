@@ -4,22 +4,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import com.tdat.app.App;
 import com.tdat.gui.GenericPanel;
 
 /*
@@ -53,13 +49,6 @@ public class PublicDataPanel extends GenericPanel {
 		layoutConstraints.weighty = 1;
 		layoutConstraints.anchor = GridBagConstraints.NORTHWEST;
 		this.add(headerHTML, layoutConstraints);
-
-		// String tr[][] = new String[PublicDataCache.CachedPublicData.size()][2];
-		// List<String> keys = new ArrayList(PublicDataCache.CachedPublicData.keySet());
-		// for(int index = 0; index < keys.size(); index++) {
-		// 	tr[index][0] = keys.get(index);
-		// 	tr[index][1] = PublicDataCache.CachedPublicData.get(keys.get(index)).getString("mainTitle");
-		// } 
 
 		String th[] = {"Id", "Title"}; 
 		JTable currentPublicData = new JTable();

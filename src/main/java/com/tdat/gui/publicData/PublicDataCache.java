@@ -11,11 +11,8 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 import com.tdat.report.chart.ChartScheme;
-import com.tdat.report.chart.DistributionChartScheme;
 
 import org.json.JSONObject;
-import org.json.JSONPointer;
-import org.json.JSONString;
 
 /**
  * A class to serialize table data into JSON format for printing

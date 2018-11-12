@@ -1,18 +1,15 @@
 package com.tdat.gui.publicData;
 
-import com.tdat.data.*;
-import com.tdat.data.analysis.SingleTableReader;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.tdat.report.JsonConverter;
 import com.tdat.report.chart.ChartDataSet;
 import com.tdat.report.chart.ChartScheme;
 import com.tdat.report.chart.ChartType;
 
-import org.apache.poi.ss.usermodel.charts.ChartData;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.time.Year;
-import java.util.*;
 
 /**
  * Graph to show the distribution of the entries of a single column, with years being datasets
