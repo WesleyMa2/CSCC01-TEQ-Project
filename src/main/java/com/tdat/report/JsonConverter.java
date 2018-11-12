@@ -13,6 +13,7 @@ public class JsonConverter {
     // Current Payload Structure (Keep Updated)
     // {
     //     "type": "line",
+    //     "mainTitle": "Some title",
     //     "xAxisTitle": "# Of Children",
     //     "xAxisLabels": ["1", "2", "3", "4", "5+"],
     //     "yAxisTitle": "Value",
@@ -62,26 +63,4 @@ public class JsonConverter {
 
         return json.toString();
     }
-
-// 	Unused method
-//    public static HashMap<String, Integer> deserializeObject(String data) {
-//        HashMap<String, Integer> result = new HashMap<String, Integer>();
-//        Map<String, Object> json = new JSONObject(data).toMap();
-//
-//        for (Map.Entry<String, Object> entry : json.entrySet()) {
-//            if (!(entry.getValue() instanceof Integer)) {
-//                System.out.println(entry.getValue() + " error in data, while parsing to integer.");
-//                return null;
-//            }
-//            Integer convert = (Integer) entry.getValue();
-//            String key = entry.getKey();
-//
-//            if (!result.containsKey(key)) {
-//                result.put(key, convert);
-//            }
-//        }
-//
-//        return result;
-//    }
-
 }
