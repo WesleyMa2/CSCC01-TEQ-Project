@@ -1,9 +1,9 @@
 package com.tdat.report.chart;
 
+/**
+ * A class to store information about a graph to be generated
+ */
 public abstract class ChartScheme {
-//    public static String LINE = "line";
-//    public static String BAR = "bar";
-//    public static String TABLE = "table";
     private String mainTitle = "";
     private String xTitle = "";
     private String yTitle = "";

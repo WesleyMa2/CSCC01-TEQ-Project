@@ -22,12 +22,16 @@ public class JsonConverter {
     //     ]
     // }
 
-    public static String serializeObject(String type, String xAxisTitle, List<String> xAxisLabels, String yAxisTitle, List<ChartDataset> data) {
+    public static String serializeObject(String type, String mainTitle, String xAxisTitle, List<String> xAxisLabels, String yAxisTitle, List<ChartDataset> data) {
 
         if (type == null) {
             throw new NullPointerException("type is null");
         }
 
+        if (mainTitle == null) {
+            throw new NullPointerException("mainTitle is null");
+        }
+        
         if (xAxisTitle == null) {
             throw new NullPointerException("xAxisTitle is null");
         }
@@ -50,6 +54,7 @@ public class JsonConverter {
 
     	JSONObject json = new JSONObject();
         json.put("type", type);
+        json.put("mainTitle", mainTitle);
         json.put("xAxisTitle", xAxisTitle);
         json.put("xAxisLabels", xAxisLabels);
         json.put("yAxisTitle", yAxisTitle);
