@@ -46,7 +46,7 @@ function getConfigStub(body) {
             responsive: true,
             title: {
                 display: true,
-                text: 'TEQ Report'
+                text: body.mainTitle
             },
             tooltips: {
                 mode: 'index',

@@ -26,7 +26,7 @@ public class ChartJS {
     private static String API_URL = "http://localhost:3000/";
 
     public static String getDate() {
-        DateFormat dateFormat = new SimpleDateFormat("MMM-dd HH-mm");
+        DateFormat dateFormat = new SimpleDateFormat("MMM-dd-HH-mm-ss");
         Date date = new Date();
         return dateFormat.format(date);
     }
@@ -43,7 +43,7 @@ public class ChartJS {
             InputStream in = response.getEntity().getContent();
 
             Path directoryPath = Paths.get(System.getProperty("user.dir"), "reports");
-            Path filePath = Paths.get(directoryPath.toString(), "report-" + getDate() + ".html");
+            Path filePath = Paths.get(directoryPath.toString(), "TDATreport-" + getDate() + ".html");
             if (!Files.exists(directoryPath)) {
                 Files.createDirectory(directoryPath);
             }
