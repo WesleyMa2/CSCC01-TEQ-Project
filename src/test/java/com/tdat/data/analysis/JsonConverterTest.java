@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.tdat.report.chart.ChartDataset;
+import com.tdat.report.chart.ChartDataSet;
 import com.tdat.data.ColumnNotFoundException;
 import com.tdat.report.JsonConverter;
 
@@ -23,7 +23,7 @@ class JsonConverterTest {
 
         String expected = "{\"xAxisLabels\":[\"label1\",\"label2\",\"label3\"],\"mainTitle\":\"main title\",\"xAxisTitle\":\"x axis title\",\"type\":\"type of chart\",\"dataSet\":[{\"data\":[1,2,3,4],\"header\":\"a header\"}],\"yAxisTitle\":\"y axis title\"}";
 
-        List<ChartDataset> data = new ArrayList<>(Arrays.asList(new ChartDataset("a header", Arrays.asList(1,2,3,4))));
+        List<ChartDataSet> data = new ArrayList<>(Arrays.asList(new ChartDataSet("a header", Arrays.asList(1,2,3,4))));
 
         String actual = JsonConverter.serializeObject("type of chart", "main title", "x axis title", labels, "y axis title", data);
         assertEquals(expected, actual);

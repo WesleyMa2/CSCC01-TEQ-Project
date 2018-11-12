@@ -29,7 +29,7 @@ public class DistributionChartScheme extends ChartScheme {
     public String toJson(){
         // List of all entries in MasterData for given column
         List<String> allEntries = new ArrayList<>();
-        List<ChartDataset> chartDataList = new ArrayList<>();
+        List<ChartDataSet> chartDataList = new ArrayList<>();
 
         // Iterate through the data for each year in MasterData
         for (Year year : MasterData.getAllData().keySet()) {
@@ -66,7 +66,7 @@ public class DistributionChartScheme extends ChartScheme {
                     listOfCounts.add(entryCountForCurrentYear.get(entry));
                 }
             }
-            chartDataList.add(new ChartDataset(year.toString(),listOfCounts));
+            chartDataList.add(new ChartDataSet(year.toString(),listOfCounts));
         }
         return JsonConverter.serializeObject(this.getGraphType().getjsonCode(), this.getMainTitle(), 
         		this.getxTitle(), allEntries, this.getyTitle(), chartDataList);

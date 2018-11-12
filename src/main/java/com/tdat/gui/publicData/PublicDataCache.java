@@ -10,6 +10,9 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
+import com.tdat.report.chart.ChartScheme;
+import com.tdat.report.chart.DistributionChartScheme;
+
 import org.json.JSONObject;
 import org.json.JSONPointer;
 import org.json.JSONString;
@@ -19,14 +22,13 @@ import org.json.JSONString;
  */
 public class PublicDataCache {
 
-    public static HashMap<String, JSONObject> CachedPublicData = new HashMap<String, JSONObject>();
+    public static HashMap<String, ChartScheme> CachedPublicData = new HashMap<String, ChartScheme>();
 
     public static void init() {
 
         Path p = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "publicData");
 
         if (!Files.exists(p)) {
-            System.out.println("Did not find public data");
             return;
         }
         File[] listOfFiles = p.toFile().listFiles();
@@ -38,10 +40,11 @@ public class PublicDataCache {
                 try {
                     reader = new BufferedReader(new FileReader(file));
                     String line =  reader.lines().collect(Collectors.joining());
+
                     JSONObject json = new JSONObject(line);
+                    ChartScheme chartScheme = new PublicDataChartScheme(json);
 
-                    CachedPublicData.put(json.getString("mainTitle"), json);
-
+                    CachedPublicData.put(chartScheme.getMainTitle(), chartScheme);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
@@ -53,7 +56,5 @@ public class PublicDataCache {
                 }
             }
         }
-
-        System.out.println(CachedPublicData);
     }
 }

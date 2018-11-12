@@ -20,7 +20,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.tdat.app.App;
 import com.tdat.data.MasterData;
-import com.tdat.gui.MainWindow;
 import com.tdat.report.chart.ChartScheme;
 import com.tdat.report.chart.ChartType;
 import com.tdat.report.chart.DistributionChartScheme;

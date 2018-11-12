@@ -54,15 +54,43 @@ public class PublicDataPanel extends GenericPanel {
 		layoutConstraints.anchor = GridBagConstraints.NORTHWEST;
 		this.add(headerHTML, layoutConstraints);
 
+		// String tr[][] = new String[PublicDataCache.CachedPublicData.size()][2];
+		// List<String> keys = new ArrayList(PublicDataCache.CachedPublicData.keySet());
+		// for(int index = 0; index < keys.size(); index++) {
+		// 	tr[index][0] = keys.get(index);
+		// 	tr[index][1] = PublicDataCache.CachedPublicData.get(keys.get(index)).getString("mainTitle");
+		// } 
+
+		String th[] = {"Id", "Title"}; 
+		JTable currentPublicData = new JTable();
+		tableModel.setDataVector(null, th);
+		currentPublicData.setModel(tableModel);
+		JScrollPane scrollPane = new JScrollPane(currentPublicData);
+		scrollPane.setPreferredSize(new Dimension(600, 100));
+		layoutConstraints.gridy = 1;
+		layoutConstraints.ipadx = 0;
+		layoutConstraints.ipady = 0;
+		this.add(scrollPane, layoutConstraints);
+
 		Collection<String> publicDataFound = PublicDataCache.CachedPublicData.keySet();
-
-
 		JComboBox publicDataDropdown = new JComboBox(publicDataFound.toArray());
-		this.add(publicDataDropdown);
+		layoutConstraints.gridy = 2;
+		layoutConstraints.ipadx = 0;
+		layoutConstraints.ipady = 0;
+		this.add(publicDataDropdown, layoutConstraints);
 
 		publicDataDropdown.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) currentPublicData.getModel();
+
+				String tr[] = new String[2];
+				List<String> keys = new ArrayList(PublicDataCache.CachedPublicData.keySet());
+				tr[0] = (model.getRowCount() + 1) + "";
+				tr[1] = keys.get(publicDataDropdown.getSelectedIndex());
+
+				model.addRow(tr);
+
 				System.out.println(publicDataDropdown.getSelectedItem());
 			}
 		});

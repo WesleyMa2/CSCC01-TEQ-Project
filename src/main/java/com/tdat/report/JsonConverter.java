@@ -2,7 +2,7 @@ package com.tdat.report;
 
 import java.util.List;
 
-import com.tdat.report.chart.ChartDataset;
+import com.tdat.report.chart.ChartDataSet;
 import org.json.JSONObject;
 
 /**
@@ -23,7 +23,7 @@ public class JsonConverter {
     //     ]
     // }
 
-    public static String serializeObject(String type, String mainTitle, String xAxisTitle, List<String> xAxisLabels, String yAxisTitle, List<ChartDataset> data) {
+    public static String serializeObject(String type, String mainTitle, String xAxisTitle, List<String> xAxisLabels, String yAxisTitle, List<ChartDataSet> data) {
 
         if (type == null) {
             throw new NullPointerException("type is null");
