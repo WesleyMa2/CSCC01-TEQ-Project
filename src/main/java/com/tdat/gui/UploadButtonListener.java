@@ -38,8 +38,8 @@ public class UploadButtonListener implements ActionListener {
             String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
             String historyEntry = "Date: " + timeStamp + "   Filename: " + selectedFile.getName() + "   Filetype: " + App.selectedFileType +
             					"   Fiscal year: " + App.selectedYear;
-            GUI.DLM.addElement(historyEntry);
-            GUI.fileUploadDict.put(historyEntry, this.selectedFile);
+            UploadPanel.DLM.addElement(historyEntry);
+            App.fileUploadDict.put(historyEntry, this.selectedFile);
             System.out.println("\n[File Uploaded]");
             System.out.println(" File:\t\t" + App.selectedFile.getName());
             System.out.println(" Type:\t" + App.selectedFileType);
