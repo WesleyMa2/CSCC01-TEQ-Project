@@ -1,5 +1,6 @@
 package com.tdat.gui;
 
+import com.tdat.query.CommandHandler;
 import com.tdat.report.chart.ChartType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,13 +30,10 @@ public class GenerateReportButtonListener implements ActionListener {
          */
 
         //TEST CODE
-        ChartScheme testGraph = new DistributionChartScheme("children", ChartType.BAR);
-        testGraph.setMainTitle("Test Graph").setXTitle("Num children").setYTitle("Count");
-        String json = testGraph.toJson();
-
+        String userQuery = "distribution of children with children-Over-Time;num-children;value as bar";
+        CommandHandler.setupHandlers();
+        String json = CommandHandler.handle(userQuery);
         System.out.println("JSON:\t\t" + json);
-        jsonObjectSerializedToString.add(json);
-
         String path = ChartJS.create(json);
         System.out.println("PATH:\t\t" + path);
     }

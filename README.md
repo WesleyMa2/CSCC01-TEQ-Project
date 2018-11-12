@@ -52,7 +52,25 @@ root
   └── pom.xml
 
 ```
+## TDAT Query Languange
+When creating graphs to put on a report, users can optionally use a text based system rather than the GUI to generate graphs to be added.
+For fields such as titles, column names, and entry names,  use ```-``` to represent a space.
+#### Plotting data onto a Distribution graph
+```DISTRIBUTION OF [COLUMN] WITH [TITLE;XTITLE;YTITLE] AS [LINE/TABLE/BAR]```
 
+This command will create a distribution graph for the column in ```[COLUMN]```, with the titles in ```[TITLE;XTITLE;YTITLE]```.
+The graph will be in the style specified by ```[LINE/TABLE/BAR]```.
+
+Ex. ```distribution of children with dist-of-childrem;num;value as bar```
+
+#### Plotting data onto a Trend graph (unimplemented)
+```TREND OF [ENTRY;ENTRY;ENTRY] FROM [COLUMN;COLUMN;COLUMN] WITH [title;x-axis;y-axis] AS [LINE/TABLE/BAR]```
+
+This command will create a trend graph for the entries in ```[ENTRY;ENTRY;ENTRY]```, corresponding to their respective columns in ```[COLUMN;COLUMN;COLUMN]```, over all years, with the titles in ```[TITLE;XTITLE;YTITLE]```.
+The graph will be in the style specified by ```[LINE/TABLE/BAR]```.
+
+
+Ex. ```trend of 1;k2g5z4 from children;postal-code with children-vs-area;num;time as bar```
 ## Change Log
 This change log is in order from the top for the latest changes in the master branch.
 
