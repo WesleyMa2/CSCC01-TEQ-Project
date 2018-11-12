@@ -111,6 +111,11 @@ public class AddTrendsReportWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if (reportTitleTextField.getText().equals("") || xTitleTextField.getText().equals("") || yTitleTextField.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Please fill in all fields.");
+						return;
+					}
+	
 					//addReport(
 					//		reportTitleTextField.getText(),
 					//		xTitleTextField.getText(),

@@ -110,6 +110,11 @@ public class AddDistributionReportWindow {
 		addDistributionButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (reportTitleTextField.getText().equals("") || xTitleTextField.getText().equals("") || yTitleTextField.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Please fill in all fields.");
+					return;
+				}
+
 				try {
 					addReport(
 							reportTitleTextField.getText(),
