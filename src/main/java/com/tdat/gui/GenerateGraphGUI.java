@@ -132,10 +132,10 @@ public class GenerateGraphGUI extends JFrame  {
 			public void actionPerformed(ActionEvent e) {
 					
 				// Get the graph type (bar or line)
-				ChartType graphType = ChartType.valueOf(styleOfGraphsDropdown.getSelectedItem().toString().split("//s")[0].toUpperCase());
-//				if(styleOfGraphsDropdown.getSelectedItem().toString().equals("Line Graph")) {
-//					graphType = ChartType.LINE;
-//				}
+				ChartType graphType = ChartType.BAR;
+				if(styleOfGraphsDropdown.getSelectedItem().toString().equals("Line Graph")) {
+					graphType = ChartType.LINE;
+				}
 					
 				// Create a chart scheme and add its properties
 				ChartScheme chartScheme = new DistributionChartScheme(columnToGraphDropdown.getSelectedItem().toString(), graphType);
