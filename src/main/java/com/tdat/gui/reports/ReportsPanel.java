@@ -76,7 +76,7 @@ public class ReportsPanel extends GenericPanel {
 			tr[index][1] = App.reportsList.get(index).getMainTitle();
 			tr[index][2] = App.reportsList.get(index).getGraphType().getjsonCode();
 		} 
-		String th[] = {"Report Menu", "Report Title","Type of Report"}; 
+		String th[] = {"Id", "Title","Type"}; 
 		JTable currentReportsTable = new JTable();
 		tableModel.setDataVector(tr, th);
 		currentReportsTable.setModel(tableModel);
@@ -105,7 +105,7 @@ public class ReportsPanel extends GenericPanel {
 		JButton removeButton = new JButton("Remove Report");
 		layoutConstraints.gridy = 8;
 		this.add(removeButton, layoutConstraints);
-		removeButton.addActionListener(new RemoveReportListener());
+		removeButton.addActionListener(new RemoveReportListener(currentReportsTable));
 		
 		// Generate Button
 		JButton generateButton = new JButton("Generate Report(s)");

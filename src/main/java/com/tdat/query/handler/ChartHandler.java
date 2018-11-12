@@ -78,19 +78,16 @@ public abstract class ChartHandler implements Handler {
 
   protected String getTitle(String[] arguments) throws InvalidQueryException {
     List<String> titlesList = getTitlesList(arguments);
-    System.out.println("[Title]: " + titlesList.get(0));
     return titlesList.get(0);
   }
 
   protected String getXTitle(String[] arguments) throws InvalidQueryException {
     List<String> titlesList = getTitlesList(arguments);
-    System.out.println("[XTitle]: " + titlesList.get(1));
     return titlesList.get(1);
   }
 
   protected String getYTitle(String[] arguments) throws InvalidQueryException {
     List<String> titlesList = getTitlesList(arguments);
-    System.out.println("[YTitle]: " + titlesList.get(2));
     return titlesList.get(2);
   }
 

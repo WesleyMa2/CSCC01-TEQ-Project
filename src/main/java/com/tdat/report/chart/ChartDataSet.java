@@ -5,11 +5,11 @@ import java.util.List;
 /**
  * A class to hold the y values of a given data set, with the title of the data set
  */
-public class ChartDataset {
+public class ChartDataSet {
 	private String header;
 	private List<Integer> data;
 
-	public ChartDataset(String header, List<Integer> data) {
+	public ChartDataSet(String header, List<Integer> data) {
 		this.header = header;
 		this.data = data;
 	}
@@ -20,5 +20,10 @@ public class ChartDataset {
 
 	public List<Integer> getData() {
 		return this.data;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("{header: %s, data: %s}", this.getHeader(), this.getData());
 	}
 }
