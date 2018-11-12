@@ -1,9 +1,7 @@
 package com.tdat.gui.reports;
 
 import java.awt.HeadlessException;
-import java.util.Arrays;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
