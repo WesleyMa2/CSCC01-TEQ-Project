@@ -58,7 +58,7 @@ This change log is in order from the top for the latest changes in the master br
 
 Date | Change
 --- | ---
-2018-11-12 | <ul><li>Added deliverable 4 content</li><li>Merged SQL and new GUI branches</li></ul>
+2018-11-12 | <ul><li>Added deliverable 4 content</li><li>Merged SQL, conflict check, public data, and graph creation branches</li></ul>
 2018-10-29 | <ul><li>Pushed product and sprint backlogs for deliverable 3</li><li>Added the TableDataCreator class (and its tests) which customizes a TableData object with provided data as well as constraints about columns and years.</li></ul>
 2018-10-28 | <ul><li>Created class to provide basic info on a given TableData object, along with its unit tests</li><li>Added jUnit to dependancy list</li></ul>
 2018-10-23 | <ul><li>Completed feeder directory, all needs to be done is testing</li><li>Made significant changes to the folder structure to be more consistant and follow the Maven structure</li><li>Changed up the README.md file to be more friendly to new readers</li></ul>
