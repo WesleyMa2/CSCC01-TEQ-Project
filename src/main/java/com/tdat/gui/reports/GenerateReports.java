@@ -3,12 +3,17 @@ package com.tdat.gui.reports;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.tdat.app.App;
+import com.tdat.gui.publicData.PublicDataCache;
 import com.tdat.report.ChartJS;
+
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 
 public class GenerateReports {
 	
@@ -20,8 +25,17 @@ public class GenerateReports {
 			json += "\"totalVisits\": \"" + "90" + "\",";
 			json += "\"years\": \"" + "2018, 2016, 2015" + "\",";
 			json += "\"generateThese\":[";
-			for(int index = 0; index < App.reportsList.size(); index++) {
-				json += App.reportsList.get(index).toJson();
+			for(int i = 0; i < App.reportsList.size(); i++) {
+				json += App.reportsList.get(i).toJson();
+				json += ",";
+			}
+
+			List<String> keys = new ArrayList<String>(PublicDataCache.CachedPublicData.keySet());
+			for (int i = 0; i < keys.size(); i++) {
+			
+			}
+			for(int j = 0; j < keys.size(); j++) {
+				json += PublicDataCache.CachedPublicData.get(keys.get(j)).toJson();
 				json += ",";
 			}
 			// Exclude the last comma

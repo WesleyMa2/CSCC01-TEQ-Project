@@ -6,11 +6,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JButton;
-//import javax.swing.JCheckBox;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -120,7 +118,7 @@ public class GenerateGraphGUI extends JFrame  {
 		String[] styleOfGraph = {"Line Graph", "Bar Graph"};
 		JComboBox<String[]> styleOfGraphsDropdown = new JComboBox(styleOfGraph);
 		mainPanel.add(styleOfGraphsDropdown);
-			
+
 		// Generate graph button
 		JButton generateDistributionButton = new JButton("Generate Graph");
 		generateDistributionButton.setFont(regular);

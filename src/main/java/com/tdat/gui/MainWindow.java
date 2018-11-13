@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import com.tdat.app.App;
+import com.tdat.gui.publicData.PublicDataPanel;
 import com.tdat.gui.reports.ReportsPanel;
 
 /*
@@ -20,7 +21,8 @@ public class MainWindow {
 		frame = new JFrame(App.appTitle);
 		frame.setMinimumSize(new Dimension(800, 600));
 		frame.setSize(new Dimension(800, 600));
-		frame.setResizable(true);
+        frame.setResizable(true);
+        frame.setLocationRelativeTo(null);
 
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
@@ -32,6 +34,9 @@ public class MainWindow {
         
         ReportsPanel reportsPanel = new ReportsPanel();
         tabbedPane.addTab(reportsPanel.getPanelTitle(), reportsPanel);
+
+        PublicDataPanel publicDataPanel = new PublicDataPanel();
+        tabbedPane.addTab(publicDataPanel.getPanelTitle(), publicDataPanel);
         
         tabbedPane.setTabPlacement(JTabbedPane.LEFT);
         JScrollPane scrollPane = new JScrollPane(tabbedPane);

@@ -10,6 +10,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import com.tdat.gui.MainWindow;
+import com.tdat.gui.publicData.PublicDataCache;
 import com.tdat.report.chart.ChartScheme;
 
 public class App {
@@ -38,6 +39,8 @@ public class App {
 		} catch (IllegalAccessException e) {
 			// handle exception
 		}
+
+		PublicDataCache.init();
 
 		new MainWindow();
 	}

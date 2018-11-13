@@ -23,8 +23,11 @@ public class DistributionChartScheme extends ChartScheme {
     }
 
     public String toJson(){
-        List<String> entries = new ArrayList<>();
-        List<ChartDataset> chartDataList = new ArrayList<>();
+        // List of all entries in MasterData for given column
+        List<String> allEntries = new ArrayList<>();
+        List<ChartDataSet> chartDataList = new ArrayList<>();
+
+        // Iterate through the data for each year in MasterData
         for (Year year : MasterData.getAllData().keySet()) {
             TableData dataForCurrentYear = MasterData.getYearData(year);
             SingleTableReader tableReader = new SingleTableReader(dataForCurrentYear);
@@ -37,22 +40,23 @@ public class DistributionChartScheme extends ChartScheme {
                 e1.printStackTrace();
             }
             for (String newEntry : entryCountForCurrentYear.keySet()){
-                if (!entries.contains(newEntry)){
-                    entries.add(newEntry);
+                if (!allEntries.contains(newEntry)){
+                    allEntries.add(newEntry);
                 }
             }
-            Collections.sort(entries);
+            Collections.sort(allEntries);
             List<Integer> listOfCounts = new ArrayList<>();
-            for (String entry : entries) {
+            for (String entry : allEntries) {
                 if (!entryCountForCurrentYear.containsKey(entry)){
                     listOfCounts.add(0);
                 }else {
                     listOfCounts.add(entryCountForCurrentYear.get(entry));
                 }
             }
-            chartDataList.add(new ChartDataset(year.toString(),listOfCounts));
+            chartDataList.add(new ChartDataSet(year.toString(),listOfCounts));
         }
-        return JsonConverter.serializeObject(this.getGraphType().getjsonCode(), getMainTitle(), getxTitle(), entries, getyTitle(), chartDataList);
+        return JsonConverter.serializeObject(this.getGraphType().getjsonCode(), this.getMainTitle(), 
+        		this.getxTitle(), allEntries, this.getyTitle(), chartDataList);
 
     }
 }
