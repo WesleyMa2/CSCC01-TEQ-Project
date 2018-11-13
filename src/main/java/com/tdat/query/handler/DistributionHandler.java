@@ -6,7 +6,7 @@ import com.tdat.report.chart.ChartScheme;
 import com.tdat.report.chart.DistributionChartScheme;
 
 /**
- *  A method to create a DistributionChartScheme in json, based off user query
+ * A method to create a DistributionChartScheme in json, based off user query
  */
 public class DistributionHandler extends ChartHandler {
 
@@ -16,12 +16,13 @@ public class DistributionHandler extends ChartHandler {
 
   protected ChartScheme generateChartScheme(String[] arguments) throws InvalidQueryException {
     int columnIndex = checkForKey(arguments, "of");
-    if(columnIndex == -1){
+    if (columnIndex == -1) {
       throw new InvalidQueryException();
     }
     System.out.println("Creating a Distribution chart:");
-    System.out.println("[Column]: " + arguments[columnIndex].replace("-", " "));
-    DistributionChartScheme result = new DistributionChartScheme(arguments[columnIndex].replace("-", " "),
+    System.out.println("[Column]:\t" + arguments[columnIndex].replace("-", " "));
+    DistributionChartScheme result = new DistributionChartScheme(
+        arguments[columnIndex].replace("-", " "),
         getChartType(arguments));
     result.setMainTitle(getTitle(arguments)).setXTitle(getXTitle(arguments))
         .setYTitle(getYTitle(arguments));

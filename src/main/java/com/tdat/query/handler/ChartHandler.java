@@ -90,16 +90,19 @@ public abstract class ChartHandler implements Handler {
 
   protected String getTitle(String[] arguments) throws InvalidQueryException {
     List<String> titlesList = getTitlesList(arguments);
+    System.out.println("[Title]:\t\t" + titlesList.get(0));
     return titlesList.get(0);
   }
 
   protected String getXTitle(String[] arguments) throws InvalidQueryException {
     List<String> titlesList = getTitlesList(arguments);
+    System.out.println("[XTitle]:\t" + titlesList.get(1));
     return titlesList.get(1);
   }
 
   protected String getYTitle(String[] arguments) throws InvalidQueryException {
     List<String> titlesList = getTitlesList(arguments);
+    System.out.println("[YTitle]:\t" + titlesList.get(2));
     return titlesList.get(2);
   }
 
@@ -118,7 +121,7 @@ public abstract class ChartHandler implements Handler {
     }
     try {
       System.out
-          .println("[ChartType]: " + ChartType.valueOf(arguments[chartTypeIndex].toUpperCase()));
+          .println("[ChartType]:\t" + ChartType.valueOf(arguments[chartTypeIndex].toUpperCase()));
       return ChartType.valueOf(arguments[chartTypeIndex].toUpperCase());
     } catch (Exception e) {
       throw new InvalidQueryException();

@@ -115,7 +115,7 @@ public class ReportsPanel extends GenericPanel {
     JButton removeButton = new JButton("Remove Report");
     layoutConstraints.gridy = 8;
     this.add(removeButton, layoutConstraints);
-    removeButton.addActionListener(new RemoveReportListener());
+    removeButton.addActionListener(new RemoveReportListener(currentReportsTable));
 
     // Generate Button
     JButton generateButton = new JButton("Generate Report(s)");
