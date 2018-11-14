@@ -25,19 +25,12 @@ public class GenerateReports {
 			json += "\"totalVisits\": \"" + "90" + "\",";
 			json += "\"years\": \"" + "2018, 2016, 2015" + "\",";
 			json += "\"generateThese\":[";
+			
 			for(int i = 0; i < App.reportsList.size(); i++) {
 				json += App.reportsList.get(i).toJson();
 				json += ",";
 			}
 
-			List<String> keys = new ArrayList<String>(PublicDataCache.CachedPublicData.keySet());
-			for (int i = 0; i < keys.size(); i++) {
-			
-			}
-			for(int j = 0; j < keys.size(); j++) {
-				json += PublicDataCache.CachedPublicData.get(keys.get(j)).toJson();
-				json += ",";
-			}
 			// Exclude the last comma
 			json = json.substring(0, json.length()-1);
 			json += "]}";

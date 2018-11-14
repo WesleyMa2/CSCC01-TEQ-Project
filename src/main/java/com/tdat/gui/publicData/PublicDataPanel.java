@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.tdat.app.App;
 import com.tdat.gui.GenericPanel;
 
 /*
@@ -73,14 +74,16 @@ public class PublicDataPanel extends GenericPanel {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTableModel model = (DefaultTableModel) currentPublicData.getModel();
 
-				String tr[] = new String[2];
 				List<String> keys = new ArrayList(PublicDataCache.CachedPublicData.keySet());
-				tr[0] = (model.getRowCount() + 1) + "";
-				tr[1] = keys.get(publicDataDropdown.getSelectedIndex());
+				String key = keys.get(publicDataDropdown.getSelectedIndex());
+
+				String tr[] = new String[] {
+					Integer.toString(model.getRowCount() + 1),
+					key
+				};
 
 				model.addRow(tr);
-
-				System.out.println(publicDataDropdown.getSelectedItem());
+				App.reportsList.add(PublicDataCache.CachedPublicData.get(key));
 			}
 		});
 	}
