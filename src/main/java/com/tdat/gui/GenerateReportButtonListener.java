@@ -29,13 +29,13 @@ public class GenerateReportButtonListener implements ActionListener {
          * If no file is selected in the JList, generate a report based on all uploaded files.
          */
 
-        //TEST CODE
-        String userQuery = "distribution of children with children-Over-Time;num-children;value as bar";
-        CommandHandler.setupHandlers();
-        String json = CommandHandler.handle(userQuery);
-        System.out.println("JSON:\t\t" + json);
-        String path = ChartJS.create(json);
-        System.out.println("PATH:\t\t" + path);
+//        //TEST CODE
+//        String userQuery = "distribution of children with children-Over-Time;num-children;value as bar";
+//        CommandHandler.setupHandlers();
+//        String json = CommandHandler.handle(userQuery);
+//        System.out.println("JSON:\t\t" + json);
+//        String path = ChartJS.create(json);
+//        System.out.println("PATH:\t\t" + path);
     }
 
 

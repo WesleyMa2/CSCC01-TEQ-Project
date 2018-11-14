@@ -36,14 +36,6 @@ class SingleTableReaderTest {
     }
 
     @Test
-    @DisplayName("Test counting up entries in a column that dne")
-    void columnNotFound() throws ColumnNotFoundException {
-        assertThrows(ColumnNotFoundException.class, () -> {
-            tableReader.columnEntriesCount("dne");
-        });
-    }
-
-    @Test
     @DisplayName("Test counting up entries in multi columns")
     void multiColumnEntriesCount() throws ColumnNotFoundException {
         Map<String, Map<String, Integer>> expected = new HashMap<>();

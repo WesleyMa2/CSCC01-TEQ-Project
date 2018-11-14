@@ -25,7 +25,8 @@ public class SingleTableReader {
         Map<String, Integer> columnEntriesData = new HashMap<>();
       
         if (!tableData.getColumnList().contains(column)) {
-            throw new ColumnNotFoundException(column);
+            //throw new ColumnNotFoundException(column);
+            return columnEntriesData;
         }
         List<String> allColumnEntries = tableData.getColumnEntries(column);
         for (String entry: allColumnEntries){
