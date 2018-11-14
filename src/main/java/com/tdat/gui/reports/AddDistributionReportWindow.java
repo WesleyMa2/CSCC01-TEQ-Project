@@ -117,12 +117,16 @@ public class AddDistributionReportWindow {
 				}
 
 				try {
-					addReport(reportTitleTextField.getText(), xTitleTextField.getText(), yTitleTextField.getText(),
-							columnToGraphDropdown.getSelectedItem().toString(),
-							(ChartType) styleOfGraphsDropdown.getSelectedItem());
-					String[] row = { Integer.toString(App.reportsList.size()),
-							App.reportsList.get(App.reportsList.size() - 1).getMainTitle(),
-							App.reportsList.get(App.reportsList.size() - 1).getGraphType().getjsonCode() };
+					ChartType type = ChartType.getChartTypeFromString(styleOfGraphsDropdown.getSelectedItem().toString());
+					ChartScheme chart = addReport(reportTitleTextField.getText(), xTitleTextField.getText(), yTitleTextField.getText(),
+							columnToGraphDropdown.getSelectedItem().toString(), type);
+
+					String[] row = {
+						Integer.toString(MasterData.reportId.incrementAndGet()),
+						chart.getMainTitle(),
+						chart.getGraphType().getJsonCode()
+					};
+
 					ReportsPanel.tableModel.addRow(row);
 					frame.setVisible(false);
 				} catch (NullPointerException a) {
@@ -138,12 +142,14 @@ public class AddDistributionReportWindow {
 		frame.setVisible(true);
 	}
 
-	private void addReport(String reportTitle, String xAxis, String yAxis, String column, ChartType chartType) {
+	private ChartScheme addReport(String reportTitle, String xAxis, String yAxis, String column, ChartType chartType) {
 		ChartScheme chartScheme = new DistributionChartScheme(column, chartType);
 		chartScheme.setMainTitle(reportTitle);
 		chartScheme.setXTitle(xAxis);
 		chartScheme.setYTitle(yAxis);
+
 		App.reportsList.add(chartScheme);
+		return chartScheme;
 	}
 
 }

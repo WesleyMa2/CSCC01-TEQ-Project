@@ -16,7 +16,7 @@ public enum ChartType {
     return ChartType.valueOf(type.toUpperCase());
   }
 
-  public String getjsonCode() {
+  public String getJsonCode() {
     return jsonCode;
   }
 }

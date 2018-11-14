@@ -17,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.tdat.app.App;
+import com.tdat.data.MasterData;
 import com.tdat.gui.GenericPanel;
 
 /*
@@ -78,7 +79,7 @@ public class PublicDataPanel extends GenericPanel {
 				String key = keys.get(publicDataDropdown.getSelectedIndex());
 
 				String tr[] = new String[] {
-					Integer.toString(model.getRowCount() + 1),
+					Integer.toString(MasterData.publicDataId.incrementAndGet()),
 					key
 				};
 

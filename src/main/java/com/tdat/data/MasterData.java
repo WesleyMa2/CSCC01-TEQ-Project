@@ -2,6 +2,7 @@ package com.tdat.data;
 
 import java.time.Year;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A class to hold all the raw data uploaded to the system.
@@ -9,6 +10,8 @@ import java.util.*;
 public class MasterData {
 	
 	public static Map<Year, TableData> allData = new HashMap<Year, TableData>();
+	public static AtomicInteger reportId = new AtomicInteger();
+	public static AtomicInteger publicDataId = new AtomicInteger();
 
 	public static boolean yearExists(Year year) {
 		return allData.containsKey(year);
