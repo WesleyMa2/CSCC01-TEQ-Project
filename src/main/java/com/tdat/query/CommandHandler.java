@@ -2,9 +2,11 @@ package com.tdat.query;
 
 import com.tdat.query.handler.DistributionHandler;
 import com.tdat.query.handler.Handler;
+import com.tdat.report.chart.ChartScheme;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import jdk.nashorn.internal.runtime.ECMAException;
 
 /**
  * A class to handle a given query from the user to create a graph
@@ -28,19 +30,20 @@ public class CommandHandler {
     handlers.put(newHandler.getKeyword(), newHandler);
   }
 
-  public static String handle(String input) {
-    String[] splitInput = input.toLowerCase().split("\\s");
+  public static boolean handle(String input) {
+    String[] splitInput = input.toLowerCase().trim().split("\\s");
     String command = splitInput[0];
     String[] args = Arrays.copyOfRange(splitInput, 1, splitInput.length);
 
     try {
       if (handlers.containsKey(command.toLowerCase())) {
-        return handlers.get(command).handle(args);
+        handlers.get(command).handle(args);
+        return true;
       }
       throw new InvalidQueryException();
     } catch (InvalidQueryException e) {
-      System.out.println("The query has syntax errors");
-      return null;
+      System.out.println("Error: The query has syntax errors");
+      return false;
     }
   }
 

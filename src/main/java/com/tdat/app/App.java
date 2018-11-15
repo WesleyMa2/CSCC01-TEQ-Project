@@ -1,5 +1,6 @@
 package com.tdat.app;
 
+import com.tdat.query.CommandHandler;
 import java.io.File;
 import java.time.Year;
 import java.util.ArrayList;
@@ -20,8 +21,11 @@ public class App {
 	public static HashMap<String, File> fileUploadDict = new HashMap<String, File>();
 	public static ArrayList<ChartScheme> reportsList = new ArrayList<ChartScheme>();
 	public static String appTitle = "TEQ Data Aggregation Tool (TDAT)";
+	public static String userQuery;
+
 
 	public static void main(String[] args) {
+		CommandHandler.setupHandlers();
 
 		try {
 			// Set cross-platform Java L&F (also called "Metal")

@@ -137,9 +137,9 @@ public class GenerateGraphGUI extends JFrame  {
 					
 				// Create a chart scheme and add its properties
 				ChartScheme chartScheme = new DistributionChartScheme(columnToGraphDropdown.getSelectedItem().toString(), graphType);
-				chartScheme.setMainTitle(reportTitleTextField.getText().toString());
-				chartScheme.setXTitle(xTitleTextField.getText().toString());
-				chartScheme.setYTitle(yTitleTextField.getText().toString());
+				chartScheme.setMainTitle(reportTitleTextField.getText());
+				chartScheme.setXTitle(xTitleTextField.getText());
+				chartScheme.setYTitle(yTitleTextField.getText());
 					
 				// Put the chart scheme into JSON format
 				String json = chartScheme.toJson();
