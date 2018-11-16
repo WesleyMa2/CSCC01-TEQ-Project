@@ -26,7 +26,6 @@ public class ReportsPanel extends GenericPanel {
 
   private static JTextField tdatqlQuery = new JTextField();
 
-
   protected static DefaultTableModel tableModel = new DefaultTableModel() {
     @Override
     public boolean isCellEditable(int row, int column) {
@@ -47,9 +46,9 @@ public class ReportsPanel extends GenericPanel {
     GridBagConstraints layoutConstraints = new GridBagConstraints();
 
     // Header section of the panel
-    JLabel headerHTML = new JLabel("<html><h2 style='margin:0'>Reports</h2>"
-        + "<small>Generate graphical reports through this "
-        + "interface. Reports will be displayed in your default browser.</small></html>");
+    JLabel headerHTML = new JLabel(
+        "<html><h2 style='margin:0'>Reports</h2>" + "<small>Generate graphical reports through this "
+            + "interface. Reports will be displayed in your default browser.</small></html>");
     layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
     layoutConstraints.gridx = 0;
     layoutConstraints.gridy = 0;
@@ -74,21 +73,15 @@ public class ReportsPanel extends GenericPanel {
     submitQuery.addActionListener(new TDATQLListener());
 
     // Reports to be generated list section of the panel
-    JLabel currentReportsHTML = new JLabel(
-        "<html><br/><h3 style='margin:0'>Reports to be Generated</h3><small>"
-            + "Below, you can see a list of reports to be generated.</small></html>");
+    JLabel currentReportsHTML = new JLabel("<html><br/><h3 style='margin:0'>Reports to be Generated</h3><small>"
+        + "Below, you can see a list of reports to be generated.</small></html>");
     layoutConstraints.gridy = 4;
     layoutConstraints.ipady = 20;
     this.add(currentReportsHTML, layoutConstraints);
-    String tr[][] = new String[App.reportsList.size()][3];
-    for (int index = 0; index < App.reportsList.size(); index++) {
-      tr[index][0] = (Integer.toString(index + 1));
-      tr[index][1] = App.reportsList.get(index).getMainTitle();
-      tr[index][2] = App.reportsList.get(index).getGraphType().getjsonCode();
-    }
-    String th[] = {"Report Menu", "Report Title", "Type of Report"};
+
+    String th[] = { "Id", "Title", "Type" };
     JTable currentReportsTable = new JTable();
-    tableModel.setDataVector(tr, th);
+    tableModel.setDataVector(null, th);
     currentReportsTable.setModel(tableModel);
     JScrollPane scrollPane = new JScrollPane(currentReportsTable);
     scrollPane.setPreferredSize(new Dimension(600, 100));

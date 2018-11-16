@@ -45,6 +45,7 @@ public ConflictWindow(){
 	f.setMinimumSize(windowMinSize);
 	f.setSize(windowMinSize);
 	f.setResizable(true);
+	f.setLocationRelativeTo(null);
 
 	f.addWindowListener(new java.awt.event.WindowAdapter() {
 	    @Override

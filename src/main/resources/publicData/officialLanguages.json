@@ -1,5 +1,5 @@
 {
-  "type": "line",
+  "type": "bar",
   "mainTitle": "Knowledge of Official Languages",
   "xAxisTitle": "Languages",
   "xAxisLabels": ["English", "French", "English and French", "Neither English nor French"],

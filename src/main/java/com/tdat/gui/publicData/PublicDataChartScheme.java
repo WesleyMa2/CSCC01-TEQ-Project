@@ -51,7 +51,7 @@ public class PublicDataChartScheme extends ChartScheme {
      */
     public String toJson(){
 
-        return JsonConverter.serializeObject(this.getGraphType().getjsonCode(), this.getMainTitle(), 
+        return JsonConverter.serializeObject(this.getGraphType().getJsonCode(), this.getMainTitle(), 
         		this.getxTitle(), this.xAxisLabels, this.getyTitle(), this.dataSet);
 
     }
