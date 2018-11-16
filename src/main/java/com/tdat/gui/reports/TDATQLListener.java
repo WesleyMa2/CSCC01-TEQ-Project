@@ -1,6 +1,7 @@
 package com.tdat.gui.reports;
 
 import com.tdat.app.App;
+import com.tdat.data.MasterData;
 import com.tdat.query.CommandHandler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,14 +18,12 @@ public class TDATQLListener implements ActionListener {
     }
 
     if (CommandHandler.handle(query)) {
-      String[] row = {Integer.toString(App.reportsList.size()),
+      String[] row = {Integer.toString(MasterData.reportId.incrementAndGet()),
           App.reportsList.get(App.reportsList.size() - 1).getMainTitle(),
-          App.reportsList.get(App.reportsList.size() - 1).getGraphType().getjsonCode()
+          App.reportsList.get(App.reportsList.size() - 1).getGraphType().getJsonCode()
       };
       ReportsPanel.tableModel.addRow(row);
     }
-
-
   }
 
 }

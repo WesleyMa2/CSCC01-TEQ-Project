@@ -17,7 +17,7 @@ public class RemoveReportWindow {
 
 		try {
 			int confirmed = JOptionPane.showConfirmDialog(null,
-					"Are you sure you want to delete report #" + (tableModel.getSelectedRow() + 1) + "?",
+					"Are you sure you want to delete report #" + (tableModel.getValueAt(tableModel.getSelectedRow(), 0)) + "?",
 					"Confirmation Dialog", JOptionPane.YES_NO_OPTION);
 
 			if (confirmed == JOptionPane.YES_OPTION) {
