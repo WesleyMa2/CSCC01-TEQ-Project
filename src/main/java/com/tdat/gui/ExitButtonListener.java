@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
 
 import com.tdat.app.App;
 import com.tdat.data.ConflictIdentifier;
@@ -30,7 +28,7 @@ public class ExitButtonListener implements ActionListener {
 	}
 	
 	public void uploadEditedFile(){
-		MasterData.setYearData(App.selectedYear, UploadButtonListener.newUpload);
+		MasterData.setServiceProvidedData(App.selectedYear, UploadButtonListener.newUpload);
         System.out.println("\n[File Uploaded]");
         System.out.println(" File:\t\t" + App.selectedFile.getName());
         System.out.println(" Type:\t" + App.selectedFileType);

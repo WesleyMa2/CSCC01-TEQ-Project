@@ -51,16 +51,24 @@ public class XLSXDataFileReader implements DataFileReader {
         // Gets the workbook of the xlsx file
         XSSFWorkbook workbook = new XSSFWorkbook(xlsxFile);
 
-        for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
+//        for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
+        for (int i = 0; i < 1; i++) {
             // Gets the first sheet of the workbook
             XSSFSheet sheet = workbook.getSheetAt(0);
             // Gets iterator to all the rows of the sheet
             Iterator<Row> rowIterator = sheet.rowIterator();
 
-            // Gather third row information and put it in a list
+            // Get first row to get template name
+            String iCareTemplate;
             Row titleRow = rowIterator.next();
-            String iCareHeader = titleRow.getCell(0).getStringCellValue();
-            System.out.println(iCareHeader.substring(110));///
+            try {
+                iCareTemplate = titleRow.getCell(0).getStringCellValue().substring(110).trim();
+            }catch (Exception e){
+                iCareTemplate = App.EMPTY;
+            }
+            System.out.println("[Template]: " + iCareTemplate);///
+
+            // Gather third row information and put it in a list
 
             rowIterator.next();
             Row firstRow = rowIterator.next();
@@ -76,6 +84,9 @@ public class XLSXDataFileReader implements DataFileReader {
             while (rowIterator.hasNext()) {
                 // New HashMap
                 HashMap<String, String> currentVisit = new HashMap<String, String>();
+
+                // Put the template name into the cell;
+                currentVisit.put("Template", iCareTemplate);
 
                 // New counter
                 int counter = 0;

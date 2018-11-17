@@ -32,7 +32,7 @@ class UploaderTest {
             System.out.println("File not found!");
         }
         TableData data = MasterData.getYearData(Year.of(2018));
-        assertEquals(new HashSet<>(Arrays.asList("children","AA", "AB", "AC", "AD")), new HashSet<>(data.getColumnList()));
+        assertEquals(new HashSet<>(Arrays.asList("children","AA", "AB", "AC", "AD", "Template")), new HashSet<>(data.getColumnList()));
         assertEquals(new HashSet<>(Arrays.asList("1", "2", App.EMPTY)), new HashSet<>(data.getColumnEntries("AA")));
     }
 
@@ -44,6 +44,6 @@ class UploaderTest {
             System.out.println("File not found!");
         }
         TableData data = MasterData.getYearData(Year.of(2018));
-        assertEquals(new HashSet<>(Arrays.asList("AA", "AB", "AC", "AD", "BA", "BB", "BD", "BC", "children")), new HashSet<>(data.getColumnList()));
+        assertEquals(new HashSet<>(Arrays.asList("AA", "AB", "AC", "AD", "BA", "BB", "BD", "BC", "children", "Template")), new HashSet<>(data.getColumnList()));
     }
 }

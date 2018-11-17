@@ -27,7 +27,7 @@ public class Uploader {
 			// All the data converted inside
 			List<Map<String, String>> allVisits = fileReader.converter(file);
 			
-			MasterData.setYearData(year, allVisits);
+			MasterData.setServiceProvidedData(year, allVisits);
 			return true;
 		} catch(IOException e) {
 			return false;

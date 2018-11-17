@@ -40,7 +40,7 @@ public class MasterData {
         }
     }
 
-	public static void setYearData(Year year, TableData yearData) {
+	public static void setServiceProvidedData(Year year, TableData yearData) {
 		serviceProvidedData.put(year, yearData);
 	}
 
@@ -50,7 +50,7 @@ public class MasterData {
      * @param year
      * @param allVisits
      */
-	public static void setYearData(Year year, List<Map<String, String>> allVisits) {
+	public static void setServiceProvidedData(Year year, List<Map<String, String>> allVisits) {
 		TableData existingYearData;
 		if(yearExists(year)) {
 			existingYearData = serviceProvidedData.get(year);
@@ -65,6 +65,15 @@ public class MasterData {
 		
 		serviceProvidedData.put(year, existingYearData);
 	}
+
+//	public static void setInitialVistData(List<Map<String, String>> allvisits){
+//		for (Map<String,String> visitKeyValue: allvisits){
+//			VisitData visitToAdd = new VisitData();
+//			visitToAdd.setData(visitKeyValue);
+//			initialVisitData.addVisitData(visitToAdd);
+//		}
+//
+//	}
 
 	public static List<TableData> getRangeOfYear(Year startYear, Year endYear){
 		List<TableData> subRange = new ArrayList<TableData>();
