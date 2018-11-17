@@ -24,6 +24,10 @@ public class MasterData {
     return serviceProvidedData;
   }
 
+  public static TableData getInitialVisitData() {
+    return initialVisitData;
+  }
+
   public static void clear() {
     serviceProvidedData.clear();
   }
