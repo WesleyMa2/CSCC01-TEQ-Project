@@ -1,6 +1,6 @@
 package com.tdat.feeder;
 
-import com.tdat.data.template.InitialVisitType;
+import com.tdat.data.template.InitialVisitTemplates;
 import java.io.File;
 import java.io.IOException;
 import java.time.Year;
@@ -31,7 +31,7 @@ public class Uploader {
       List<Map<String, String>> allVisits = fileReader.converter(file);
 
       // If template is an initial visit template, handle it accordingly
-      if (InitialVisitType.contains(allVisits.get(0).get("Template"))) {
+      if (InitialVisitTemplates.contains(allVisits.get(0).get("Template"))) {
         MasterData.setInitialVisitData(allVisits);
       } else {
         MasterData.setServiceProvidedData(year, allVisits);

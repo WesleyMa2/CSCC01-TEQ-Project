@@ -1,6 +1,6 @@
 package com.tdat.gui;
 
-import com.tdat.data.template.InitialVisitType;
+import com.tdat.data.template.InitialVisitTemplates;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -32,8 +32,8 @@ public class ExitButtonListener implements ActionListener {
 
   public void uploadEditedFile() {
     System.out.println(UploadButtonListener.newUpload.get(0).get("Template"));
-    System.out.println(InitialVisitType.NARS.getTemplateName());
-    if (InitialVisitType.contains(UploadButtonListener.newUpload.get(0).get("Template"))) {
+    System.out.println(InitialVisitTemplates.NARS.getTemplateName());
+    if (InitialVisitTemplates.contains(UploadButtonListener.newUpload.get(0).get("Template"))) {
       MasterData.setInitialVisitData(UploadButtonListener.newUpload);
     } else {
       MasterData.setServiceProvidedData(App.selectedYear, UploadButtonListener.newUpload);

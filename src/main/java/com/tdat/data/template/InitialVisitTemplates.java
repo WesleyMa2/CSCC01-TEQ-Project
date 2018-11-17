@@ -1,11 +1,11 @@
 package com.tdat.data.template;
 
-public enum InitialVisitType {
-    CPB("Client Profile Bulk"), NARS("Needs Assessment and Referrals Service");
+public enum InitialVisitTemplates {
+    CPB("Client Profile"), NARS("Needs Assessment and Referrals Service");
 
     private String templateName;
 
-    InitialVisitType(String s) {
+    InitialVisitTemplates(String s) {
         this.templateName = s;
     }
 
@@ -15,7 +15,7 @@ public enum InitialVisitType {
 
     public static boolean contains(String test) {
 
-        for (InitialVisitType c : InitialVisitType.values()) {
+        for (InitialVisitTemplates c : InitialVisitTemplates.values()) {
             if (c.getTemplateName().equals(test)) {
                 return true;
             }
