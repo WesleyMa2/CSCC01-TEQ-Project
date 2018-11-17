@@ -28,7 +28,7 @@ public class DistributionChartScheme extends ChartScheme {
         List<ChartDataSet> chartDataList = new ArrayList<>();
 
         // Iterate through the data for each year in MasterData
-        for (Year year : MasterData.getAllData().keySet()) {
+        for (Year year : MasterData.getServiceProvidedData().keySet()) {
             TableData dataForCurrentYear = MasterData.getYearData(year);
             SingleTableReader tableReader = new SingleTableReader(dataForCurrentYear);
 

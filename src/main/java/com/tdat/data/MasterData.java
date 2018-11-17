@@ -9,24 +9,26 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class MasterData {
 	
-	public static Map<Year, TableData> allData = new HashMap<Year, TableData>();
+	public static Map<Year, TableData> serviceProvidedData = new HashMap<Year, TableData>();
 	public static AtomicInteger reportId = new AtomicInteger();
 	public static AtomicInteger publicDataId = new AtomicInteger();
 
+	public static TableData initialVisitData = new TableData();
+
 	public static boolean yearExists(Year year) {
-		return allData.containsKey(year);
+		return serviceProvidedData.containsKey(year);
 	}
 	
-	public static Map<Year, TableData> getAllData() {
-		return allData;
+	public static Map<Year, TableData> getServiceProvidedData() {
+		return serviceProvidedData;
 	}
 	
 	public static void clear() {
-		allData.clear();
+		serviceProvidedData.clear();
 	}
 
 	public static TableData getYearData(Year year) {
-		return allData.get(year);
+		return serviceProvidedData.get(year);
 	}
 
 	public static void printYearData(Year year){
@@ -39,7 +41,7 @@ public class MasterData {
     }
 
 	public static void setYearData(Year year, TableData yearData) {
-		allData.put(year, yearData);
+		serviceProvidedData.put(year, yearData);
 	}
 
     /**
@@ -51,7 +53,7 @@ public class MasterData {
 	public static void setYearData(Year year, List<Map<String, String>> allVisits) {
 		TableData existingYearData;
 		if(yearExists(year)) {
-			existingYearData = allData.get(year);
+			existingYearData = serviceProvidedData.get(year);
 		} else {
 			existingYearData = new TableData();
 		}
@@ -61,28 +63,28 @@ public class MasterData {
 		    existingYearData.addVisitData(visitToAdd);
         }
 		
-		allData.put(year, existingYearData);
+		serviceProvidedData.put(year, existingYearData);
 	}
 
 	public static List<TableData> getRangeOfYear(Year startYear, Year endYear){
 		List<TableData> subRange = new ArrayList<TableData>();
-		for (Year year: allData.keySet()) {
+		for (Year year: serviceProvidedData.keySet()) {
 			if (year.compareTo(startYear) > 0 && year.compareTo(endYear) < 0){
-				subRange.add(allData.get(year));
+				subRange.add(serviceProvidedData.get(year));
 			}
 		}
 		return subRange;
 	}
 	
 	/*
-	 * Returns all the columns in allData without any duplicates
+	 * Returns all the columns in serviceProvidedData without any duplicates
 	 */
 	public static List<String> getAllColumns() {
-		// Set empty list of all columns in allData
+		// Set empty list of all columns in serviceProvidedData
 		List<String> allColumns = new ArrayList<String>();
 		
 		// Loop through each table
-		for (TableData table: allData.values()) {
+		for (TableData table: serviceProvidedData.values()) {
 			// Get the list of columns in the current table
 			List<String> columnsInTable = table.getColumnList();
 			// Loop through each column in the current table

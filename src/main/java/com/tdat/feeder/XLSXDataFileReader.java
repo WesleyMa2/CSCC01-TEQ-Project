@@ -58,7 +58,10 @@ public class XLSXDataFileReader implements DataFileReader {
             Iterator<Row> rowIterator = sheet.rowIterator();
 
             // Gather third row information and put it in a list
-            rowIterator.next();
+            Row titleRow = rowIterator.next();
+            String iCareHeader = titleRow.getCell(0).getStringCellValue();
+            System.out.println(iCareHeader.substring(110));///
+
             rowIterator.next();
             Row firstRow = rowIterator.next();
             // Loops through each cell in third row
