@@ -21,7 +21,6 @@ public class App {
 	public static HashMap<String, File> fileUploadDict = new HashMap<String, File>();
 	public static ArrayList<ChartScheme> reportsList = new ArrayList<ChartScheme>();
 	public static String appTitle = "TEQ Data Aggregation Tool (TDAT)";
-	public static String userQuery;
 
 
 	public static void main(String[] args) {

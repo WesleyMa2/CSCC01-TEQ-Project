@@ -24,60 +24,64 @@ import com.tdat.feeder.XLSXDataFileReader;
  * When upload is clicked, performs sends info back to main.
  */
 public class UploadButtonListener implements ActionListener {
-    private JFileChooser jfc = new JFileChooser();
-    private String selectedYear;
-    private String selectedFileType;
-    private File selectedFile;
-    public static List<Map<String, String>> newUpload;
 
-    public UploadButtonListener(){
-        jfc.setCurrentDirectory(new File(System.getProperty("user.dir")));
-        jfc.setPreferredSize(new Dimension(800, 500));
-    }
+  private JFileChooser jfc = new JFileChooser();
+  private String selectedYear;
+  private String selectedFileType;
+  private File selectedFile;
+  public static List<Map<String, String>> newUpload;
 
-    public void actionPerformed(ActionEvent e) {
-        int returnValue = jfc.showOpenDialog(null);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            this.selectedFile = jfc.getSelectedFile();
-            App.selectedFile = selectedFile;
-            XLSXDataFileReader readNewUpload = new XLSXDataFileReader();
-            try {
-				newUpload = readNewUpload.converter(selectedFile);
-				System.out.println(newUpload);
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-            
-            ConflictIdentifier conflictCheck = new ConflictIdentifier();
-            //pass in the newUpload list here
-            conflictCheck.checkForAutomaticConflicts(newUpload);
-            int numManualConflicts = conflictCheck.numManualConflicts;
-            int numAutomaticConflicts = conflictCheck.numAutomaticallyResolvedConflicts;
-            
-            if ((numManualConflicts > 0) || (numAutomaticConflicts > 0)) {
-            	new ConflictWindow();
-            } else if ((numManualConflicts == 0) && (numAutomaticConflicts == 0)){
-                String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
-                String historyEntry = "Date: " + timeStamp + "   Filename: " + selectedFile.getName() + "   Filetype: " + App.selectedFileType +
-                					"   Fiscal year: " + App.selectedYear;
-                UploadPanel.DLM.addElement(historyEntry);
-                App.fileUploadDict.put(historyEntry, this.selectedFile);
-                System.out.println("\n[File Uploaded]");
-                System.out.println(" File:\t\t" + App.selectedFile.getName());
-                System.out.println(" Type:\t" + App.selectedFileType);
-                System.out.println(" Path:\t" + selectedFile.getAbsolutePath());
-                System.out.println(" Year:\t" + App.selectedYear);
-                if (!Uploader.upload(App.selectedYear, App.selectedFile)){
-                    System.out.println("File Not Found!");
-                };
-                MasterData.printYearData(App.selectedYear);
-            	
-            }
+  public UploadButtonListener() {
+    jfc.setCurrentDirectory(new File(System.getProperty("user.dir")));
+    jfc.setPreferredSize(new Dimension(800, 500));
+  }
+
+  public void actionPerformed(ActionEvent e) {
+    int returnValue = jfc.showOpenDialog(null);
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+      this.selectedFile = jfc.getSelectedFile();
+      App.selectedFile = selectedFile;
+      XLSXDataFileReader readNewUpload = new XLSXDataFileReader();
+      try {
+        newUpload = readNewUpload.converter(selectedFile);
+        System.out.println(newUpload);
+      } catch (FileNotFoundException e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      } catch (IOException e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+
+      ConflictIdentifier conflictCheck = new ConflictIdentifier();
+      //pass in the newUpload list here
+      conflictCheck.checkForAutomaticConflicts(newUpload);
+      int numManualConflicts = conflictCheck.numManualConflicts;
+      int numAutomaticConflicts = conflictCheck.numAutomaticallyResolvedConflicts;
+
+      if ((numManualConflicts > 0) || (numAutomaticConflicts > 0)) {
+        new ConflictWindow();
+      } else if ((numManualConflicts == 0) && (numAutomaticConflicts == 0)) {
+        String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+            .format(Calendar.getInstance().getTime());
+        String historyEntry =
+            "Date: " + timeStamp + "   Filename: " + selectedFile.getName() + "   Filetype: "
+                + App.selectedFileType +
+                "   Fiscal year: " + App.selectedYear;
+        UploadPanel.DLM.addElement(historyEntry);
+        App.fileUploadDict.put(historyEntry, this.selectedFile);
+        System.out.println("\n[File Uploaded]");
+        System.out.println(" File:\t\t" + App.selectedFile.getName());
+        System.out.println(" Type:\t" + App.selectedFileType);
+        System.out.println(" Path:\t" + selectedFile.getAbsolutePath());
+        System.out.println(" Year:\t" + App.selectedYear);
+        if (!Uploader.upload(App.selectedYear, App.selectedFile)) {
+          System.out.println("File Not Found!");
         }
+        MasterData.printServiceProvidedData(App.selectedYear);
+
+      }
     }
+  }
 
 }

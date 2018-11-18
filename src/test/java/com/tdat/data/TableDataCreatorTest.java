@@ -75,8 +75,8 @@ public class TableDataCreatorTest {
 		tableData3.addVisitData(visit7);
 		tableData3.addVisitData(visit8);
 		
-		MasterData.setYearData(year1, tableData1);
-		MasterData.setYearData(year2, tableData2);
+		MasterData.setServiceProvidedData(year1, tableData1);
+		MasterData.setServiceProvidedData(year2, tableData2);
 	}
     
 	@Test
