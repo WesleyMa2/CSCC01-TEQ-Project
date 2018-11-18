@@ -21,16 +21,22 @@ public class ConflictIdentifier {
 		for(Map<String,String> currentMap: potentialUpload){
 			List<String> listOfValues = new ArrayList<String>(currentMap.values());
 			for(String currentString : listOfValues){
-				if(currentString.trim() != null){
-					numAutomaticallyResolvedConflicts++;
-					//add to list of automatically resolved conflict messages
-					ConflictWindow.automaticConflictsArrayList.add(this.generateAutomaticallyResolvedConflictMessage(App.selectedFile, "TrailingWhitespaceConflict", currentString, currentString.trim()));
-					currentMap.replace(currentMap.get(currentString), currentString.trim());
-				}
+				trailingWhitespaceCheck(currentMap, currentString);
 			}
-			
 		}
-		
+	}
+	
+	public void checkForManualConflicts(){
+		//
+	}
+	
+	public void trailingWhitespaceCheck(Map<String,String> currentMap, String currentString){
+		if(currentString.trim() != null && currentString != "N/A"){
+			numAutomaticallyResolvedConflicts++;
+			//add to list of automatically resolved conflict messages
+			ConflictWindow.automaticConflictsArrayList.add(this.generateAutomaticallyResolvedConflictMessage(App.selectedFile, "TrailingWhitespaceConflict", currentString, currentString.trim()));
+			currentMap.replace(currentMap.get(currentString), currentString.trim());
+		}
 	}
 	
 	public String generateAutomaticallyResolvedConflictMessage(File selectedFile, String conflictType, String oldValue, String newValue){
@@ -38,6 +44,4 @@ public class ConflictIdentifier {
 		
 	}
 	
-	
-
 }
