@@ -1,4 +1,4 @@
-package com.tdat.gui.publicData;
+package com.tdat.data;
 
 import java.io.BufferedReader;
 import java.io.File;
