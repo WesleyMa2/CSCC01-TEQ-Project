@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.tdat.app.App;
 import com.tdat.data.MasterData;
+import com.tdat.data.PublicDataCache;
 import com.tdat.gui.GenericPanel;
 
 /*

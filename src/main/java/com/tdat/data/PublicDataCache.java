@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 import com.tdat.report.chart.ChartScheme;
+import com.tdat.report.chart.PublicDataChartScheme;
 
 import org.json.JSONObject;
 
