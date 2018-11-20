@@ -2,12 +2,22 @@ package com.tdat.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import com.tdat.data.ConflictIdentifier;
 
 public class ResolveConflictListener implements ActionListener {
+	
+	public static ConflictWindow conflictWindowInstance;
+	
+	public ResolveConflictListener(ConflictWindow specificInstance){
+		this.conflictWindowInstance = specificInstance;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		String currentConflict = (String)conflictWindowInstance.manualConflictsDropdown.getSelectedItem();
+		new ManualConflictResolvePanel(ConflictIdentifier.manualConflictData.get(currentConflict), currentConflict);
 
 	}
 

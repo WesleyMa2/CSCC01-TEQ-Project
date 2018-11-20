@@ -56,6 +56,7 @@ public class UploadButtonListener implements ActionListener {
       ConflictIdentifier conflictCheck = new ConflictIdentifier();
       //pass in the newUpload list here
       conflictCheck.checkForAutomaticConflicts(newUpload);
+      conflictCheck.checkForManualConflicts(newUpload);
       int numManualConflicts = conflictCheck.numManualConflicts;
       int numAutomaticConflicts = conflictCheck.numAutomaticallyResolvedConflicts;
 
