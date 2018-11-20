@@ -77,6 +77,10 @@ public class ConflictIdentifier {
 
 	}
 	
+	public void checkForVaryingInfo(List<Map<String, String>> potentialUpload){
+		//
+	}
+	
 	public static boolean isNumeric(String columnName){  
 	  try {  
 	    int d = Integer.parseInt(columnName);  
