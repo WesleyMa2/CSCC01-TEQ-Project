@@ -56,7 +56,7 @@ public class DistributionChartScheme extends ChartScheme {
             chartDataList.add(new ChartDataSet(year.toString(),listOfCounts));
         }
         return JsonConverter.serializeObject(this.getGraphType().getJsonCode(), this.getMainTitle(), 
-        		this.getxTitle(), allEntries, this.getyTitle(), chartDataList);
+        		this.getXTitle(), allEntries, this.getYTitle(), chartDataList);
 
     }
 }

@@ -34,11 +34,11 @@ public abstract class ChartScheme {
         return mainTitle;
     }
 
-    public String getxTitle() {
+    public String getXTitle() {
         return xTitle;
     }
 
-    public String getyTitle() {
+    public String getYTitle() {
         return yTitle;
     }
 

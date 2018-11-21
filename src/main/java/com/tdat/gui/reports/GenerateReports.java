@@ -3,20 +3,15 @@ package com.tdat.gui.reports;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.tdat.app.App;
-import com.tdat.gui.publicData.PublicDataCache;
 import com.tdat.report.ChartJS;
 
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
-
 public class GenerateReports {
-	
+
 	public GenerateReports() {
 		if(App.reportsList.size() > 0) {
 			// MODIFY THESE TO MATCH CORRECTLY
