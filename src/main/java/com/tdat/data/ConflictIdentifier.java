@@ -61,16 +61,9 @@ public class ConflictIdentifier {
 			for(String key: rowEntry.keySet()){
 				//if value is numeric but reference dictionary says that column shouldn't have numeric values, do this
 				if(isNumeric(rowEntry.get(key)) && typeReferenceDict.get(key) != Integer.class.getName()){
-						numManualConflicts++;
-						String conflictMessage = generateManualResolveConflictMessage(App.selectedFile, "TypeConflict", rowEntry.get(key));
-						ConflictWindow.manualConflictsArrayList.add(conflictMessage);
-						//System.out.println(ConflictWindow.manualConflictsArrayList);
-						ArrayList<Object> conflictData = new ArrayList<Object>();
-						conflictData.add(rowMapIndex);
-						conflictData.add(key);
-						conflictData.add(rowEntry.get(key));
-						manualConflictData.put(conflictMessage, conflictData);
-						//System.out.println(manualConflictData);
+						handleNewTypeConflict(rowMapIndex, key, rowEntry);
+				} else if(!(isNumeric(rowEntry.get(key))) && (typeReferenceDict.get(key) == Integer.class.getName()) && (rowEntry.get(key) != "N/A")){
+						handleNewTypeConflict(rowMapIndex, key, rowEntry);
 				}
 			}
 		}
@@ -93,6 +86,18 @@ public class ConflictIdentifier {
 	
 	public String generateManualResolveConflictMessage(File selectedFile, String conflictType, String oldValue){
 		return "Upload: " + selectedFile.getName() + ", Conflict Type: " +  conflictType + ", Conflicting Value: " + oldValue;
+	}
+	
+	public void handleNewTypeConflict(int rowMapIndex, String key, Map<String, String> rowEntry){
+		numManualConflicts++;
+		String conflictMessage = generateManualResolveConflictMessage(App.selectedFile, "TypeConflict", rowEntry.get(key));
+		ConflictWindow.manualConflictsArrayList.add(conflictMessage);
+		//System.out.println(ConflictWindow.manualConflictsArrayList);
+		ArrayList<Object> conflictData = new ArrayList<Object>();
+		conflictData.add(rowMapIndex);
+		conflictData.add(key);
+		conflictData.add(rowEntry.get(key));
+		manualConflictData.put(conflictMessage, conflictData);
 	}
 	
 }
