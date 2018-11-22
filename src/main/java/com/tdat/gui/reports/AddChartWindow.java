@@ -43,7 +43,7 @@ public class AddChartWindow {
 
         // Add section title
         JLabel sectionTitleLabel = new JLabel(
-            "<html><h2 style='margin:0'>Add \"+ typeOfChartData +\" Chart</h2>"
+            "<html><h2 style='margin:0'>Add "+ typeOfChartData +" Chart</h2>"
                 + "<small>Enter the details of the new chart below.</small></html>");
         layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
         layoutConstraints.gridx = 0;

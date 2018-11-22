@@ -31,7 +31,7 @@ public class TrendChartScheme extends ChartScheme {
     private int containsEntry(List<ChartDataSet> dataSet, String entry) {
         int i;
         for (i = 0; i < dataSet.size(); i++) {
-            if (dataSet.get(i).getHeader() == entry) {
+            if (dataSet.get(i).getHeader().equals(entry)) {
                 return i;
             }
         }
@@ -73,13 +73,16 @@ public class TrendChartScheme extends ChartScheme {
 
                 // Add this value to the list of ChartDataSets
                 int indexOfExistingChartData = containsEntry(chartDataList, newEntry);
+                List<Integer> newListOfData;
                 if (indexOfExistingChartData == -1) {
                     // Create a new ChartDataSet if this entry hasn't been seen before
-                    List<Integer> newListOfData = new ArrayList<>();
+                    newListOfData = new ArrayList<>();
                     newListOfData.add(valueForCurrYear);
                     chartDataList.add(new ChartDataSet(newEntry, newListOfData));
                 } else {
-                    chartDataList.get(indexOfExistingChartData).addData(valueForCurrYear);
+                    ChartDataSet newDataSet = chartDataList.get(indexOfExistingChartData);
+                    newDataSet.addData(valueForCurrYear);
+                    chartDataList.set(indexOfExistingChartData, newDataSet);
                 }
             }
         }

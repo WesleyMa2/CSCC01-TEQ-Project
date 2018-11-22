@@ -26,8 +26,6 @@ public class Uploader {
           fileReader = new XLSXDataFileReader();
       }
       // All the data converted inside
-      System.out.println(">>>>>>>>>");
-
       List<Map<String, String>> allVisits = fileReader.converter(file);
 
       // If template is an initial visit template, handle it accordingly
