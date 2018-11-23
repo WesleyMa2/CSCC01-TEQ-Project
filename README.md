@@ -13,6 +13,16 @@
 4. To test out the program, we recommend using the test files in ```./src/test/resources```
 5. Generated reports are located in ```./reports```
 
+## Testing 
+#### Unit/Component Tests
+1. In the shell, make sure you are in root of the repo
+2. Use the command  ```$ mvn test```
+
+#### Acceptance/GUI Tests
+1. Start the app (follow the steps in **Instructions (shell)**)
+2. From the root of the repo, navigate to ```./deliverables/4/```
+2. Open ```Acceptance Tests.pdf``` then follow the instructions
+
 ## Repository Contents
 Follow the folder structure outlined below to easy navigation through the repository.
 ```bash
