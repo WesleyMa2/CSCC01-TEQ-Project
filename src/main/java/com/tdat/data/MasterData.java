@@ -24,20 +24,17 @@ public class MasterData {
     return serviceProvidedData;
   }
 
-  public static TableData getInitialVisitData() {
-    return initialVisitData;
-  }
-
-  public static void clear() {
-    serviceProvidedData.clear();
-  }
-
   public static TableData getYearData(Year year) {
     return serviceProvidedData.get(year);
   }
 
+  public static void clear(){
+    serviceProvidedData.clear();
+    initialVisitData = new TableData();
+  }
+
   public static void printServiceProvidedData(Year year) {
-    System.out.println("\n[Data for year of " + year + "]");
+    System.out.println("\n[data for year of " + year + "]");
     if (!serviceProvidedData.containsKey(year)){
     System.out.println(App.EMPTY);
     return;
@@ -102,30 +99,15 @@ public class MasterData {
 
   }
 
-//	public static List<TableData> getRangeOfYear(Year startYear, Year endYear){
-//		List<TableData> subRange = new ArrayList<TableData>();
-//		for (Year year: serviceProvidedData.keySet()) {
-//			if (year.compareTo(startYear) > 0 && year.compareTo(endYear) < 0){
-//				subRange.add(serviceProvidedData.get(year));
-//			}
-//		}
-//		return subRange;
-//	}
-
   /**
    * Returns all the columns in serviceProvidedData without any duplicates
    *
    * @return a list of all columns
    */
   public static List<String> getAllColumns() {
-    // Set empty list of all columns in serviceProvidedData
     List<String> allColumns = new ArrayList<String>();
-
-    // Loop through each table
     for (TableData table : serviceProvidedData.values()) {
-      // Get the list of columns in the current table
       List<String> columnsInTable = table.getColumnList();
-      // Loop through each column in the current table
       for (int eachColumn = 0; eachColumn < columnsInTable.size(); eachColumn++) {
         // If the current column is not in the list of all columns, then add it
         if (!allColumns.contains(columnsInTable.get(eachColumn))) {

@@ -32,7 +32,7 @@ public class MasterDataStats {
     }
 
     public static Integer getPeopleCount() {
-        return MasterData.getInitialVisitData().getVisitsData().size();
+        return MasterData.initialVisitData.getVisitsData().size();
     }
 
     public static Integer getVisitsCountByYear(Year year) {

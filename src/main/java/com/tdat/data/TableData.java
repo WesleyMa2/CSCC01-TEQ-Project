@@ -20,7 +20,7 @@ public class TableData {
 		return allVisitsData;
 	}
 
-	public void Data(List<VisitData> data) {
+	public void data(List<VisitData> data) {
 		this.allVisitsData = data;
 	}
 

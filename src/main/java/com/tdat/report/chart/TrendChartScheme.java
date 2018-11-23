@@ -88,7 +88,7 @@ public class TrendChartScheme extends ChartScheme {
 
         return JsonConverter
             .serializeObject(this.getGraphType().getJsonCode(), this.getMainTitle(),
-                this.getXTitle(), allYearsString, this.getYTitle(), chartDataList);
+                this.getXTitle(), allYears, this.getYTitle(), chartDataList);
     }
 }
 
