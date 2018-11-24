@@ -36,7 +36,6 @@ public class MasterDataStats {
     }
 
     public static Integer getVisitsCountByYear(Year year) {
-        int count = 0;
         TableData yearData = MasterData.getYearData(year);
         return yearData.getVisitsData().size();
     }
@@ -46,6 +45,6 @@ public class MasterDataStats {
         for (Year year : getAllYears()) {
             count += getVisitsCountByYear(year);
         }
-        return 0;
+        return count;
     }
 }
