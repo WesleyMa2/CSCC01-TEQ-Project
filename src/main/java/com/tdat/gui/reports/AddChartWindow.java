@@ -1,5 +1,6 @@
 package com.tdat.gui.reports;
 
+import com.tdat.report.chart.ServiceReceivedChartScheme;
 import com.tdat.report.chart.TrendChartScheme;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -160,6 +161,12 @@ public class AddChartWindow {
         chartScheme.setMainTitle(reportTitle);
         chartScheme.setXTitle(xAxis);
         chartScheme.setYTitle(yAxis);
+
+        // TODO remove
+        ChartScheme temp = new ServiceReceivedChartScheme(chartType).setXTitle(yAxis)
+            .setXTitle(xAxis).setMainTitle(reportTitle);
+        App.reportsList.add(temp);
+        //
 
         App.reportsList.add(chartScheme);
         return chartScheme;

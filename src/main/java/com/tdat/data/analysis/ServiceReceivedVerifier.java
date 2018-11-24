@@ -6,6 +6,7 @@ import com.tdat.data.TableData;
 import com.tdat.data.VisitData;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,18 +39,16 @@ public class ServiceReceivedVerifier {
         associations.put("Improve Language Skills Referrals", LT_ENROLL);
     }
 
-    private boolean isValidService(String service) {
-        if (!associations.containsKey(service)) {
-            return false;
-        }
-        return true;
+    public static List<String> getAllServices() {
+        ArrayList<String> result = new ArrayList<>();
+        result.addAll(associations.keySet());
+        return result;
     }
 
     // TODO: 2018-11-23 REMOVE
     public static void test() throws ColumnNotFoundException {
         System.out.println("[test] " + getReferralsCount());
-        System.out.println("[test] " +
-            checkServiceReceived(MasterData.initialVisitData.getVisitsData().get(0)));
+        System.out.println("[test] " + checkAllServicesReceived());
     }
 
     /**
@@ -77,26 +76,40 @@ public class ServiceReceivedVerifier {
         return visit.getColumnData(service).trim().equals("Yes");
     }
 
-    private static List<String> getAllServicesOfTemplate(String template) {
-        List<String> result = new ArrayList<>();
+
+    public static Map<String, Integer> checkAllServicesReceived(){
+        Map<String, Integer> result = new HashMap<>();
         for (String service : associations.keySet()) {
-            if (associations.get(service).equals(template)) {
-                result.add(service);
+            result.put(service, 0);
+        }
+
+        for (VisitData visitData : MasterData.initialVisitData.getVisitsData()) {
+            Map<String, Boolean> indivServicesReceived;
+            try {
+                indivServicesReceived = checkIndivServicesReceived(visitData);
+            } catch (ColumnNotFoundException e){
+                indivServicesReceived = new HashMap<>();
+            }
+            for (String service : indivServicesReceived.keySet()) {
+                if (indivServicesReceived.get(service)) {
+                    result.put(service, result.get(service) + 1);
+                }
             }
         }
         return result;
     }
 
     /**
-     * Returns if a service that was referred was actually received for a specific person
+     * Returns map of a service to booleans that represent whether the given person has recieved the
+     * data
      */
-    public static Map<String, Integer> checkServiceReceived(VisitData person)
+    public static Map<String, Boolean> checkIndivServicesReceived(VisitData person)
         throws ColumnNotFoundException {
         String currPersonID = person.getColumnData(UID);
-        Map<String, Integer> servicesReceived = new HashMap<>();
+        Map<String, Boolean> servicesReceived = new HashMap<>();
 
         for (String serviceReferred : associations.keySet()) {
-            servicesReceived.put(serviceReferred, 0);
+            servicesReceived.put(serviceReferred, false);
             if (!wasPersonReferredService(person, serviceReferred)) {
                 continue;
             }
@@ -109,7 +122,7 @@ public class ServiceReceivedVerifier {
                     String visitTemplate = visit.getColumnData("Template");
                     String targetTemplate = associations.get(serviceReferred);
                     if (visitTemplate.equals(targetTemplate)) {
-                        servicesReceived.put(serviceReferred, 1);
+                        servicesReceived.put(serviceReferred, true);
                     }
                 }
             }
