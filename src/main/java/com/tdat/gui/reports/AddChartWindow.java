@@ -28,7 +28,11 @@ import com.tdat.report.chart.DistributionChartScheme;
 public class AddChartWindow {
 
     private final JFrame frame;
-    public static String typeOfChartData;
+    private static String typeOfChartData;
+
+    public static void setTypeOfChartData(String type){
+        typeOfChartData = type;
+    }
 
     public AddChartWindow() {
         frame = new JFrame(App.appTitle + ": Add " + typeOfChartData + " Chart");

@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class AddDistributionReportListener implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
-		AddChartWindow.typeOfChartData = "Distribution";
+		AddChartWindow.setTypeOfChartData("Distribution");
 		new AddChartWindow();
 	}
 
