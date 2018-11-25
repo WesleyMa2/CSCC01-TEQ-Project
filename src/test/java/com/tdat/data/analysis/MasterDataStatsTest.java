@@ -55,7 +55,7 @@ public class MasterDataStatsTest {
     }
 
     @AfterAll
-    public static void cleanUp(){
+    static void cleanUp(){
         MasterData.clear();
     }
 }
