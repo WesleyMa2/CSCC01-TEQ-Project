@@ -1,5 +1,6 @@
 package com.tdat.gui.reports;
 
+import com.tdat.report.chart.ServiceReceivedChartScheme;
 import com.tdat.report.chart.TrendChartScheme;
 import java.awt.Color;
 import java.awt.Dimension;

@@ -27,7 +27,7 @@ import com.tdat.report.chart.DistributionChartScheme;
 public class GenerateGraphGUI extends JFrame  {
 
 	// Application Title
-	private static final String applicationTitle = "TEQ Data Aggregation Tool (TDAT)";
+	private static final String applicationTitle = "TEQ data Aggregation Tool (TDAT)";
 	// Container
 	private JPanel mainPanel = new JPanel();
 	// Label with name of the application

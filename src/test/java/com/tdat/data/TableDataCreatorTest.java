@@ -1,5 +1,6 @@
 package com.tdat.data;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -109,6 +110,11 @@ public class TableDataCreatorTest {
 				assertEquals(data3.get(key), data4.get(key));
 			}
 		}
+	}
+
+	@AfterAll
+	static void cleanUp(){
+		MasterData.clear();
 	}
     
 }
