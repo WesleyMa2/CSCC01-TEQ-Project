@@ -97,7 +97,7 @@ public class AddTrendsReportWindow {
 		layoutConstraints.gridy = 9;
 		layoutConstraints.insets = new Insets(10, 0, 0, 0);
 		mainPanel.add(styleOfGraphLabel, layoutConstraints);
-		ChartType[] styleOfGraph = { ChartType.BAR, ChartType.LINE };
+		String[] styleOfGraph = { ChartType.BAR.getJsonCode(), ChartType.LINE.getJsonCode() };
 		JComboBox<ChartType[]> styleOfGraphsDropdown = new JComboBox(styleOfGraph);
 		layoutConstraints.gridy = 10;
 		layoutConstraints.insets = new Insets(5, 0, 0, 0);

@@ -26,6 +26,7 @@ import com.tdat.report.chart.DistributionChartScheme;
 
 public class AddDistributionReportWindow {
 
+	private final String REPORT_TYPE = "Distribution";
 	private final JFrame frame;
 
 	public AddDistributionReportWindow() {
@@ -96,7 +97,7 @@ public class AddDistributionReportWindow {
 		layoutConstraints.gridy = 9;
 		layoutConstraints.insets = new Insets(10, 0, 0, 0);
 		mainPanel.add(styleOfGraphLabel, layoutConstraints);
-		ChartType[] styleOfGraph = { ChartType.BAR, ChartType.LINE };
+		String[] styleOfGraph = { ChartType.BAR.getJsonCode(), ChartType.LINE.getJsonCode() };
 		JComboBox<ChartType[]> styleOfGraphsDropdown = new JComboBox(styleOfGraph);
 		layoutConstraints.gridy = 10;
 		layoutConstraints.insets = new Insets(5, 0, 0, 0);
@@ -123,8 +124,9 @@ public class AddDistributionReportWindow {
 
 					String[] row = {
 						Integer.toString(MasterData.reportId.incrementAndGet()),
-						chart.getMainTitle(),
-						chart.getGraphType().getJsonCode()
+						chart.getGraphType().getJsonCode(),
+						REPORT_TYPE,
+						chart.getMainTitle()
 					};
 
 					ReportsPanel.tableModel.addRow(row);

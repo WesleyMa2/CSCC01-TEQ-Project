@@ -4,7 +4,7 @@ package com.tdat.report.chart;
  * An enum to hold the different types of charts that can be generated
  */
 public enum ChartType {
-  LINE("line"), BAR("bar"), TABLE("table");
+  LINE("Line"), BAR("Bar"), TABLE("Table");
 
   private String jsonCode;
 
