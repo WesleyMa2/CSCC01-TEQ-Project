@@ -43,6 +43,8 @@ root
   |                                └── data
   |                                └── feeder
   |                                └── gui
+  |                                     └── publicData
+  |                                     └── reports
   |                                └── report
   |                                      └── chart
   |                                            └── templates

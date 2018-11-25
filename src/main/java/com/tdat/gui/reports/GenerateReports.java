@@ -3,20 +3,19 @@ package com.tdat.gui.reports;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.tdat.app.App;
+import com.tdat.report.ChartJSRequest;
 import com.tdat.data.analysis.MasterDataStats;
-import com.tdat.report.ChartJS;
 
 public class GenerateReports {
 
 	public GenerateReports() {
 		if(App.reportsList.size() > 0) {
-			String json = "{\"generationTime\": \"" + ChartJS.getDate() + "\",";
+			String json = "{\"generationTime\": \"" + ChartJSRequest.getDate() + "\",";
 			json += "\"totalPeople\": \"" + MasterDataStats.getPeopleCount() + "\",";
 			json += "\"totalVisits\": \"" + MasterDataStats.getTotalVisits() + "\",";
 			json += "\"years\": \"" + String.join(", ", MasterDataStats.getAllYearsAsString()) + "\",";
@@ -30,7 +29,7 @@ public class GenerateReports {
 			// Exclude the last comma
 			json = json.substring(0, json.length()-1);
 			json += "]}";
-			String fileLocation = ChartJS.create(json);
+			String fileLocation = ChartJSRequest.create(json);
 			int response = JOptionPane.showConfirmDialog(null, "<html><small>Report generated at " + fileLocation + ". "
 					+ "</small><br/><b>Do you want to view it in your browser?</b></html>", 
 					"Report Generated.", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);

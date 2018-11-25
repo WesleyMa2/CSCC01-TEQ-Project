@@ -5,20 +5,21 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.tdat.app.App;
-import com.tdat.data.ConflictIdentifier;
-import com.tdat.data.MasterData;
 
-import javax.swing.JOptionPane;
-import javax.swing.JFrame;
+public class ConflictWindow {
 
-public class ConflictWindow{  
-	
-public static JFrame f;  
-private JLabel topHeading = new JLabel("<html>Our system has identified a few points in your upload data that need to be cleaned.<br/>In order to preserve data integrity, please review/resolve	conflicts listed below prior to continuing.</html>");
+	public static JFrame f;
+	private JLabel topHeading = new JLabel(
+			"<html>Our system has identified a few points in your upload data that need to be cleaned.<br/>In order to preserve data integrity, please review/resolve	conflicts listed below prior to continuing.</html>");
 
 private JPanel mainConflictPanel = new JPanel();
 private static final String frameTitle = "Conflicts Identified";

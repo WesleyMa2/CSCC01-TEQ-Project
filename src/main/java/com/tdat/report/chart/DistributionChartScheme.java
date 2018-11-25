@@ -13,7 +13,7 @@ import java.util.*;
 public class DistributionChartScheme extends ChartScheme {
     private String column;
 
-    public DistributionChartScheme(String column, ChartType graphType){
+    public DistributionChartScheme(String column, ChartType graphType) {
         super(graphType);
         this.column = column;
     }
@@ -22,10 +22,7 @@ public class DistributionChartScheme extends ChartScheme {
         return column;
     }
 
-    public String toJson(){
-        // List of all entries in MasterData for given column
-        List<String> allEntries = new ArrayList<>();
-        List<ChartDataSet> chartDataList = new ArrayList<>();
+    public String toJson() {
 
         // Iterate through the data for each year in MasterData
         for (Year year : MasterData.getServiceProvidedData().keySet()) {
@@ -38,20 +35,19 @@ public class DistributionChartScheme extends ChartScheme {
             } catch (ColumnNotFoundException e1) {
                 entryCountForCurrentYear = new HashMap<>();
             }
-            for (String newEntry : entryCountForCurrentYear.keySet()){
-                if (!allEntries.contains(newEntry)){
-                    allEntries.add(newEntry);
+            for (String newEntry : entryCountForCurrentYear.keySet()) {
+                if (!this.getXAxisLabels().contains(newEntry)) {
+                    this.getXAxisLabels().add(newEntry);
                 }
             }
-            Collections.sort(allEntries);
+            Collections.sort(this.getXAxisLabels());
             List<Integer> listOfCounts = new ArrayList<>();
-            for (String entry : allEntries) {
+            for (String entry : this.getXAxisLabels()) {
                 listOfCounts.add(entryCountForCurrentYear.getOrDefault(entry, 0));
             }
-            chartDataList.add(new ChartDataSet(year.toString(),listOfCounts));
+            this.getDataSet().add(new ChartDataSet(year.toString(), listOfCounts));
         }
-        return JsonConverter.serializeObject(this.getGraphType().getJsonCode(), this.getMainTitle(), 
-        		this.getXTitle(), allEntries, this.getYTitle(), chartDataList);
+        return JsonConverter.serializeObject(this);
 
     }
 }

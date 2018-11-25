@@ -1,8 +1,7 @@
 package com.tdat.report;
 
-import java.util.List;
+import com.tdat.report.chart.ChartScheme;
 
-import com.tdat.report.chart.ChartDataSet;
 import org.json.JSONObject;
 
 /**
@@ -23,43 +22,38 @@ public class JsonConverter {
     //     ]
     // }
 
-    public static String serializeObject(String type, String mainTitle, String xAxisTitle, List<String> xAxisLabels, String yAxisTitle, List<ChartDataSet> data) {
-
-        if (type == null) {
+    public static String serializeObject(ChartScheme chart) {
+        if (chart.getGraphType() == null) {
             throw new NullPointerException("type is null");
         }
 
-        if (mainTitle == null) {
+        if (chart.getMainTitle() == null) {
             throw new NullPointerException("mainTitle is null");
         }
         
-        if (xAxisTitle == null) {
+        if (chart.getXTitle() == null) {
             throw new NullPointerException("xAxisTitle is null");
         }
 
-        if (xAxisLabels == null) {
-            throw new NullPointerException("xAxisLabels is null");
-        }
-
-        if (xAxisLabels.size() == 0) {
-            throw new IllegalStateException("xAxisLabels is empty");
-        }
-
-        if (yAxisTitle == null) {
+        if (chart.getYTitle() == null) {
             throw new NullPointerException("yAxisTitle is null");
         }
 
-        if (data == null) {
+        if (chart.getXAxisLabels().size() == 0) {
+            throw new IllegalStateException("xAxisLabels is empty");
+        }
+
+        if (chart.getDataSet() == null) {
             throw new NullPointerException("data is null");
         }
 
     	JSONObject json = new JSONObject();
-        json.put("type", type);
-        json.put("mainTitle", mainTitle);
-        json.put("xAxisTitle", xAxisTitle);
-        json.put("xAxisLabels", xAxisLabels);
-        json.put("yAxisTitle", yAxisTitle);
-        json.put("dataSet", data);
+        json.put("type", chart.getGraphType().getJsonCode());
+        json.put("mainTitle", chart.getMainTitle());
+        json.put("xAxisTitle", chart.getXTitle());
+        json.put("yAxisTitle", chart.getYTitle());
+        json.put("xAxisLabels", chart.getXAxisLabels());
+        json.put("dataSet", chart.getDataSet());
 
         return json.toString();
     }

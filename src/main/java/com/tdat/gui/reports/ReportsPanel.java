@@ -6,11 +6,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collection;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -19,11 +14,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import com.tdat.app.App;
-import com.tdat.data.MasterData;
-import com.tdat.data.PublicDataCache;
 import com.tdat.gui.GenericPanel;
-import com.tdat.report.chart.templates.Template;
+import com.tdat.gui.reports.distribution.AddDistributionReportListener;
+import com.tdat.gui.reports.trend.AddTrendsReportListener;
 import com.tdat.report.chart.templates.TemplateRepository;
 
 /*
@@ -32,7 +25,7 @@ import com.tdat.report.chart.templates.TemplateRepository;
 @SuppressWarnings("serial")
 public class ReportsPanel extends GenericPanel {
 
-  private static JTextField tdatqlQuery = new JTextField();
+  public static JTextField tdatqlQuery = new JTextField();
 
   public static DefaultTableModel tableModel = new DefaultTableModel() {
     @Override
@@ -88,7 +81,7 @@ public class ReportsPanel extends GenericPanel {
     layoutConstraints.ipady = 20;
     this.add(currentReportsHTML, layoutConstraints);
 
-    String th[] = { "Id", "Title", "Type" };
+    String th[] = { "Id", "Title", "Graph", "Type" };
     JTable currentReportsTable = new JTable();
     tableModel.setDataVector(null, th);
     currentReportsTable.setModel(tableModel);

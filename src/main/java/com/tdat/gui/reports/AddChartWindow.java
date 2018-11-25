@@ -1,7 +1,5 @@
 package com.tdat.gui.reports;
 
-import com.tdat.report.chart.ServiceReceivedChartScheme;
-import com.tdat.report.chart.TrendChartScheme;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -20,23 +18,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.tdat.app.App;
 import com.tdat.data.MasterData;
 import com.tdat.report.chart.ChartScheme;
 import com.tdat.report.chart.ChartType;
-import com.tdat.report.chart.DistributionChartScheme;
 
-public class AddChartWindow {
+public abstract class AddChartWindow {
 
     private final JFrame frame;
-    private static String typeOfChartData;
+    private String chartType;
 
-    public static void setTypeOfChartData(String type){
-        typeOfChartData = type;
-    }
+    public AddChartWindow(String type) {
+        this.chartType = type;
 
-    public AddChartWindow() {
-        frame = new JFrame(App.appTitle + ": Add " + typeOfChartData + " Chart");
+        frame = new JFrame("Add " + chartType + " Chart");
         frame.setMinimumSize(new Dimension(400, 450));
         frame.setResizable(true);
         frame.setLocationRelativeTo(null);
@@ -47,8 +41,7 @@ public class AddChartWindow {
         GridBagConstraints layoutConstraints = new GridBagConstraints();
 
         // Add section title
-        JLabel sectionTitleLabel = new JLabel(
-            "<html><h2 style='margin:0'>Add "+ typeOfChartData +" Chart</h2>"
+        JLabel sectionTitleLabel = new JLabel("<html><h2 style='margin:0'>Add " + chartType + " Chart</h2>"
                 + "<small>Enter the details of the new chart below.</small></html>");
         layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
         layoutConstraints.gridx = 0;
@@ -104,7 +97,7 @@ public class AddChartWindow {
         layoutConstraints.gridy = 9;
         layoutConstraints.insets = new Insets(10, 0, 0, 0);
         mainPanel.add(styleOfGraphLabel, layoutConstraints);
-        ChartType[] styleOfGraph = {ChartType.BAR, ChartType.LINE};
+        String[] styleOfGraph = { ChartType.BAR.getPrettyJsonCode(), ChartType.LINE.getPrettyJsonCode() };
         JComboBox<ChartType[]> styleOfGraphsDropdown = new JComboBox(styleOfGraph);
         layoutConstraints.gridy = 10;
         layoutConstraints.insets = new Insets(5, 0, 0, 0);
@@ -118,25 +111,20 @@ public class AddChartWindow {
         addDistributionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (reportTitleTextField.getText().equals("") || xTitleTextField.getText()
-                    .equals("")
-                    || yTitleTextField.getText().equals("")) {
+                if (reportTitleTextField.getText().equals("") || xTitleTextField.getText().equals("")
+                        || yTitleTextField.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Please fill in all fields.");
                     return;
                 }
 
                 try {
                     ChartType type = ChartType
-                        .getChartTypeFromString(styleOfGraphsDropdown.getSelectedItem().toString());
-                    ChartScheme chart = addReport(reportTitleTextField.getText(),
-                        xTitleTextField.getText(), yTitleTextField.getText(),
-                        columnToGraphDropdown.getSelectedItem().toString(), type);
+                            .getChartTypeFromString(styleOfGraphsDropdown.getSelectedItem().toString());
+                    ChartScheme chart = addReport(reportTitleTextField.getText(), xTitleTextField.getText(),
+                            yTitleTextField.getText(), columnToGraphDropdown.getSelectedItem().toString(), type);
 
-                    String[] row = {
-                        Integer.toString(MasterData.reportId.incrementAndGet()),
-                        chart.getMainTitle(),
-                        chart.getGraphType().getJsonCode()
-                    };
+                    String[] row = { Integer.toString(MasterData.reportId.incrementAndGet()), chart.getMainTitle(),
+                            chart.getGraphType().getPrettyJsonCode(), chartType };
 
                     ReportsPanel.tableModel.addRow(row);
                     frame.setVisible(false);
@@ -153,21 +141,6 @@ public class AddChartWindow {
         frame.setVisible(true);
     }
 
-    private ChartScheme addReport(String reportTitle, String xAxis, String yAxis, String column,
-        ChartType chartType) {
-        ChartScheme chartScheme;
-        if (typeOfChartData == "Distribution") {
-            chartScheme = new DistributionChartScheme(column, chartType);
-        } else {
-            chartScheme = new TrendChartScheme(column, chartType);
-        }
-
-        chartScheme.setMainTitle(reportTitle);
-        chartScheme.setXTitle(xAxis);
-        chartScheme.setYTitle(yAxis);
-
-        App.reportsList.add(chartScheme);
-        return chartScheme;
-    }
+    public abstract ChartScheme addReport(String reportTitle, String xAxis, String yAxis, String column, ChartType chartType);
 
 }
