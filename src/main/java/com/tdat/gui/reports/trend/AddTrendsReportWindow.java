@@ -1,4 +1,4 @@
-package com.tdat.gui.reports;
+package com.tdat.gui.reports.trend;
 
 import java.awt.Color;
 import java.awt.Dimension;

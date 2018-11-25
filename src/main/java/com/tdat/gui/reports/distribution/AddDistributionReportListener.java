@@ -1,11 +1,12 @@
-package com.tdat.gui.reports;
+package com.tdat.gui.reports.distribution;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddDistributionReportListener implements ActionListener {
+
 	public void actionPerformed(ActionEvent arg0) {
-		new AddChartWindow("Distribution");
+		new AddDistributionReport();
 	}
 
 }

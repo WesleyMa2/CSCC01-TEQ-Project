@@ -6,8 +6,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -15,8 +13,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import com.tdat.app.App;
 import com.tdat.gui.GenericPanel;
+import com.tdat.gui.reports.distribution.AddDistributionReportListener;
+import com.tdat.gui.reports.trend.AddTrendsReportListener;
 
 /*
  * A view for the reports panel in MainWindow.
@@ -24,9 +23,9 @@ import com.tdat.gui.GenericPanel;
 @SuppressWarnings("serial")
 public class ReportsPanel extends GenericPanel {
 
-  private static JTextField tdatqlQuery = new JTextField();
+  public static JTextField tdatqlQuery = new JTextField();
 
-  protected static DefaultTableModel tableModel = new DefaultTableModel() {
+  public static DefaultTableModel tableModel = new DefaultTableModel() {
     @Override
     public boolean isCellEditable(int row, int column) {
       return false;

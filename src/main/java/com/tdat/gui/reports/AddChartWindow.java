@@ -1,6 +1,5 @@
 package com.tdat.gui.reports;
 
-import com.tdat.report.chart.TrendChartScheme;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -19,13 +18,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.tdat.app.App;
 import com.tdat.data.MasterData;
 import com.tdat.report.chart.ChartScheme;
 import com.tdat.report.chart.ChartType;
-import com.tdat.report.chart.DistributionChartScheme;
 
-public class AddChartWindow {
+public abstract class AddChartWindow {
 
     private final JFrame frame;
     private String typeOfChartData;
@@ -33,7 +30,7 @@ public class AddChartWindow {
     public AddChartWindow(String type) {
         this.typeOfChartData = type;
 
-        frame = new JFrame(App.appTitle + ": Add " + typeOfChartData + " Chart");
+        frame = new JFrame("Add " + typeOfChartData + " Chart");
         frame.setMinimumSize(new Dimension(400, 450));
         frame.setResizable(true);
         frame.setLocationRelativeTo(null);
@@ -101,7 +98,7 @@ public class AddChartWindow {
         layoutConstraints.gridy = 9;
         layoutConstraints.insets = new Insets(10, 0, 0, 0);
         mainPanel.add(styleOfGraphLabel, layoutConstraints);
-        String[] styleOfGraph = {ChartType.BAR.getJsonCode(), ChartType.LINE.getJsonCode()};
+        String[] styleOfGraph = {ChartType.BAR.getPrettyJsonCode(), ChartType.LINE.getPrettyJsonCode()};
         JComboBox<ChartType[]> styleOfGraphsDropdown = new JComboBox(styleOfGraph);
         layoutConstraints.gridy = 10;
         layoutConstraints.insets = new Insets(5, 0, 0, 0);
@@ -151,21 +148,6 @@ public class AddChartWindow {
         frame.setVisible(true);
     }
 
-    private ChartScheme addReport(String reportTitle, String xAxis, String yAxis, String column,
-        ChartType chartType) {
-        ChartScheme chartScheme;
-        if (typeOfChartData == "Distribution") {
-            chartScheme = new DistributionChartScheme(column, chartType);
-        } else {
-            chartScheme = new TrendChartScheme(column, chartType);
-        }
-
-        chartScheme.setMainTitle(reportTitle);
-        chartScheme.setXTitle(xAxis);
-        chartScheme.setYTitle(yAxis);
-
-        App.reportsList.add(chartScheme);
-        return chartScheme;
-    }
+    public abstract ChartScheme addReport(String reportTitle, String xAxis, String yAxis, String column, ChartType chartType);
 
 }

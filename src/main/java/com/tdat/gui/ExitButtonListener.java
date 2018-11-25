@@ -16,12 +16,9 @@ public class ExitButtonListener implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     if (ConflictIdentifier.numManualConflicts == 0) {
       this.uploadEditedFile();
-      String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-          .format(Calendar.getInstance().getTime());
-      String historyEntry =
-          "Date: " + timeStamp + "   Filename: " + App.selectedFile.getName() + "   Filetype: "
-              + App.selectedFileType +
-              "   Fiscal year: " + App.selectedYear;
+      String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+      String historyEntry = "Date: " + timeStamp + "   Filename: " + App.selectedFile.getName() + "   Filetype: "
+          + App.selectedFileType + "   Fiscal year: " + App.selectedYear;
       UploadPanel.DLM.addElement(historyEntry);
       App.fileUploadDict.put(historyEntry, App.selectedFile);
       ConflictWindow.f.dispose();
