@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 public class AddDistributionReportListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
-		new AddDistributionReport();
+		new AddDistributionReportWindow();
 	}
 
 }

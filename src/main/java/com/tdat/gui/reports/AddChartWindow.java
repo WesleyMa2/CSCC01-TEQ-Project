@@ -123,8 +123,8 @@ public abstract class AddChartWindow {
                     ChartScheme chart = addReport(reportTitleTextField.getText(), xTitleTextField.getText(),
                             yTitleTextField.getText(), columnToGraphDropdown.getSelectedItem().toString(), type);
 
-                    String[] row = { Integer.toString(MasterData.reportId.incrementAndGet()),
-                            chart.getGraphType().getPrettyJsonCode(), chartType, chart.getMainTitle() };
+                    String[] row = { Integer.toString(MasterData.reportId.incrementAndGet()), chart.getMainTitle(),
+                            chart.getGraphType().getPrettyJsonCode(), chartType };
 
                     ReportsPanel.tableModel.addRow(row);
                     frame.setVisible(false);

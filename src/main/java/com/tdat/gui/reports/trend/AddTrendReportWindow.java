@@ -1,20 +1,20 @@
-package com.tdat.gui.reports.distribution;
+package com.tdat.gui.reports.trend;
 
 import com.tdat.app.App;
 import com.tdat.gui.reports.AddChartWindow;
 import com.tdat.report.chart.ChartScheme;
 import com.tdat.report.chart.ChartType;
-import com.tdat.report.chart.DistributionChartScheme;
+import com.tdat.report.chart.TrendChartScheme;
 
-public class AddDistributionReport extends AddChartWindow {
+public class AddTrendReportWindow extends AddChartWindow {
 
-    public AddDistributionReport() {
-        super("Distribution");
+    public AddTrendReportWindow() {
+        super("Trend");
     }
 
     @Override
     public ChartScheme addReport(String reportTitle, String xAxis, String yAxis, String column, ChartType chartType) {
-        ChartScheme chartScheme = new DistributionChartScheme(column, chartType);
+        ChartScheme chartScheme = new TrendChartScheme(column, chartType);
 
         chartScheme.setMainTitle(reportTitle);
         chartScheme.setXTitle(xAxis);

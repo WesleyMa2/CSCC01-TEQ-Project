@@ -78,7 +78,7 @@ public class ReportsPanel extends GenericPanel {
     layoutConstraints.ipady = 20;
     this.add(currentReportsHTML, layoutConstraints);
 
-    String th[] = { "Id", "Graph", "Type", "Title" };
+    String th[] = { "Id", "Title", "Graph", "Type" };
     JTable currentReportsTable = new JTable();
     tableModel.setDataVector(null, th);
     currentReportsTable.setModel(tableModel);
