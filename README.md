@@ -44,6 +44,8 @@ root
   |                                └── feeder
   |                                └── gui
   |                                └── report
+  |                                      └── chart
+  |                                            └── templates
   |            └── resources 
   |     └── test
   |            └── java
