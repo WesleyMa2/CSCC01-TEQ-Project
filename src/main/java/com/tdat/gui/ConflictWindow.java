@@ -1,6 +1,7 @@
 package com.tdat.gui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -32,8 +33,8 @@ private String[] automaticConflictsArray = automaticConflictsArrayList.toArray(n
 private JComboBox automaticConflictsDropdown = new JComboBox(automaticConflictsArray);
 
 public static ArrayList<String> manualConflictsArrayList = new ArrayList<String>();
-private String[] manualConflictsArray = manualConflictsArrayList.toArray(new String[manualConflictsArrayList.size()]);
-private JComboBox manualConflictsDropdown = new JComboBox(manualConflictsArray);
+public  JComboBox manualConflictsDropdown = new JComboBox();
+public DefaultComboBoxModel model = new DefaultComboBoxModel(manualConflictsArrayList.toArray(new String[manualConflictsArrayList.size()]));
 private JButton resolveConflict = new JButton("Resolve Conflict");
 private JButton exitButton = new JButton("Exit Conflict Review Session");
 
@@ -74,6 +75,7 @@ public ConflictWindow(){
     mainConflictPanel.add(middleHeading);
     mainConflictPanel.add(automaticConflictsDropdown);
     mainConflictPanel.add(bottomHeading);
+    manualConflictsDropdown.setModel(model);
     mainConflictPanel.add(manualConflictsDropdown);
     mainConflictPanel.add(resolveConflict);
     mainConflictPanel.add(exitButton);
@@ -81,10 +83,11 @@ public ConflictWindow(){
     f.setVisible(true);
     
     exitButton.addActionListener(new ExitButtonListener());
-    resolveConflict.addActionListener(new ResolveConflictListener());
+    resolveConflict.addActionListener(new ResolveConflictListener(this));
   }  
 public static void main(String[] args) { 
     new ConflictWindow();  
 }
+
 
 }  

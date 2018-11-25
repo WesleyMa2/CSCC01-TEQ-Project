@@ -42,7 +42,6 @@ public class UploadButtonListener implements ActionListener {
       XLSXDataFileReader readNewUpload = new XLSXDataFileReader();
       try {
         newUpload = readNewUpload.converter(selectedFile);
-        System.out.println(newUpload);
       } catch (FileNotFoundException e1) {
         e1.printStackTrace();
       } catch (IOException e1) {
@@ -52,6 +51,7 @@ public class UploadButtonListener implements ActionListener {
       ConflictIdentifier conflictCheck = new ConflictIdentifier();
       //pass in the newUpload list here
       conflictCheck.checkForAutomaticConflicts(newUpload);
+      conflictCheck.checkForManualConflicts(newUpload);
       int numManualConflicts = conflictCheck.numManualConflicts;
       int numAutomaticConflicts = conflictCheck.numAutomaticallyResolvedConflicts;
 
