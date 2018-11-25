@@ -19,7 +19,7 @@ public class GenerateReports {
 			String json = "{\"generationTime\": \"" + ChartJS.getDate() + "\",";
 			json += "\"totalPeople\": \"" + MasterDataStats.getPeopleCount() + "\",";
 			json += "\"totalVisits\": \"" + MasterDataStats.getTotalVisits() + "\",";
-			json += "\"years\": \"" + this.listToString(MasterDataStats.getAllYearsAsString()) + "\",";
+			json += "\"years\": \"" + String.join(", ", MasterDataStats.getAllYearsAsString()) + "\",";
 			json += "\"generateThese\":[";
 			
 			for(int i = 0; i < App.reportsList.size(); i++) {
@@ -50,14 +50,6 @@ public class GenerateReports {
 			JFrame errorFrame = new JFrame();
 			JOptionPane.showMessageDialog(errorFrame, "To generate a complete report, please add some reports.");
 		}
-	}
-	
-	private String listToString(List<String> list) {
-		String stringifiedList = "";
-		for(String entry: list) {
-			stringifiedList += entry + ", ";
-		}
-		return stringifiedList.substring(0, stringifiedList.length()-2);
 	}
 	
 }
