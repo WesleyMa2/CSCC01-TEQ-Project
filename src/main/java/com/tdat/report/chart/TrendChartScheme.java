@@ -19,14 +19,19 @@ public class TrendChartScheme extends ChartScheme {
 
     private String column;
 
+    public String getColumn() {
+        return column;
+    }
+
     public TrendChartScheme(String column, ChartType graphType) {
         super(graphType);
+
         this.column = column;
     }
 
     /**
-     * A helper method to check to see if a given entry has already been seen in the given list of
-     * ChartDataSets
+     * A helper method to check to see if a given entry has already been seen in the
+     * given list of ChartDataSets
      */
     private int containsEntry(List<ChartDataSet> dataSet, String entry) {
         int i;
@@ -39,9 +44,6 @@ public class TrendChartScheme extends ChartScheme {
     }
 
     public String toJson() {
-        // List of all entries in MasterData for given column
-        List<ChartDataSet> chartDataList = new ArrayList<>();
-
         // Get all years in order
         List<Year> allYears = new ArrayList<>();
         allYears.addAll(MasterData.getServiceProvidedData().keySet());
@@ -72,30 +74,26 @@ public class TrendChartScheme extends ChartScheme {
                 }
 
                 // Add this value to the list of ChartDataSets
-                int indexOfExistingChartData = containsEntry(chartDataList, newEntry);
+                int indexOfExistingChartData = containsEntry(this.getDataSet(), newEntry);
                 List<Integer> newListOfData;
                 if (indexOfExistingChartData == -1) {
                     // Create a new ChartDataSet if this entry hasn't been seen before
                     newListOfData = new ArrayList<>();
                     newListOfData.add(valueForCurrYear);
-                    chartDataList.add(new ChartDataSet(newEntry, newListOfData));
+                    this.getDataSet().add(new ChartDataSet(newEntry, newListOfData));
                 } else {
-                    ChartDataSet newDataSet = chartDataList.get(indexOfExistingChartData);
+                    ChartDataSet newDataSet = this.getDataSet().get(indexOfExistingChartData);
                     newDataSet.addData(valueForCurrYear);
-                    chartDataList.set(indexOfExistingChartData, newDataSet);
+                    this.getDataSet().set(indexOfExistingChartData, newDataSet);
                 }
             }
         }
 
         // Create a new list of Years but as Strings
-        List<String> allYearsString = new ArrayList<>();
         for (Year curr : allYears) {
-            allYearsString.add(curr.toString());
+            this.getXAxisLabels().add(curr.toString());
         }
 
-        return JsonConverter
-            .serializeObject(this.getGraphType().getJsonCode(), this.getMainTitle(),
-                this.getXTitle(), allYearsString, this.getYTitle(), chartDataList);
+        return JsonConverter.serializeObject(this);
     }
 }
-

@@ -16,9 +16,6 @@ import org.json.JSONObject;
  */
 public class PublicDataChartScheme extends ChartScheme {
 
-    private List<String> xAxisLabels;
-    private List<ChartDataSet> dataSet;
-
     public PublicDataChartScheme(JSONObject json) {
         super(ChartType.getChartTypeFromString(json.getString("type")));
 
@@ -26,13 +23,11 @@ public class PublicDataChartScheme extends ChartScheme {
         this.setXTitle(json.getString("xAxisTitle"));
         this.setYTitle(json.getString("yAxisTitle"));
 
-        xAxisLabels = new ArrayList<String>();
         JSONArray arr = json.getJSONArray("xAxisLabels");
         for (int i = 0; i < arr.length(); i++) {
-            xAxisLabels.add(arr.getString(i));
+            this.getXAxisLabels().add(arr.getString(i));
         }
 
-        dataSet = new ArrayList<ChartDataSet>();
         arr = json.getJSONArray("dataSet");
         for (int i = 0; i < arr.length(); i++) {
             JSONArray jsonData = arr.getJSONObject(i).getJSONArray("data");
@@ -41,7 +36,7 @@ public class PublicDataChartScheme extends ChartScheme {
             for (int j = 0; j < jsonData.length(); j++) {
                 data.add(jsonData.getInt(j));
             }
-            dataSet.add(new ChartDataSet(arr.getJSONObject(i).getString("header"), data));
+            this.getDataSet().add(new ChartDataSet(arr.getJSONObject(i).getString("header"), data));
         }
     }
 
@@ -51,7 +46,7 @@ public class PublicDataChartScheme extends ChartScheme {
      */
     public String toJson(){
 
-        return JsonConverter.serializeObject(this.getGraphType().getJsonCode(), this.getMainTitle(), this.getXTitle(), this.xAxisLabels, this.getYTitle(), this.dataSet);
+        return JsonConverter.serializeObject(this);
 
     }
 }

@@ -1,5 +1,6 @@
 package com.tdat.analysis;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -8,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.tdat.report.chart.ChartDataSet;
+import com.tdat.report.chart.DistributionChartScheme;
 import com.tdat.data.ColumnNotFoundException;
 import com.tdat.report.JsonConverter;
 
@@ -16,35 +18,60 @@ import org.junit.jupiter.api.Test;
 
 class JsonConverterTest {
 
+    private MockChartScheme mock;
+
     @Test
     @DisplayName("Test creating json object using entries")
     void jsonColumnEntriesCount() throws ColumnNotFoundException {
         List<String> labels = Arrays.asList("label1", "label2", "label3");
 
-        String expected = "{\"xAxisLabels\":[\"label1\",\"label2\",\"label3\"],\"mainTitle\":\"main title\",\"xAxisTitle\":\"x axis title\",\"type\":\"type of chart\",\"dataSet\":[{\"data\":[1,2,3,4],\"header\":\"a header\"}],\"yAxisTitle\":\"y axis title\"}";
+        String expected = "{\"xAxisLabels\":[\"label1\",\"label2\",\"label3\"],\"mainTitle\":\"main title\",\"xAxisTitle\":\"x axis title\",\"type\":\"bar\",\"dataSet\":[{\"data\":[1,2,3,4],\"header\":\"a header\"}],\"yAxisTitle\":\"y axis title\"}";
 
-        List<ChartDataSet> data = new ArrayList<>(Arrays.asList(new ChartDataSet("a header", Arrays.asList(1,2,3,4))));
+        List<ChartDataSet> data = new ArrayList<>(
+                Arrays.asList(new ChartDataSet("a header", Arrays.asList(1, 2, 3, 4))));
 
-        String actual = JsonConverter.serializeObject("type of chart", "main title", "x axis title", labels, "y axis title", data);
-        assertEquals(expected, actual);
+        MockChartScheme actual = new MockChartScheme(labels, data);
+        actual.setMainTitle("main title");
+        actual.setXTitle("x axis title");
+        actual.setYTitle("y axis title");
+
+        assertEquals(expected, actual.toJson());
     }
 
     @Test
     @DisplayName("Test creating json object with null input")
-    void dneColumnEntries() throws NullPointerException, IllegalStateException {
+    void dneColumnEntries() throws NullPointerException {
 
-        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject(null, null, null, null, null, null); });
+        mock = new MockChartScheme(null, null);
 
-        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", null, null, null, null, null); });
+        System.out.println(">> " + mock);
+        assertThrows(NullPointerException.class, () -> {
+            JsonConverter.serializeObject(mock);
+        });
 
-        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "main title", null, null, null, null); });
-        
-        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "main title", "x axis title", null, null, null); });
+        mock.setMainTitle("main title");
+        assertThrows(NullPointerException.class, () -> {
+            JsonConverter.serializeObject(mock);
+        });
 
-        assertThrows(IllegalStateException.class, () -> { JsonConverter.serializeObject("a type", "main title", "x axis title", new ArrayList<String>(), null, null); });
+        mock.setXTitle("x axis title");
 
-        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "main title", "x axis title", Arrays.asList("x axis label"), null, null); });
+        assertThrows(NullPointerException.class, () -> {
+            JsonConverter.serializeObject(mock);
+        });
 
-        assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "main title", "x axis title", Arrays.asList("x axis label"), "y axis title", null); });
+        mock = new MockChartScheme(Arrays.asList("x axis label"), null);
+        mock.setMainTitle("main title");
+        mock.setXTitle("x axis title");
+
+        assertThrows(NullPointerException.class, () -> {
+            JsonConverter.serializeObject(mock);
+        });
+
+        mock.setYTitle("y axis title");
+
+        String expected = "{\"xAxisLabels\":[\"x axis label\"],\"mainTitle\":\"main title\",\"xAxisTitle\":\"x axis title\",\"type\":\"bar\",\"dataSet\":[],\"yAxisTitle\":\"y axis title\"}";
+
+        assertEquals(expected, mock.toJson());
     }
 }
