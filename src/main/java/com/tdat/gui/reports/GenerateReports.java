@@ -9,16 +9,16 @@ import javax.swing.JOptionPane;
 
 import com.tdat.app.App;
 import com.tdat.report.ChartJSRequest;
+import com.tdat.data.analysis.MasterDataStats;
 
 public class GenerateReports {
 
 	public GenerateReports() {
 		if(App.reportsList.size() > 0) {
-			// MODIFY THESE TO MATCH CORRECTLY
 			String json = "{\"generationTime\": \"" + ChartJSRequest.getDate() + "\",";
-			json += "\"totalPeople\": \"" + "50" + "\",";
-			json += "\"totalVisits\": \"" + "90" + "\",";
-			json += "\"years\": \"" + "2018, 2016, 2015" + "\",";
+			json += "\"totalPeople\": \"" + MasterDataStats.getPeopleCount() + "\",";
+			json += "\"totalVisits\": \"" + MasterDataStats.getTotalVisits() + "\",";
+			json += "\"years\": \"" + String.join(", ", MasterDataStats.getAllYearsAsString()) + "\",";
 			json += "\"generateThese\":[";
 			
 			for(int i = 0; i < App.reportsList.size(); i++) {

@@ -46,6 +46,8 @@ root
   |                                     └── publicData
   |                                     └── reports
   |                                └── report
+  |                                      └── chart
+  |                                            └── templates
   |            └── resources 
   |     └── test
   |            └── java
