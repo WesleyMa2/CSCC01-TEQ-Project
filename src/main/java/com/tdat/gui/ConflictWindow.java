@@ -58,6 +58,8 @@ public ConflictWindow(){
 	            JOptionPane.YES_NO_OPTION,
 	            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
 	        	App.selectedFile = null;
+	        	ConflictWindow.manualConflictsArrayList.clear();
+	        	ConflictWindow.automaticConflictsArrayList.clear();
 	        	System.out.println("\nFile was not uploaded because manual conflicts were left unresolved");
 	        	f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
