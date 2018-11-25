@@ -22,6 +22,10 @@ public class ChartDataSet {
 		return this.data;
 	}
 
+	public void addData(int num){
+		data.add(num);
+	}
+
 	@Override
 	public String toString() {
 		return String.format("{header: %s, data: %s}", this.getHeader(), this.getData());
