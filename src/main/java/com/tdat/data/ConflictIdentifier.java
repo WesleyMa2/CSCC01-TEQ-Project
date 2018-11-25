@@ -12,7 +12,7 @@ import com.tdat.gui.ConflictWindow;
 public class ConflictIdentifier {
 	public static int numManualConflicts = 0;
 	public static int numAutomaticallyResolvedConflicts = 0;
-	public static HashMap<String, ArrayList<Object>> manualConflictData = new HashMap<String, ArrayList<Object>>();
+	public static Map<String, ArrayList<Object>> manualConflictData = new HashMap<String, ArrayList<Object>>();
 	public ConflictIdentifier(){
 	}
 	
@@ -55,14 +55,14 @@ public class ConflictIdentifier {
 				typeReferenceDict.put(columnName, potentialUpload.get(0).get(columnName).getClass().getName());
 			}
 		}
-		//System.out.println(typeReferenceDict);
 		for(Map<String, String> rowEntry: potentialUpload){
 			int rowMapIndex = potentialUpload.indexOf(rowEntry);
 			for(String key: rowEntry.keySet()){
-				//if value is numeric but reference dictionary says that column shouldn't have numeric values, do this
-				if(isNumeric(rowEntry.get(key)) && typeReferenceDict.get(key) != Integer.class.getName()){
+				boolean checkForNumericInText = isNumeric(rowEntry.get(key)) && typeReferenceDict.get(key) != Integer.class.getName();
+				boolean checkForTextInNumeric = !(isNumeric(rowEntry.get(key))) && (typeReferenceDict.get(key) == Integer.class.getName()) && (rowEntry.get(key) != App.EMPTY);
+				if(checkForNumericInText){
 						handleNewTypeConflict(rowMapIndex, key, rowEntry);
-				} else if(!(isNumeric(rowEntry.get(key))) && (typeReferenceDict.get(key) == Integer.class.getName()) && (rowEntry.get(key) != "N/A")){
+				} else if(checkForTextInNumeric){
 						handleNewTypeConflict(rowMapIndex, key, rowEntry);
 				}
 			}
