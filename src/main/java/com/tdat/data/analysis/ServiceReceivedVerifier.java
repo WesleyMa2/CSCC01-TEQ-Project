@@ -16,11 +16,11 @@ import java.util.Map;
  */
 public class ServiceReceivedVerifier {
 
-    private static final String COMMUNITY = "Community Connections";
-    private static final String INFO = "Information and Orientation";
-    private static final String EMPLOYMENT = "Employment Related Services";
-    private static final String LT_ENROLL = "Language Training - Client Enrolment";
-    private static final String UID = "Unique Identifier Value";
+    public static final String COMMUNITY = "Community Connections";
+    public static final String INFO = "Information and Orientation";
+    public static final String EMPLOYMENT = "Employment Related Services";
+    public static final String LT_ENROLL = "Language Training - Client Enrolment";
+    public static final String UID = "Unique Identifier Value";
     private static final Map<String, String> associations;
 
     static {
@@ -43,12 +43,6 @@ public class ServiceReceivedVerifier {
         ArrayList<String> result = new ArrayList<>();
         result.addAll(associations.keySet());
         return result;
-    }
-
-    // TODO: 2018-11-23 REMOVE
-    public static void test() throws ColumnNotFoundException {
-        System.out.println("[test] " + getReferralsCount());
-        System.out.println("[test] " + checkAllServicesReceived());
     }
 
     /**

@@ -162,12 +162,6 @@ public class AddChartWindow {
         chartScheme.setXTitle(xAxis);
         chartScheme.setYTitle(yAxis);
 
-        // TODO remove
-        ChartScheme temp = new ServiceReceivedChartScheme(chartType).setXTitle(yAxis)
-            .setXTitle(xAxis).setMainTitle(reportTitle);
-        App.reportsList.add(temp);
-        //
-
         App.reportsList.add(chartScheme);
         return chartScheme;
     }
