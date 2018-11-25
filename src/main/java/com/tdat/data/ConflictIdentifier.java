@@ -28,7 +28,7 @@ public class ConflictIdentifier {
 	}
 	
 	public void trailingWhitespaceCheck(Map<String,String> currentMap, String currentString){
-		if(currentString.trim() != null && currentString != "N/A"){
+		if(currentString.trim() != null && currentString != App.EMPTY){
 			numAutomaticallyResolvedConflicts++;
 			//add to list of automatically resolved conflict messages
 			ConflictWindow.automaticConflictsArrayList.add(this.generateAutomaticallyResolvedConflictMessage(App.selectedFile, "TrailingWhitespaceConflict", currentString, currentString.trim()));

@@ -44,7 +44,7 @@ public class UploadButtonListener implements ActionListener {
       XLSXDataFileReader readNewUpload = new XLSXDataFileReader();
       try {
         newUpload = readNewUpload.converter(selectedFile);
-        System.out.println(newUpload);
+        //System.out.println(newUpload);
       } catch (FileNotFoundException e1) {
         // TODO Auto-generated catch block
         e1.printStackTrace();

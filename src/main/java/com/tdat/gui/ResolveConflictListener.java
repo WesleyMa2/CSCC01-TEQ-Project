@@ -17,11 +17,9 @@ public class ResolveConflictListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String currentConflict = (String)conflictWindowInstance.manualConflictsDropdown.getSelectedItem();
-		if(currentConflict == null){
-			
-		} else {
+		if(currentConflict != null){
 			new ManualConflictResolvePanel(ConflictIdentifier.manualConflictData.get(currentConflict), currentConflict);
-		}
+		} 
 
 	}
 

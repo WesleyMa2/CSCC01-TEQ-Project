@@ -4,10 +4,13 @@ import java.io.File;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import com.tdat.data.ConflictIdentifier;
 import com.tdat.data.PublicDataCache;
 import com.tdat.gui.MainWindow;
 import com.tdat.query.CommandHandler;
