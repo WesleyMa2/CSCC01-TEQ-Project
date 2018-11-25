@@ -11,6 +11,7 @@ import com.tdat.app.App;
 import com.tdat.data.MasterData;
 import com.tdat.data.TableData;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -45,5 +46,10 @@ class UploaderTest {
         }
         TableData data = MasterData.getYearData(Year.of(2018));
         assertEquals(new HashSet<>(Arrays.asList("AA", "AB", "AC", "AD", "BA", "BB", "BD", "BC", "children", "Template")), new HashSet<>(data.getColumnList()));
+    }
+
+    @AfterAll
+    public static void cleanUp(){
+        MasterData.clear();
     }
 }
