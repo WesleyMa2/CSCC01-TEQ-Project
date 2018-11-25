@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -59,7 +60,13 @@ public class AddTemplateWindow {
         mainPanel.add(proceedButton, layoutConstraints);
         proceedButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	template.addWindow();
+            	if(template.usable()) {
+            		template.addWindow();
+            	} else {
+            		JOptionPane.showMessageDialog(null, "The template you have selected is unusable. It may be because "
+        					+ "you have not uploaded all the necessary information yet.",
+        					"Alert", JOptionPane.WARNING_MESSAGE);  
+            	}
             	frame.setVisible(false);
             }
         });
