@@ -9,21 +9,21 @@ public abstract class ChartScheme {
     private String yTitle = "";
     private ChartType graphType;
 
-    public ChartScheme(ChartType graphType){
+    public ChartScheme(ChartType graphType) {
         this.graphType = graphType;
     }
 
-    public ChartScheme setMainTitle (String title){
+    public ChartScheme setMainTitle(String title) {
         this.mainTitle = title;
         return this;
     }
 
-    public ChartScheme setXTitle (String title){
+    public ChartScheme setXTitle(String title) {
         this.xTitle = title;
         return this;
     }
 
-    public ChartScheme setYTitle (String title){
+    public ChartScheme setYTitle(String title) {
         this.yTitle = title;
         return this;
     }

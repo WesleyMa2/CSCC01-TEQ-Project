@@ -38,10 +38,10 @@ public class MasterData {
 
   public static void printServiceProvidedData(Year year) {
     System.out.println("\n[Data for year of " + year + "]");
-    if (!serviceProvidedData.containsKey(year)){
-    System.out.println(App.EMPTY);
-    return;
-  }
+    if (!serviceProvidedData.containsKey(year)) {
+      System.out.println(App.EMPTY);
+      return;
+    }
     TableData yearData = getYearData(year);
     List<String> columns = yearData.getColumnList();
     for (String column : columns) {
@@ -51,7 +51,7 @@ public class MasterData {
 
   public static void printInitialVisitsData() {
     System.out.println("\n[Initial Visits]");
-    if (initialVisitData.getVisitsData().size() == 0){
+    if (initialVisitData.getVisitsData().size() == 0) {
       System.out.println(App.EMPTY);
       return;
     }
@@ -66,10 +66,10 @@ public class MasterData {
   }
 
   /**
-   * Given a List of rows, and it's corresponding year, adds that on to the existing table under
-   * that year in the serviceProvidedData
+   * Given a List of rows, and it's corresponding year, adds that on to the
+   * existing table under that year in the serviceProvidedData
    *
-   * @param year year of data
+   * @param year      year of data
    * @param allVisits the list of rows
    */
   public static void setServiceProvidedData(Year year, List<Map<String, String>> allVisits) {
@@ -101,16 +101,6 @@ public class MasterData {
     }
 
   }
-
-//	public static List<TableData> getRangeOfYear(Year startYear, Year endYear){
-//		List<TableData> subRange = new ArrayList<TableData>();
-//		for (Year year: serviceProvidedData.keySet()) {
-//			if (year.compareTo(startYear) > 0 && year.compareTo(endYear) < 0){
-//				subRange.add(serviceProvidedData.get(year));
-//			}
-//		}
-//		return subRange;
-//	}
 
   /**
    * Returns all the columns in serviceProvidedData without any duplicates

@@ -25,12 +25,12 @@ import com.tdat.report.chart.ChartType;
 public abstract class AddChartWindow {
 
     private final JFrame frame;
-    private String typeOfChartData;
+    private String chartType;
 
     public AddChartWindow(String type) {
-        this.typeOfChartData = type;
+        this.chartType = type;
 
-        frame = new JFrame("Add " + typeOfChartData + " Chart");
+        frame = new JFrame("Add " + chartType + " Chart");
         frame.setMinimumSize(new Dimension(400, 450));
         frame.setResizable(true);
         frame.setLocationRelativeTo(null);
@@ -41,8 +41,7 @@ public abstract class AddChartWindow {
         GridBagConstraints layoutConstraints = new GridBagConstraints();
 
         // Add section title
-        JLabel sectionTitleLabel = new JLabel(
-            "<html><h2 style='margin:0'>Add "+ typeOfChartData +" Chart</h2>"
+        JLabel sectionTitleLabel = new JLabel("<html><h2 style='margin:0'>Add " + chartType + " Chart</h2>"
                 + "<small>Enter the details of the new chart below.</small></html>");
         layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
         layoutConstraints.gridx = 0;
@@ -98,7 +97,7 @@ public abstract class AddChartWindow {
         layoutConstraints.gridy = 9;
         layoutConstraints.insets = new Insets(10, 0, 0, 0);
         mainPanel.add(styleOfGraphLabel, layoutConstraints);
-        String[] styleOfGraph = {ChartType.BAR.getPrettyJsonCode(), ChartType.LINE.getPrettyJsonCode()};
+        String[] styleOfGraph = { ChartType.BAR.getPrettyJsonCode(), ChartType.LINE.getPrettyJsonCode() };
         JComboBox<ChartType[]> styleOfGraphsDropdown = new JComboBox(styleOfGraph);
         layoutConstraints.gridy = 10;
         layoutConstraints.insets = new Insets(5, 0, 0, 0);
@@ -112,26 +111,20 @@ public abstract class AddChartWindow {
         addDistributionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (reportTitleTextField.getText().equals("") || xTitleTextField.getText()
-                    .equals("")
-                    || yTitleTextField.getText().equals("")) {
+                if (reportTitleTextField.getText().equals("") || xTitleTextField.getText().equals("")
+                        || yTitleTextField.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Please fill in all fields.");
                     return;
                 }
 
                 try {
                     ChartType type = ChartType
-                        .getChartTypeFromString(styleOfGraphsDropdown.getSelectedItem().toString());
-                    ChartScheme chart = addReport(reportTitleTextField.getText(),
-                        xTitleTextField.getText(), yTitleTextField.getText(),
-                        columnToGraphDropdown.getSelectedItem().toString(), type);
+                            .getChartTypeFromString(styleOfGraphsDropdown.getSelectedItem().toString());
+                    ChartScheme chart = addReport(reportTitleTextField.getText(), xTitleTextField.getText(),
+                            yTitleTextField.getText(), columnToGraphDropdown.getSelectedItem().toString(), type);
 
-                    String[] row = {
-                        Integer.toString(MasterData.reportId.incrementAndGet()),
-                        chart.getGraphType().getJsonCode(),
-                        typeOfChartData,
-                        chart.getMainTitle()
-                    };
+                    String[] row = { Integer.toString(MasterData.reportId.incrementAndGet()),
+                            chart.getGraphType().getPrettyJsonCode(), chartType, chart.getMainTitle() };
 
                     ReportsPanel.tableModel.addRow(row);
                     frame.setVisible(false);
@@ -148,6 +141,7 @@ public abstract class AddChartWindow {
         frame.setVisible(true);
     }
 
-    public abstract ChartScheme addReport(String reportTitle, String xAxis, String yAxis, String column, ChartType chartType);
+    public abstract ChartScheme addReport(String reportTitle, String xAxis, String yAxis, String column,
+            ChartType chartType);
 
 }

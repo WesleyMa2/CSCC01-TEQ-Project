@@ -21,7 +21,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 /**
  * A class that creates graphical reports using the ChartJS library in the back-end
  */
-public class ChartJS {
+public class ChartJSRequest {
 
     private static String API_URL = "http://localhost:3000/";
 
