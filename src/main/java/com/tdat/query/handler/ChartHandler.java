@@ -53,7 +53,7 @@ public abstract class ChartHandler implements Handler {
    */
   protected int checkForKey(String[] arguments, String key) {
     List<String> argList = Arrays.asList(arguments);
-    if (!argList.contains(key)) {
+    if (!argList.contains(key.toLowerCase())) {
       return -1;
     }
     int withIndex = argList.indexOf(key);

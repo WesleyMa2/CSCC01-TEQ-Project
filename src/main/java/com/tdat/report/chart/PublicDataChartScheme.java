@@ -16,23 +16,21 @@ import org.json.JSONObject;
  */
 public class PublicDataChartScheme extends ChartScheme {
 
-    private List<String> xAxisLabels;
-    private List<ChartDataSet> dataSet;
+    private String chartScheme;
 
     public PublicDataChartScheme(JSONObject json) {
-        super(ChartType.getChartTypeFromString(json.getString("type")));
+        super(ChartType.getChartTypeFromString(json.getString("graph")));
 
+        this.setChartScheme(json.getString("type"));
         this.setMainTitle(json.getString("mainTitle"));
         this.setXTitle(json.getString("xAxisTitle"));
         this.setYTitle(json.getString("yAxisTitle"));
 
-        xAxisLabels = new ArrayList<String>();
         JSONArray arr = json.getJSONArray("xAxisLabels");
         for (int i = 0; i < arr.length(); i++) {
-            xAxisLabels.add(arr.getString(i));
+            this.getXAxisLabels().add(arr.getString(i));
         }
 
-        dataSet = new ArrayList<ChartDataSet>();
         arr = json.getJSONArray("dataSet");
         for (int i = 0; i < arr.length(); i++) {
             JSONArray jsonData = arr.getJSONObject(i).getJSONArray("data");
@@ -41,17 +39,25 @@ public class PublicDataChartScheme extends ChartScheme {
             for (int j = 0; j < jsonData.length(); j++) {
                 data.add(jsonData.getInt(j));
             }
-            dataSet.add(new ChartDataSet(arr.getJSONObject(i).getString("header"), data));
+            this.getDataSet().add(new ChartDataSet(arr.getJSONObject(i).getString("header"), data));
         }
+    }
+
+    public String getChartScheme() {
+        return this.chartScheme;
+    }
+
+    public void setChartScheme(String chartScheme) {
+        String prefix = chartScheme.substring(0, 1).toUpperCase();
+        this.chartScheme = prefix + chartScheme.substring(1);
     }
 
     /**
      * A method to return a json rep of the graph to be generated
+     * 
      * @return
      */
     public String toJson(){
-
-        return JsonConverter.serializeObject(this.getGraphType().getJsonCode(), this.getMainTitle(), this.getXTitle(), this.xAxisLabels, this.getYTitle(), this.dataSet);
-
+        return JsonConverter.serializeObject(this);
     }
 }

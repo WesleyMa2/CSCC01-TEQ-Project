@@ -31,7 +31,7 @@ public class CommandHandler {
   }
 
   public static boolean handle(String input) {
-    String[] splitInput = input.toLowerCase().trim().split("\\s");
+    String[] splitInput = input.trim().split("\\s");
     String command = splitInput[0];
     String[] args = Arrays.copyOfRange(splitInput, 1, splitInput.length);
 

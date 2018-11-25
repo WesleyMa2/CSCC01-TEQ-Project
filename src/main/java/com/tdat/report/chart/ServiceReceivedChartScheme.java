@@ -1,6 +1,5 @@
 package com.tdat.report.chart;
 
-import com.tdat.data.ColumnNotFoundException;
 import com.tdat.data.analysis.ServiceReceivedVerifier;
 import com.tdat.report.JsonConverter;
 import java.util.ArrayList;
@@ -10,7 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A chart to display the amount of users who receive the services they were referred to
+ * A chart to display the amount of users who receive the services they were
+ * referred to
  */
 public class ServiceReceivedChartScheme extends ChartScheme {
 
@@ -25,8 +25,7 @@ public class ServiceReceivedChartScheme extends ChartScheme {
         ChartDataSet servicesReferred = new ChartDataSet("Referred", new ArrayList<>());
         ChartDataSet servicesReceived = new ChartDataSet("Received", new ArrayList<>());
         Map<String, Integer> servicesReferredMap = ServiceReceivedVerifier.getReferralsCount();
-        Map<String, Integer> servicesReceivedMap = ServiceReceivedVerifier
-            .checkAllServicesReceived();
+        Map<String, Integer> servicesReceivedMap = ServiceReceivedVerifier.checkAllServicesReceived();
         for (String service : servicesList) {
             servicesReferred.addData(servicesReferredMap.get(service));
             servicesReceived.addData(servicesReceivedMap.get(service));
@@ -36,8 +35,11 @@ public class ServiceReceivedChartScheme extends ChartScheme {
         for (String service : servicesList) {
             trimmedServicesList.add(service.replace(" Referrals", ""));
         }
-        return JsonConverter.serializeObject(this.getGraphType().getJsonCode(), this.getMainTitle(),
-            this.getXTitle(), trimmedServicesList, this.getYTitle(),
-            Arrays.asList(servicesReferred, servicesReceived));
+
+        this.getDataSet().addAll(Arrays.asList(servicesReferred, servicesReceived));
+
+        return JsonConverter.serializeObject(this);
+        // return JsonConverter.serializeObject(this.getGraphType().getJsonCode(), this.getMainTitle(), this.getXTitle(),
+        //         trimmedServicesList, this.getYTitle(), Arrays.asList(servicesReferred, servicesReceived));
     }
 }

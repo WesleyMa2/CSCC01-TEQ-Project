@@ -6,17 +6,18 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import com.tdat.app.App;
 import com.tdat.gui.GenericPanel;
+import com.tdat.gui.reports.distribution.AddDistributionReportListener;
+import com.tdat.gui.reports.trend.AddTrendsReportListener;
+import com.tdat.report.chart.templates.TemplateRepository;
 
 /*
  * A view for the reports panel in MainWindow.
@@ -24,9 +25,9 @@ import com.tdat.gui.GenericPanel;
 @SuppressWarnings("serial")
 public class ReportsPanel extends GenericPanel {
 
-  private static JTextField tdatqlQuery = new JTextField();
+  public static JTextField tdatqlQuery = new JTextField();
 
-  protected static DefaultTableModel tableModel = new DefaultTableModel() {
+  public static DefaultTableModel tableModel = new DefaultTableModel() {
     @Override
     public boolean isCellEditable(int row, int column) {
       return false;
@@ -36,7 +37,8 @@ public class ReportsPanel extends GenericPanel {
   public static JTextField getTdatqlQuery() {
     return tdatqlQuery;
   }
-
+  
+  public static JComboBox<String[]> templatesDropdown = new JComboBox(TemplateRepository.listTemplateTitles());
   public ReportsPanel() {
     // Panel Title
     panelTitle = "Reports";
@@ -79,7 +81,7 @@ public class ReportsPanel extends GenericPanel {
     layoutConstraints.ipady = 20;
     this.add(currentReportsHTML, layoutConstraints);
 
-    String th[] = { "Id", "Title", "Type" };
+    String th[] = { "Id", "Title", "Graph", "Type" };
     JTable currentReportsTable = new JTable();
     tableModel.setDataVector(null, th);
     currentReportsTable.setModel(tableModel);
@@ -89,31 +91,36 @@ public class ReportsPanel extends GenericPanel {
     layoutConstraints.ipadx = 0;
     layoutConstraints.ipady = 0;
     this.add(scrollPane, layoutConstraints);
+    
+    // Drop down to add templates
+    layoutConstraints.gridy = 6;
+    this.add(templatesDropdown, layoutConstraints);
+    templatesDropdown.addActionListener(new AddTemplateListener());
 
     // Add button
     JButton addTrendsButton = new JButton("Add Trends Chart");
-    layoutConstraints.gridy = 6;
+    layoutConstraints.gridy = 7;
     layoutConstraints.insets = new Insets(10, 0, 0, 0);
     this.add(addTrendsButton, layoutConstraints);
     addTrendsButton.addActionListener(new AddTrendsReportListener());
 
     // Add button
     JButton addDistributionButton = new JButton("Add Distribution Chart");
-    layoutConstraints.gridy = 7;
+    layoutConstraints.gridy = 8;
     layoutConstraints.insets = new Insets(0, 0, 0, 0);
     this.add(addDistributionButton, layoutConstraints);
     addDistributionButton.addActionListener(new AddDistributionReportListener());
 
     // Remove button
     JButton removeButton = new JButton("Remove Chart");
-    layoutConstraints.gridy = 8;
+    layoutConstraints.gridy = 9;
     this.add(removeButton, layoutConstraints);
     removeButton.addActionListener(new RemoveReportListener(currentReportsTable));
 
     // Generate Button
     JButton generateButton = new JButton("Generate Report");
     layoutConstraints.insets = new Insets(20, 0, 0, 0);
-    layoutConstraints.gridy = 9;
+    layoutConstraints.gridy = 10;
     this.add(generateButton, layoutConstraints);
     generateButton.addActionListener(new GenerateReportListener());
 

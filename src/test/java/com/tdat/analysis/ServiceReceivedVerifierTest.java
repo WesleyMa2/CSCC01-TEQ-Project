@@ -1,4 +1,4 @@
-package com.tdat.data.analysis;
+package com.tdat.analysis;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -7,6 +7,8 @@ import com.tdat.data.ColumnNotFoundException;
 import com.tdat.data.MasterData;
 import com.tdat.data.MockData;
 import com.tdat.data.VisitData;
+import com.tdat.data.analysis.ServiceReceivedVerifier;
+
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.AfterAll;

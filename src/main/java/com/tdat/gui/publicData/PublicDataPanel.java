@@ -22,6 +22,8 @@ import com.tdat.data.MasterData;
 import com.tdat.data.PublicDataCache;
 import com.tdat.gui.GenericPanel;
 import com.tdat.gui.reports.RemoveReportListener;
+import com.tdat.report.chart.ChartScheme;
+import com.tdat.report.chart.PublicDataChartScheme;
 
 /*
  * A view for the reports panel in MainWindow.
@@ -55,7 +57,7 @@ public class PublicDataPanel extends GenericPanel {
 		layoutConstraints.anchor = GridBagConstraints.NORTHWEST;
 		this.add(headerHTML, layoutConstraints);
 
-		String th[] = {"Id", "Title"}; 
+    	String th[] = { "Id", "Title", "Graph", "Type"};
 		JTable currentPublicData = new JTable();
 		tableModel.setDataVector(null, th);
 		currentPublicData.setModel(tableModel);
@@ -86,10 +88,14 @@ public class PublicDataPanel extends GenericPanel {
 
 				List<String> keys = new ArrayList(PublicDataCache.CachedPublicData.keySet());
 				String key = keys.get(publicDataDropdown.getSelectedIndex());
+				ChartScheme chart = PublicDataCache.CachedPublicData.get(key);
+
 
 				String tr[] = new String[] {
 					Integer.toString(MasterData.publicDataId.incrementAndGet()),
-					key
+					key,
+					chart.getGraphType().getPrettyJsonCode(),
+					((PublicDataChartScheme) chart).getChartScheme()
 				};
 
 				model.addRow(tr);

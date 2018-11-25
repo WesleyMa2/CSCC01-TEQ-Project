@@ -41,7 +41,7 @@ app.post('/', function (req, res, next) {
         	// The ID of the current chart
         	chartId = "chart".concat((rIndex + 1).toString());
         	// The html of the current chart
-        	htmlReplacement += "<div class=\"col-md-6 p-3 border\"><canvas id=\"".concat(chartId,"\"></canvas></div>");
+        	htmlReplacement += "<div class=\"col-12 p-3 border\"><canvas id=\"".concat(chartId,"\"></canvas></div>");
         	// The javascript of the current chart
         	jsReplacement += "new Chart(document.getElementById(\"".concat(chartId, "\").getContext(\"2d\"), ").concat(JSON.stringify(config, 0, 4), ");");
         }

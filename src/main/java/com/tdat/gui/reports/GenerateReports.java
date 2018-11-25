@@ -8,17 +8,17 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.tdat.app.App;
-import com.tdat.report.ChartJS;
+import com.tdat.report.ChartJSRequest;
+import com.tdat.data.analysis.MasterDataStats;
 
 public class GenerateReports {
 
 	public GenerateReports() {
 		if(App.reportsList.size() > 0) {
-			// MODIFY THESE TO MATCH CORRECTLY
-			String json = "{\"generationTime\": \"" + ChartJS.getDate() + "\",";
-			json += "\"totalPeople\": \"" + "50" + "\",";
-			json += "\"totalVisits\": \"" + "90" + "\",";
-			json += "\"years\": \"" + "2018, 2016, 2015" + "\",";
+			String json = "{\"generationTime\": \"" + ChartJSRequest.getDate() + "\",";
+			json += "\"totalPeople\": \"" + MasterDataStats.getPeopleCount() + "\",";
+			json += "\"totalVisits\": \"" + MasterDataStats.getTotalVisits() + "\",";
+			json += "\"years\": \"" + String.join(", ", MasterDataStats.getAllYearsAsString()) + "\",";
 			json += "\"generateThese\":[";
 			
 			for(int i = 0; i < App.reportsList.size(); i++) {
@@ -29,7 +29,7 @@ public class GenerateReports {
 			// Exclude the last comma
 			json = json.substring(0, json.length()-1);
 			json += "]}";
-			String fileLocation = ChartJS.create(json);
+			String fileLocation = ChartJSRequest.create(json);
 			int response = JOptionPane.showConfirmDialog(null, "<html><small>Report generated at " + fileLocation + ". "
 					+ "</small><br/><b>Do you want to view it in your browser?</b></html>", 
 					"Report Generated.", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);

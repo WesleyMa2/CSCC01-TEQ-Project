@@ -1,9 +1,11 @@
-package com.tdat.data.analysis;
+package com.tdat.analysis;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.tdat.data.MasterData;
 import com.tdat.data.MockData;
+import com.tdat.data.analysis.MasterDataStats;
+
 import java.time.Year;
 import java.util.Arrays;
 import java.util.HashSet;
