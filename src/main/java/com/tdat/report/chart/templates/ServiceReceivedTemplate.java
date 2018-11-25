@@ -22,7 +22,9 @@ import com.tdat.data.analysis.ServiceReceivedVerifier;
 import com.tdat.gui.reports.ReportsPanel;
 import com.tdat.report.chart.ChartScheme;
 import com.tdat.report.chart.ChartType;
+import com.tdat.report.chart.DistributionChartScheme;
 import com.tdat.report.chart.ServiceReceivedChartScheme;
+import com.tdat.report.chart.TrendChartScheme;
 
 public class ServiceReceivedTemplate implements Template {
 
@@ -82,15 +84,7 @@ public class ServiceReceivedTemplate implements Template {
             public void actionPerformed(ActionEvent e) {
             	ChartType type = ChartType.getChartTypeFromString(
             			styleOfGraphsDropdown.getSelectedItem().toString());
-            	ChartScheme chart = addReports(type);
-
-            	String[] row = {
-            			Integer.toString(MasterData.reportId.incrementAndGet()),
-            			chart.getMainTitle(),
-            			chart.getGraphType().getJsonCode()
-            	};
-
-                ReportsPanel.tableModel.addRow(row);
+            	addReports(type);
             	frame.setVisible(false);
             }
         });
@@ -101,13 +95,45 @@ public class ServiceReceivedTemplate implements Template {
         frame.setVisible(true);
 	}
 	
-	private ChartScheme addReports(ChartType graphType) {
-		ChartScheme scheme = new ServiceReceivedChartScheme(graphType);
-		scheme.setMainTitle(mainTitle);
-		scheme.setXTitle(xAxis);
-		scheme.setYTitle(yAxis);
-		App.reportsList.add(scheme);
-		return scheme;
+	private void addReports(ChartType graphType) {
+		// Important chart scheme for this template, main purpose
+		ChartScheme scheme1 = new ServiceReceivedChartScheme(graphType);
+		scheme1.setMainTitle(mainTitle);
+		scheme1.setXTitle(xAxis);
+		scheme1.setYTitle(yAxis);
+		App.reportsList.add(scheme1);
+    	String[] row1 = {
+    			Integer.toString(MasterData.reportId.incrementAndGet()),
+    			mainTitle,
+    			scheme1.getGraphType().getJsonCode()
+    	};
+        ReportsPanel.tableModel.addRow(row1);
+    	
+        // Added this to demonstrate that templates can involve multiple chart schemes
+		ChartScheme scheme2 = new DistributionChartScheme("Template", ChartType.BAR);
+		scheme2.setMainTitle("Distribution of Types of Services");
+		scheme2.setXTitle("Services");
+		scheme2.setYTitle("Number of Services");
+		App.reportsList.add(scheme2);
+    	String[] row2 = {
+    			Integer.toString(MasterData.reportId.incrementAndGet()),
+    			"Distribution of Types of Services",
+    			scheme2.getGraphType().getJsonCode()
+    	};
+        ReportsPanel.tableModel.addRow(row2);
+        
+		ChartScheme scheme3 = new TrendChartScheme("Template", ChartType.LINE);
+		scheme3.setMainTitle("Trend of Types of Services");
+		scheme3.setXTitle("Years");
+		scheme3.setYTitle("Number of Services");
+		App.reportsList.add(scheme3);
+    	String[] row3 = {
+    			Integer.toString(MasterData.reportId.incrementAndGet()),
+    			"Trend of Types of Services",
+    			scheme3.getGraphType().getJsonCode()
+    	};
+        ReportsPanel.tableModel.addRow(row3);
+        
 	}
 
 	public boolean usable() {
