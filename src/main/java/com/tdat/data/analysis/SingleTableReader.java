@@ -3,6 +3,8 @@ package com.tdat.data.analysis;
 import com.tdat.data.ColumnNotFoundException;
 import com.tdat.data.TableData;
 
+import com.tdat.data.VisitData;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +25,7 @@ public class SingleTableReader {
      */
     public Map<String, Integer> columnEntriesCount(String column) throws ColumnNotFoundException {
         Map<String, Integer> columnEntriesData = new HashMap<>();
-      
+
         if (!tableData.getColumnList().contains(column)) {
             //throw new ColumnNotFoundException(column);
             return columnEntriesData;
@@ -47,7 +49,7 @@ public class SingleTableReader {
      */
     public Map<String,Map<String, Integer>> multiColumnEntriesCount(List<String> columnsList) throws ColumnNotFoundException {
         Map<String, Map<String, Integer>> result = new HashMap<>();
-        
+
         for (String column: columnsList) {
             result.put(column, columnEntriesCount(column));
         }
@@ -61,5 +63,21 @@ public class SingleTableReader {
 
     public int getNumColumns(){
         return tableData.getColumnList().size();
+    }
+
+    /**
+     * returns a list of visit data where a specific column contains a specific entry
+     */
+    public List<VisitData> selectWhereColEquals(String column, String entry)
+        throws ColumnNotFoundException {
+        List<VisitData> result = new ArrayList<>();
+        for (VisitData visit : tableData.getVisitsData()) {
+            if (!visit.getData().keySet().contains(column)) {
+                throw new ColumnNotFoundException(column);
+            }else if (visit.getColumnData(column).equals(entry)) {
+                result.add(visit);
+            }
+        }
+        return result;
     }
 }
