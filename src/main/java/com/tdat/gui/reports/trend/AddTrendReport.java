@@ -1,4 +1,4 @@
-package com.tdat.gui.reports;
+package com.tdat.gui.reports.trend;
 
 import com.tdat.app.App;
 import com.tdat.gui.reports.AddChartWindow;
