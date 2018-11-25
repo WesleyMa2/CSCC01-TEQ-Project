@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -57,6 +58,8 @@ public ConflictWindow(){
 	            JOptionPane.YES_NO_OPTION,
 	            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
 	        	App.selectedFile = null;
+	        	ConflictWindow.manualConflictsArrayList.clear();
+	        	ConflictWindow.automaticConflictsArrayList.clear();
 	        	System.out.println("\nFile was not uploaded because manual conflicts were left unresolved");
 	        	f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
