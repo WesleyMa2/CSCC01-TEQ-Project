@@ -41,19 +41,17 @@ root
   |                         └── tdat
   |                                └── app
   |                                └── data
-  |                                     └── analysis
   |                                └── feeder
   |                                └── gui
   |                                └── report
-  |                                     └── chart
   |            └── resources 
   |     └── test
   |            └── java
   |                 └── com
   |                       └── tdat
   |                              └── data
-  |                                    └── analysis
   |                              └── feeder
+  |                              └── query.handler
   |            └── resources 
   |
   └── README.md
@@ -86,6 +84,7 @@ This change log is in order from the top for the latest changes in the master br
 
 Date | Change
 --- | ---
+2018-11-25 | <ul><li>Added deliverable 5 content</li><li>Added template feature, and new graphs to address TEQ questions</li><li>Cleaned up code base</li></ul>
 2018-11-12 | <ul><li>Added deliverable 4 content</li><li>Merged SQL, conflict check, public data, and graph creation branches</li></ul>
 2018-10-29 | <ul><li>Pushed product and sprint backlogs for deliverable 3</li><li>Added the TableDataCreator class (and its tests) which customizes a TableData object with provided data as well as constraints about columns and years.</li></ul>
 2018-10-28 | <ul><li>Created class to provide basic info on a given TableData object, along with its unit tests</li><li>Added jUnit to dependancy list</li></ul>
