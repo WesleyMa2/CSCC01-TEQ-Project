@@ -1,4 +1,4 @@
-package com.tdat.gui.publicData;
+package com.tdat.report.chart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +51,7 @@ public class PublicDataChartScheme extends ChartScheme {
      */
     public String toJson(){
 
-        return JsonConverter.serializeObject(this.getGraphType().getJsonCode(), this.getMainTitle(), 
-        		this.getxTitle(), this.xAxisLabels, this.getyTitle(), this.dataSet);
+        return JsonConverter.serializeObject(this.getGraphType().getJsonCode(), this.getMainTitle(), this.getXTitle(), this.xAxisLabels, this.getYTitle(), this.dataSet);
 
     }
 }
