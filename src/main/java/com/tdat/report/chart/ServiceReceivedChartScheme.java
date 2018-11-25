@@ -36,8 +36,8 @@ public class ServiceReceivedChartScheme extends ChartScheme {
             trimmedServicesList.add(service.replace(" Referrals", ""));
         }
 
-        this.getDataSet().addAll(Arrays.asList(servicesReferred, servicesReceived));
-        this.getXAxisLabels().addAll(trimmedServicesList);
+        this.dataSet = Arrays.asList(servicesReferred, servicesReceived);
+        this.xAxisLabels = trimmedServicesList;
 
         return JsonConverter.serializeObject(this);
     }

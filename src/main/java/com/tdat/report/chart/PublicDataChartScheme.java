@@ -20,6 +20,7 @@ public class PublicDataChartScheme extends ChartScheme {
 
     public PublicDataChartScheme(JSONObject json) {
         super(ChartType.getChartTypeFromString(json.getString("graph")));
+        clear();
 
         this.setChartScheme(json.getString("type"));
         this.setMainTitle(json.getString("mainTitle"));

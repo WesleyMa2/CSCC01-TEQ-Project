@@ -23,6 +23,7 @@ public class DistributionChartScheme extends ChartScheme {
     }
 
     public String toJson() {
+        clear();
 
         // Iterate through the data for each year in MasterData
         for (Year year : MasterData.getServiceProvidedData().keySet()) {

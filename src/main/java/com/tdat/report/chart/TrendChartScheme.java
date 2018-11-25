@@ -6,9 +6,9 @@ import com.tdat.data.TableData;
 import com.tdat.data.analysis.MasterDataStats;
 import com.tdat.data.analysis.SingleTableReader;
 import com.tdat.report.JsonConverter;
+
 import java.time.Year;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,16 +45,12 @@ public class TrendChartScheme extends ChartScheme {
     }
 
     public String toJson() {
-        // Get all years in order
         List<String> allYears = MasterDataStats.getAllYearsAsString();
+        clear();
 
-        // Iterate through the data for each year in MasterData
         for (String year : allYears) {
-
-            // Append the axis label for the chart
             this.getXAxisLabels().add(year);
 
-            // Get the map of entry to entry count for the current year
             TableData dataForCurrentYear = MasterData.getYearData(Year.of(Integer.parseInt(year)));
             SingleTableReader tableReader = new SingleTableReader(dataForCurrentYear);
             Map<String, Integer> entryCountForCurrentYear;
@@ -64,22 +60,13 @@ public class TrendChartScheme extends ChartScheme {
                 entryCountForCurrentYear = new HashMap<>();
             }
 
-            // Iterate through all entries in the current year
             for (String newEntry : entryCountForCurrentYear.keySet()) {
 
-                // Get the number of the current entry
-                int valueForCurrYear;
-                if (entryCountForCurrentYear.containsKey(newEntry)) {
-                    valueForCurrYear = entryCountForCurrentYear.get(newEntry);
-                } else {
-                    valueForCurrYear = 0;
-                }
-
-                // Add this value to the list of ChartDataSets
+                int valueForCurrYear = entryCountForCurrentYear.getOrDefault(newEntry, 0);
                 int indexOfExistingChartData = containsEntry(this.getDataSet(), newEntry);
                 List<Integer> newListOfData;
+
                 if (indexOfExistingChartData == -1) {
-                    // Create a new ChartDataSet if this entry hasn't been seen before
                     newListOfData = new ArrayList<>();
                     newListOfData.add(valueForCurrYear);
                     this.getDataSet().add(new ChartDataSet(newEntry, newListOfData));
