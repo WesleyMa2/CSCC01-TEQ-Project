@@ -33,7 +33,6 @@ class UploaderTest {
         }
         TableData data = MasterData.getYearData(Year.of(2018));
         assertEquals(new HashSet<>(Arrays.asList("children","AA", "AB", "AC", "AD", "Template")), new HashSet<>(data.getColumnList()));
-        assertEquals(new HashSet<>(Arrays.asList("1", "2", App.EMPTY)), new HashSet<>(data.getColumnEntries("AA")));
     }
 
     @Test
