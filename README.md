@@ -34,6 +34,8 @@ root
   |                                     └── analysis
   |                                └── feeder
   |                                └── gui
+  |                                     └── publicData
+  |                                     └── reports
   |                                └── report
   |                                     └── chart
   |            └── resources 
