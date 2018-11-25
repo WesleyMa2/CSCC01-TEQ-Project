@@ -31,7 +31,8 @@ public class ConflictIdentifier {
 		if(currentString.trim() != null && currentString != App.EMPTY){
 			numAutomaticallyResolvedConflicts++;
 			//add to list of automatically resolved conflict messages
-			ConflictWindow.automaticConflictsArrayList.add(this.generateAutomaticallyResolvedConflictMessage(App.selectedFile, "TrailingWhitespaceConflict", currentString, currentString.trim()));
+			ConflictWindow.automaticConflictsArrayList.add(
+					this.generateAutomaticallyResolvedConflictMessage(App.selectedFile, "TrailingWhitespaceConflict", currentString, currentString.trim()));
 			currentMap.replace(currentMap.get(currentString), currentString.trim());
 		}
 	}
@@ -49,7 +50,7 @@ public class ConflictIdentifier {
 		HashMap<String, Object> typeReferenceDict = new HashMap<String, Object>();
 		for(String columnName: potentialUpload.get(0).keySet()){
 			//populate the type reference dictionary declared above
-			if(this.isNumeric(potentialUpload.get(0).get(columnName))){
+			if(isNumeric(potentialUpload.get(0).get(columnName))){
 				typeReferenceDict.put(columnName, Integer.class.getName());
 			} else {
 				typeReferenceDict.put(columnName, potentialUpload.get(0).get(columnName).getClass().getName());
@@ -68,10 +69,6 @@ public class ConflictIdentifier {
 			}
 		}
 
-	}
-	
-	public void checkForVaryingInfo(List<Map<String, String>> potentialUpload){
-		//
 	}
 	
 	public static boolean isNumeric(String columnName){  
