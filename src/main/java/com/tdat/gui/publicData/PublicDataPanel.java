@@ -23,6 +23,7 @@ import com.tdat.data.PublicDataCache;
 import com.tdat.gui.GenericPanel;
 import com.tdat.gui.reports.RemoveReportListener;
 import com.tdat.report.chart.ChartScheme;
+import com.tdat.report.chart.PublicDataChartScheme;
 
 /*
  * A view for the reports panel in MainWindow.
@@ -30,7 +31,6 @@ import com.tdat.report.chart.ChartScheme;
 @SuppressWarnings("serial")
 public class PublicDataPanel extends GenericPanel {
 	
-	protected static final String PUBLIC_DATA_TYPE = "Trend";
 	protected static DefaultTableModel tableModel = new DefaultTableModel() {
 		@Override
 	    public boolean isCellEditable(int row, int column) {
@@ -95,7 +95,7 @@ public class PublicDataPanel extends GenericPanel {
 					Integer.toString(MasterData.publicDataId.incrementAndGet()),
 					key,
 					chart.getGraphType().getPrettyJsonCode(),
-					PUBLIC_DATA_TYPE
+					((PublicDataChartScheme) chart).getChartScheme()
 				};
 
 				model.addRow(tr);

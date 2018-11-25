@@ -1,5 +1,6 @@
 {
-  "type": "bar",
+  "graph": "bar",
+  "type": "trend",
   "mainTitle": "Knowledge of Official Languages",
   "xAxisTitle": "Languages",
   "xAxisLabels": ["English", "French", "English and French", "Neither English nor French"],

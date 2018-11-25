@@ -21,7 +21,7 @@ public enum ChartType {
   }
 
   public String getPrettyJsonCode() {
-    String s1 = jsonCode.substring(0, 1).toUpperCase();
-    return s1 + jsonCode.substring(1);
+    String prefix = jsonCode.substring(0, 1).toUpperCase();
+    return prefix + jsonCode.substring(1);
   }
 }

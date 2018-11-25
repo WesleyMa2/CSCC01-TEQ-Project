@@ -16,9 +16,12 @@ import org.json.JSONObject;
  */
 public class PublicDataChartScheme extends ChartScheme {
 
-    public PublicDataChartScheme(JSONObject json) {
-        super(ChartType.getChartTypeFromString(json.getString("type")));
+    private String chartScheme;
 
+    public PublicDataChartScheme(JSONObject json) {
+        super(ChartType.getChartTypeFromString(json.getString("graph")));
+
+        this.setChartScheme(json.getString("type"));
         this.setMainTitle(json.getString("mainTitle"));
         this.setXTitle(json.getString("xAxisTitle"));
         this.setYTitle(json.getString("yAxisTitle"));
@@ -40,13 +43,21 @@ public class PublicDataChartScheme extends ChartScheme {
         }
     }
 
+    public String getChartScheme() {
+        return this.chartScheme;
+    }
+
+    public void setChartScheme(String chartScheme) {
+        String prefix = chartScheme.substring(0, 1).toUpperCase();
+        this.chartScheme = prefix + chartScheme.substring(1);
+    }
+
     /**
      * A method to return a json rep of the graph to be generated
+     * 
      * @return
      */
     public String toJson(){
-
         return JsonConverter.serializeObject(this);
-
     }
 }
