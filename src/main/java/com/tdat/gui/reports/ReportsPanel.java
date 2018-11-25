@@ -82,8 +82,8 @@ public class ReportsPanel extends GenericPanel {
     submitQuery.addActionListener(new TDATQLListener());
 
     // Reports to be generated list section of the panel
-    JLabel currentReportsHTML = new JLabel("<html><br/><h3 style='margin:0'>Reports to be Generated</h3><small>"
-        + "Below, you can see a list of reports to be generated.</small></html>");
+    JLabel currentReportsHTML = new JLabel("<html><br/><h3 style='margin:0'>Charts to be added</h3><small>"
+        + "Below, you can see a list of charts to be added in the report.</small></html>");
     layoutConstraints.gridy = 4;
     layoutConstraints.ipady = 20;
     this.add(currentReportsHTML, layoutConstraints);
@@ -105,27 +105,27 @@ public class ReportsPanel extends GenericPanel {
     templatesDropdown.addActionListener(new AddTemplateListener());
 
     // Add button
-    JButton addTrendsButton = new JButton("Add Trends Chart Report");
+    JButton addTrendsButton = new JButton("Add Trends Chart");
     layoutConstraints.gridy = 7;
     layoutConstraints.insets = new Insets(10, 0, 0, 0);
     this.add(addTrendsButton, layoutConstraints);
     addTrendsButton.addActionListener(new AddTrendsReportListener());
 
     // Add button
-    JButton addDistributionButton = new JButton("Add Distribution Chart Report");
+    JButton addDistributionButton = new JButton("Add Distribution Chart");
     layoutConstraints.gridy = 8;
     layoutConstraints.insets = new Insets(0, 0, 0, 0);
     this.add(addDistributionButton, layoutConstraints);
     addDistributionButton.addActionListener(new AddDistributionReportListener());
 
     // Remove button
-    JButton removeButton = new JButton("Remove Report");
+    JButton removeButton = new JButton("Remove Chart");
     layoutConstraints.gridy = 9;
     this.add(removeButton, layoutConstraints);
     removeButton.addActionListener(new RemoveReportListener(currentReportsTable));
 
     // Generate Button
-    JButton generateButton = new JButton("Generate Report(s)");
+    JButton generateButton = new JButton("Generate Report");
     layoutConstraints.insets = new Insets(20, 0, 0, 0);
     layoutConstraints.gridy = 10;
     this.add(generateButton, layoutConstraints);

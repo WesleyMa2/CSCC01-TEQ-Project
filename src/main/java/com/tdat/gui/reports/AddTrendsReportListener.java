@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class AddTrendsReportListener implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
-		AddChartWindow.typeOfChartData = "Trend";
+		AddChartWindow.setTypeOfChartData("Trend");
 		new AddChartWindow();
 	}
 

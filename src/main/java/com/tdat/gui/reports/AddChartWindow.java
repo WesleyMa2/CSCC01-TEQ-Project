@@ -29,7 +29,11 @@ import com.tdat.report.chart.DistributionChartScheme;
 public class AddChartWindow {
 
     private final JFrame frame;
-    public static String typeOfChartData;
+    private static String typeOfChartData;
+
+    public static void setTypeOfChartData(String type){
+        typeOfChartData = type;
+    }
 
     public AddChartWindow() {
         frame = new JFrame(App.appTitle + ": Add " + typeOfChartData + " Chart");
@@ -44,7 +48,7 @@ public class AddChartWindow {
 
         // Add section title
         JLabel sectionTitleLabel = new JLabel(
-            "<html><h2 style='margin:0'>Add \"+ typeOfChartData +\" Chart</h2>"
+            "<html><h2 style='margin:0'>Add "+ typeOfChartData +" Chart</h2>"
                 + "<small>Enter the details of the new chart below.</small></html>");
         layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
         layoutConstraints.gridx = 0;
