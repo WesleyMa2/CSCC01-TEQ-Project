@@ -16,7 +16,6 @@ public class GenerateReports {
 
 	public GenerateReports() {
 		if(App.reportsList.size() > 0) {
-			// MODIFY THESE TO MATCH CORRECTLY
 			String json = "{\"generationTime\": \"" + ChartJS.getDate() + "\",";
 			json += "\"totalPeople\": \"" + MasterDataStats.getPeopleCount() + "\",";
 			json += "\"totalVisits\": \"" + MasterDataStats.getTotalVisits() + "\",";
