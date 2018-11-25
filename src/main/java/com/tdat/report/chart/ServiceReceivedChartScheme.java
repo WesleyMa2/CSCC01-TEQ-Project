@@ -37,9 +37,8 @@ public class ServiceReceivedChartScheme extends ChartScheme {
         }
 
         this.getDataSet().addAll(Arrays.asList(servicesReferred, servicesReceived));
+        this.getXAxisLabels().addAll(trimmedServicesList);
 
         return JsonConverter.serializeObject(this);
-        // return JsonConverter.serializeObject(this.getGraphType().getJsonCode(), this.getMainTitle(), this.getXTitle(),
-        //         trimmedServicesList, this.getYTitle(), Arrays.asList(servicesReferred, servicesReceived));
     }
 }
