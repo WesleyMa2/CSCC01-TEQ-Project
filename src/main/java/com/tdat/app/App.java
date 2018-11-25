@@ -12,6 +12,8 @@ import com.tdat.data.PublicDataCache;
 import com.tdat.gui.MainWindow;
 import com.tdat.query.CommandHandler;
 import com.tdat.report.chart.ChartScheme;
+import com.tdat.report.chart.templates.ServiceReceivedTemplate;
+import com.tdat.report.chart.templates.TemplateRepository;
 
 public class App {
 	public static final String EMPTY = "N/A";
@@ -21,7 +23,6 @@ public class App {
 	public static HashMap<String, File> fileUploadDict = new HashMap<String, File>();
 	public static ArrayList<ChartScheme> reportsList = new ArrayList<ChartScheme>();
 	public static String appTitle = "TEQ data Aggregation Tool (TDAT)";
-
 
 	public static void main(String[] args) {
 		CommandHandler.setupHandlers();
@@ -40,6 +41,8 @@ public class App {
 		}
 
 		PublicDataCache.init();
+		
+		TemplateRepository.add(new ServiceReceivedTemplate());
 
 		new MainWindow();
 	}
