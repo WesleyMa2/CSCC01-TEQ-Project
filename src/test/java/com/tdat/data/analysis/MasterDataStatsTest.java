@@ -2,11 +2,13 @@ package com.tdat.data.analysis;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.tdat.data.MasterData;
 import com.tdat.data.MockData;
 import java.time.Year;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -50,5 +52,10 @@ public class MasterDataStatsTest {
         int expected = 4;
         int actual = MasterDataStats.getTotalVisits();
         assertEquals(expected, actual);
+    }
+
+    @AfterAll
+    public static void cleanUp(){
+        MasterData.clear();
     }
 }

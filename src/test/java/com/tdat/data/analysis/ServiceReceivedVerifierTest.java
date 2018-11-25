@@ -9,6 +9,7 @@ import com.tdat.data.MockData;
 import com.tdat.data.VisitData;
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -41,5 +42,10 @@ class ServiceReceivedVerifierTest {
         VisitData person = MasterData.initialVisitData.getVisitsData().get(0);
         Map<String, Boolean> actual = ServiceReceivedVerifier.checkIndivServicesReceived(person);
         assertTrue(actual.get("Financial Referrals"));
+    }
+
+    @AfterAll
+    public static void cleanUp(){
+        MasterData.clear();
     }
 }
