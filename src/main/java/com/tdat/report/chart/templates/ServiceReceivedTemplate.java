@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.tdat.app.App;
 import com.tdat.data.MasterData;
+import com.tdat.data.analysis.ServiceReceivedVerifier;
 import com.tdat.gui.reports.ReportsPanel;
 import com.tdat.report.chart.ChartScheme;
 import com.tdat.report.chart.ChartType;
@@ -107,5 +108,15 @@ public class ServiceReceivedTemplate implements Template {
 		scheme.setYTitle(yAxis);
 		App.reportsList.add(scheme);
 		return scheme;
+	}
+
+	public boolean usable() {
+		Boolean usable = true;
+		
+		if(ServiceReceivedVerifier.getReferralsCount().size() == 0) {
+			usable = false;
+		}
+		
+		return usable;
 	}
 }
