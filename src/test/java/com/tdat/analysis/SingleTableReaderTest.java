@@ -1,10 +1,12 @@
 package com.tdat.analysis;
 
 import com.tdat.data.ColumnNotFoundException;
+import com.tdat.data.MasterData;
 import com.tdat.data.TableData;
 import com.tdat.data.VisitData;
 import com.tdat.data.analysis.SingleTableReader;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -62,5 +64,10 @@ class SingleTableReaderTest {
     @DisplayName("Test getting number of columns in a table")
     void getNumColumns() {
         assertEquals(2, tableReader.getNumColumns());
+    }
+    
+    @AfterAll
+    static void cleanUp(){
+        MasterData.clear();
     }
 }

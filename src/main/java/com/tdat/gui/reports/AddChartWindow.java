@@ -141,7 +141,6 @@ public abstract class AddChartWindow {
         frame.setVisible(true);
     }
 
-    public abstract ChartScheme addReport(String reportTitle, String xAxis, String yAxis, String column,
-            ChartType chartType);
+    public abstract ChartScheme addReport(String reportTitle, String xAxis, String yAxis, String column, ChartType chartType);
 
 }

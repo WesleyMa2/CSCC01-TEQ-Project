@@ -2,9 +2,11 @@ package com.tdat.query.handler;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.tdat.data.MasterData;
 import com.tdat.query.InvalidQueryException;
 import com.tdat.report.chart.ChartType;
 import java.util.Arrays;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -47,5 +49,10 @@ public class ChartHandlerTest {
     assertEquals("children", mock.getTitle(args));
     assertEquals("num", mock.getXTitle(args));
     assertEquals("value", mock.getYTitle(args));
+  }
+
+  @AfterAll
+  static void cleanUp(){
+    MasterData.clear();
   }
 }

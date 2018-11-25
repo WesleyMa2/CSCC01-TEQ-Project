@@ -40,14 +40,14 @@ public class PublicDataPanel extends GenericPanel {
 	
 	public PublicDataPanel() {
 		// Panel Title
-		panelTitle = "Public Data";
+		panelTitle = "Public data";
 		
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.white);
 		GridBagConstraints layoutConstraints = new GridBagConstraints();
 		
 		// Header section of the panel
-		JLabel headerHTML = new JLabel("<html><h2 style='margin:0'>Public Data</h2>"
+		JLabel headerHTML = new JLabel("<html><h2 style='margin:0'>Public data</h2>"
 				+ "<small>Attach public data where applicable to your charts.</small></html>");
 		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
 		layoutConstraints.gridx = 0;

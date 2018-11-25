@@ -24,16 +24,13 @@ public class MasterData {
     return serviceProvidedData;
   }
 
-  public static TableData getInitialVisitData() {
-    return initialVisitData;
+  public static TableData getYearData(Year year) {
+    return serviceProvidedData.get(year);
   }
 
   public static void clear() {
     serviceProvidedData.clear();
-  }
-
-  public static TableData getYearData(Year year) {
-    return serviceProvidedData.get(year);
+    initialVisitData = new TableData();
   }
 
   public static void printServiceProvidedData(Year year) {
@@ -91,10 +88,10 @@ public class MasterData {
   /**
    * Given a list of rows, adds that on to the existing table of initialVisitData
    *
-   * @param allvisits the list of rows
+   * @param allVisits the list of rows
    */
-  public static void setInitialVisitData(List<Map<String, String>> allvisits) {
-    for (Map<String, String> visitKeyValue : allvisits) {
+  public static void setInitialVisitData(List<Map<String, String>> allVisits) {
+    for (Map<String, String> visitKeyValue : allVisits) {
       VisitData visitToAdd = new VisitData();
       visitToAdd.setData(visitKeyValue);
       initialVisitData.addVisitData(visitToAdd);
@@ -108,14 +105,9 @@ public class MasterData {
    * @return a list of all columns
    */
   public static List<String> getAllColumns() {
-    // Set empty list of all columns in serviceProvidedData
     List<String> allColumns = new ArrayList<String>();
-
-    // Loop through each table
     for (TableData table : serviceProvidedData.values()) {
-      // Get the list of columns in the current table
       List<String> columnsInTable = table.getColumnList();
-      // Loop through each column in the current table
       for (int eachColumn = 0; eachColumn < columnsInTable.size(); eachColumn++) {
         // If the current column is not in the list of all columns, then add it
         if (!allColumns.contains(columnsInTable.get(eachColumn))) {

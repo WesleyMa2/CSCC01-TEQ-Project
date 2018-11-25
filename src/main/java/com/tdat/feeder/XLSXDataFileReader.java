@@ -48,7 +48,6 @@ public class XLSXDataFileReader implements DataFileReader {
         // https://www.callicoder.com/java-read-excel-file-apache-poi/
 
         FileInputStream xlsxFile = new FileInputStream(file);
-        // Gets the workbook of the xlsx file
         XSSFWorkbook workbook = new XSSFWorkbook(xlsxFile);
 
         // Gets the first sheet of the workbook

@@ -3,6 +3,7 @@ package com.tdat.report.chart;
 import com.tdat.data.ColumnNotFoundException;
 import com.tdat.data.MasterData;
 import com.tdat.data.TableData;
+import com.tdat.data.analysis.MasterDataStats;
 import com.tdat.data.analysis.SingleTableReader;
 import com.tdat.report.JsonConverter;
 import java.time.Year;
@@ -45,15 +46,16 @@ public class TrendChartScheme extends ChartScheme {
 
     public String toJson() {
         // Get all years in order
-        List<Year> allYears = new ArrayList<>();
-        allYears.addAll(MasterData.getServiceProvidedData().keySet());
-        Collections.sort(allYears);
+        List<String> allYears = MasterDataStats.getAllYearsAsString();
 
         // Iterate through the data for each year in MasterData
-        for (Year year : allYears) {
+        for (String year : allYears) {
+
+            // Append the axis label for the chart
+            this.getXAxisLabels().add(year);
 
             // Get the map of entry to entry count for the current year
-            TableData dataForCurrentYear = MasterData.getYearData(year);
+            TableData dataForCurrentYear = MasterData.getYearData(Year.of(Integer.parseInt(year)));
             SingleTableReader tableReader = new SingleTableReader(dataForCurrentYear);
             Map<String, Integer> entryCountForCurrentYear;
             try {
@@ -87,11 +89,6 @@ public class TrendChartScheme extends ChartScheme {
                     this.getDataSet().set(indexOfExistingChartData, newDataSet);
                 }
             }
-        }
-
-        // Create a new list of Years but as Strings
-        for (Year curr : allYears) {
-            this.getXAxisLabels().add(curr.toString());
         }
 
         return JsonConverter.serializeObject(this);
