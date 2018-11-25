@@ -1,8 +1,10 @@
-package com.tdat.data.analysis;
+package com.tdat.analysis;
 
 import com.tdat.data.ColumnNotFoundException;
 import com.tdat.data.TableData;
 import com.tdat.data.VisitData;
+import com.tdat.data.analysis.SingleTableReader;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +12,14 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+//How tableData looks
+// +------+------+
+// | Col1 | Col2 |
+// +------+------+
+// |   11 |   21 |  (visit1)
+// |   11 |   22 |  (visit2)
+// +------+------+
 
 class SingleTableReaderTest {
     private static TableData tableData = new TableData();
@@ -26,13 +36,6 @@ class SingleTableReaderTest {
         tableData.addVisitData(visit1);
         tableData.addVisitData(visit2);
         tableReader = new SingleTableReader(tableData);
-        //How tableData looks
-        // +------+------+
-        // | Col1 | Col2 |
-        // +------+------+
-        // |   11 |   21 |  (visit1)
-        // |   11 |   22 |  (visit2)
-        // +------+------+
     }
 
     @Test

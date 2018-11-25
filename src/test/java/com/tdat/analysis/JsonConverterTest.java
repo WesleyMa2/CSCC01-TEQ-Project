@@ -1,4 +1,4 @@
-package com.tdat.data.analysis;
+package com.tdat.analysis;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
