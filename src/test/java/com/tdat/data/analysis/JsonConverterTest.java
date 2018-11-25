@@ -3,6 +3,7 @@ package com.tdat.data.analysis;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import com.tdat.data.MasterData;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +12,7 @@ import com.tdat.report.chart.ChartDataSet;
 import com.tdat.data.ColumnNotFoundException;
 import com.tdat.report.JsonConverter;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -46,5 +48,10 @@ class JsonConverterTest {
         assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "main title", "x axis title", Arrays.asList("x axis label"), null, null); });
 
         assertThrows(NullPointerException.class, () -> { JsonConverter.serializeObject("a type", "main title", "x axis title", Arrays.asList("x axis label"), "y axis title", null); });
+    }
+
+    @AfterAll
+    static void cleanUp(){
+        MasterData.clear();
     }
 }

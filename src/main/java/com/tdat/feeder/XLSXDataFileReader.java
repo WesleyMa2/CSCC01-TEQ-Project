@@ -48,14 +48,10 @@ public class XLSXDataFileReader implements DataFileReader {
         // https://www.callicoder.com/java-read-excel-file-apache-poi/
 
         FileInputStream xlsxFile = new FileInputStream(file);
-        // Gets the workbook of the xlsx file
         XSSFWorkbook workbook = new XSSFWorkbook(xlsxFile);
 
-//        for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
         for (int i = 0; i < 1; i++) {
-            // Gets the first sheet of the workbook
             XSSFSheet sheet = workbook.getSheetAt(0);
-            // Gets iterator to all the rows of the sheet
             Iterator<Row> rowIterator = sheet.rowIterator();
 
             // Get first row to get template name
@@ -69,9 +65,9 @@ public class XLSXDataFileReader implements DataFileReader {
             System.out.println("[Template]: " + iCareTemplate);///
 
             // Gather third row information and put it in a list
-
             rowIterator.next();
             Row firstRow = rowIterator.next();
+
             // Loops through each cell in third row
             Iterator<Cell> cellIteratorForFirst = firstRow.cellIterator();
             while (cellIteratorForFirst.hasNext()) {
@@ -80,31 +76,21 @@ public class XLSXDataFileReader implements DataFileReader {
                 keys.add(cell.getStringCellValue());
             }
 
-            // Traverse each row of the XLSX file
             while (rowIterator.hasNext()) {
-                // New HashMap
                 HashMap<String, String> currentVisit = new HashMap<String, String>();
 
-                // Put the template name into the cell;
                 currentVisit.put("Template", iCareTemplate);
 
-                // New counter
                 int counter = 0;
-
-                // Gets the row object for this loop
                 Row row = rowIterator.next();
 
                 if (isRowEmpty(row)) {
                     break;
                 }
 
-                // Loops through each cell in this row
                 Iterator<Cell> cellIterator = row.cellIterator();
-                //while (cellIterator.hasNext()) {
                 for (int cellNum = 0; cellNum < row.getLastCellNum(); cellNum++) {
 
-                    // Gets the cell object for this cell
-                    //Cell cell = cellIterator.next();;
                     Cell cell = row.getCell(cellNum);
 
                     // Puts the current cell information into its row HashMap
@@ -112,38 +98,18 @@ public class XLSXDataFileReader implements DataFileReader {
                         if (cell.getCellType() == CellType.STRING) {
                             currentVisit.put(keys.get(counter), cell.getStringCellValue());
                         } else if (cell.getCellType() == CellType.NUMERIC) {
-                            // Assuming all numerical values are integers
                             currentVisit.put(keys.get(counter), Integer.toString((int) cell.getNumericCellValue()));
                         }
                     } catch (NullPointerException e) {
                         currentVisit.put(keys.get(counter), App.EMPTY);
                     }
 
-                    // Increase counter by 1
                     counter++;
-				
-				/*
-				For different types.
-				switch(cell.getCellType()) {
-					case STRING:
-						System.out.print(cell.getStringCellValue() + "\t"); 
-						break; 
-					case NUMERIC:
-						System.out.print(cell.getNumericCellValue() + "\t");
-						break;
-					case BOOLEAN:
-						System.out.print(cell.getBooleanCellValue() + "\t");
-						break;
-					default:	
-				}
-				*/
                 }
 
-                // Adds the current row into the list
                 allVisits.add(currentVisit);
             }
         }
-        // Close the workbook
         workbook.close();
 
         return allVisits;

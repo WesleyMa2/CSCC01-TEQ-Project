@@ -24,7 +24,7 @@ public class GUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel mainPanel = new JPanel();
 	private JLabel topHeading = new JLabel(
-			"Welcome to TEQ Data Aggregator - please select a fiscal year and file type, then upload a file to continue");
+			"Welcome to TEQ data Aggregator - please select a fiscal year and file type, then upload a file to continue");
 
 	// Allow 20 fiscal years max to be stored in application in order to not
 	// overload memory, this represents a 20 year period
@@ -61,7 +61,7 @@ public class GUI extends JFrame {
 	}
 
 	public GUI() {
-		super("TEQ Data Aggregation Tool (TDAT)");
+		super("TEQ data Aggregation Tool (TDAT)");
 		setSize(800, 300);
 		setResizable(true);
 

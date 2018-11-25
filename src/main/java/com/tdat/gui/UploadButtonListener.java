@@ -7,13 +7,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.Year;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileSystemView;
 
 import com.tdat.app.App;
 import com.tdat.data.*;
@@ -46,10 +44,8 @@ public class UploadButtonListener implements ActionListener {
         newUpload = readNewUpload.converter(selectedFile);
         //System.out.println(newUpload);
       } catch (FileNotFoundException e1) {
-        // TODO Auto-generated catch block
         e1.printStackTrace();
       } catch (IOException e1) {
-        // TODO Auto-generated catch block
         e1.printStackTrace();
       }
 

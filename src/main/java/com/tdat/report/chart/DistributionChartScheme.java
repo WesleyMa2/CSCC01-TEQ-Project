@@ -37,7 +37,6 @@ public class DistributionChartScheme extends ChartScheme {
                 entryCountForCurrentYear = tableReader.columnEntriesCount(this.column);
             } catch (ColumnNotFoundException e1) {
                 entryCountForCurrentYear = new HashMap<>();
-                e1.printStackTrace();
             }
             for (String newEntry : entryCountForCurrentYear.keySet()){
                 if (!allEntries.contains(newEntry)){
@@ -47,11 +46,7 @@ public class DistributionChartScheme extends ChartScheme {
             Collections.sort(allEntries);
             List<Integer> listOfCounts = new ArrayList<>();
             for (String entry : allEntries) {
-                if (!entryCountForCurrentYear.containsKey(entry)){
-                    listOfCounts.add(0);
-                }else {
-                    listOfCounts.add(entryCountForCurrentYear.get(entry));
-                }
+                listOfCounts.add(entryCountForCurrentYear.getOrDefault(entry, 0));
             }
             chartDataList.add(new ChartDataSet(year.toString(),listOfCounts));
         }
