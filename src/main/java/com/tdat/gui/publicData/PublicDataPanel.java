@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -18,7 +19,9 @@ import javax.swing.table.DefaultTableModel;
 
 import com.tdat.app.App;
 import com.tdat.data.MasterData;
+import com.tdat.data.PublicDataCache;
 import com.tdat.gui.GenericPanel;
+import com.tdat.gui.reports.RemoveReportListener;
 
 /*
  * A view for the reports panel in MainWindow.
@@ -62,6 +65,12 @@ public class PublicDataPanel extends GenericPanel {
 		layoutConstraints.ipadx = 0;
 		layoutConstraints.ipady = 0;
 		this.add(scrollPane, layoutConstraints);
+
+		// Remove button
+		JButton removeButton = new JButton("Remove Report");
+		layoutConstraints.gridy = 8;
+		this.add(removeButton, layoutConstraints);
+		removeButton.addActionListener(new RemoveReportListener(currentPublicData));
 
 		Collection<String> publicDataFound = PublicDataCache.CachedPublicData.keySet();
 		JComboBox publicDataDropdown = new JComboBox(publicDataFound.toArray());
