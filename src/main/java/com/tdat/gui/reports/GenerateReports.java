@@ -3,11 +3,13 @@ package com.tdat.gui.reports;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.tdat.app.App;
+import com.tdat.data.analysis.MasterDataStats;
 import com.tdat.report.ChartJS;
 
 public class GenerateReports {
@@ -16,9 +18,9 @@ public class GenerateReports {
 		if(App.reportsList.size() > 0) {
 			// MODIFY THESE TO MATCH CORRECTLY
 			String json = "{\"generationTime\": \"" + ChartJS.getDate() + "\",";
-			json += "\"totalPeople\": \"" + "50" + "\",";
-			json += "\"totalVisits\": \"" + "90" + "\",";
-			json += "\"years\": \"" + "2018, 2016, 2015" + "\",";
+			json += "\"totalPeople\": \"" + MasterDataStats.getPeopleCount() + "\",";
+			json += "\"totalVisits\": \"" + MasterDataStats.getTotalVisits() + "\",";
+			json += "\"years\": \"" + this.listToString(MasterDataStats.getAllYearsAsString()) + "\",";
 			json += "\"generateThese\":[";
 			
 			for(int i = 0; i < App.reportsList.size(); i++) {
@@ -49,6 +51,14 @@ public class GenerateReports {
 			JFrame errorFrame = new JFrame();
 			JOptionPane.showMessageDialog(errorFrame, "To generate a complete report, please add some reports.");
 		}
+	}
+	
+	private String listToString(List<String> list) {
+		String stringifiedList = "";
+		for(String entry: list) {
+			stringifiedList += entry + ", ";
+		}
+		return stringifiedList.substring(0, stringifiedList.length()-2);
 	}
 	
 }
