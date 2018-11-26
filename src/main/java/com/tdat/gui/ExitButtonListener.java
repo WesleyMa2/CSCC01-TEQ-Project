@@ -18,8 +18,6 @@ public class ExitButtonListener implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    System.out.println(String.join(">>\n", ConflictIdentifier.manualConflictData.keySet()));
-
     if (ConflictIdentifier.manualConflictData.size() != 0) {
       JOptionPane.showMessageDialog(null, "Please resolve all manual conflicts before exiting", "Notice",
           JOptionPane.OK_OPTION);
