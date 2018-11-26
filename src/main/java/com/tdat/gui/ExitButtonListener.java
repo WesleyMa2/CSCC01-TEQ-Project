@@ -19,7 +19,7 @@ public class ExitButtonListener implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (ConflictIdentifier.numManualConflicts != 0) {
-      JOptionPane.showConfirmDialog(null, "Please resolve all manual conflicts before exiting", "Notice",
+      JOptionPane.showMessageDialog(null, "Please resolve all manual conflicts before exiting", "Notice",
           JOptionPane.OK_OPTION);
       return;
     }
