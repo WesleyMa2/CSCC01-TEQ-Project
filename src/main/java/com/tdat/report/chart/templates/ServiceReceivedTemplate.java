@@ -105,7 +105,8 @@ public class ServiceReceivedTemplate implements Template {
     	String[] row1 = {
     			Integer.toString(MasterData.reportId.incrementAndGet()),
     			mainTitle,
-    			scheme1.getGraphType().getJsonCode()
+    			scheme1.getGraphType().getPrettyJsonCode(),
+    			"Services Received (Custom)"
     	};
         ReportsPanel.tableModel.addRow(row1);
     	
@@ -118,7 +119,8 @@ public class ServiceReceivedTemplate implements Template {
     	String[] row2 = {
     			Integer.toString(MasterData.reportId.incrementAndGet()),
     			"Distribution of Types of Services",
-    			scheme2.getGraphType().getJsonCode()
+    			scheme2.getGraphType().getPrettyJsonCode(),
+    			"Distribution"
     	};
         ReportsPanel.tableModel.addRow(row2);
         
@@ -130,7 +132,8 @@ public class ServiceReceivedTemplate implements Template {
     	String[] row3 = {
     			Integer.toString(MasterData.reportId.incrementAndGet()),
     			"Trend of Types of Services",
-    			scheme3.getGraphType().getJsonCode()
+    			scheme3.getGraphType().getPrettyJsonCode(),
+    			"Trend"
     	};
         ReportsPanel.tableModel.addRow(row3);
         
