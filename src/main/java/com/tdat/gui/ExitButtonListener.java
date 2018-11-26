@@ -18,11 +18,12 @@ public class ExitButtonListener implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    if (ConflictIdentifier.numManualConflicts != 0) {
+    if (ConflictIdentifier.manualConflictData.size() != 0) {
       JOptionPane.showMessageDialog(null, "Please resolve all manual conflicts before exiting", "Notice",
           JOptionPane.OK_OPTION);
       return;
     }
+
     this.uploadEditedFile();
     String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
     String historyEntry = "Date: " + timeStamp + "   Filename: " + App.selectedFile.getName() + "   Filetype: "

@@ -10,11 +10,8 @@ import com.tdat.app.App;
 import com.tdat.gui.ConflictWindow;
 
 public class ConflictIdentifier {
-	public static int numManualConflicts = 0;
 	public static int numAutomaticallyResolvedConflicts = 0;
 	public static Map<String, ArrayList<Object>> manualConflictData = new HashMap<String, ArrayList<Object>>();
-	public ConflictIdentifier(){
-	}
 	
 	public void checkForAutomaticConflicts(List<Map<String, String>> potentialUpload){
 		
@@ -37,9 +34,12 @@ public class ConflictIdentifier {
 		}
 	}
 	
-	public String generateAutomaticallyResolvedConflictMessage(File selectedFile, String conflictType, String oldValue, String newValue){
-		return "Upload: " + selectedFile.getName() + ", Conflict Type: " +  conflictType + ", Old Value: " + oldValue + ", New Value: " + newValue;
+	public String generateAutomaticallyResolvedConflictMessage(File selectedFile, String conflictType, String oldValue, String newValue) {
+		if (selectedFile == null) {
+			return "Conflict Type: " +  conflictType + ", Old Value: " + oldValue + ", New Value: " + newValue;
+		}
 		
+		return "Upload: " + selectedFile.getName() + ", Conflict Type: " +  conflictType + ", Old Value: " + oldValue + ", New Value: " + newValue;
 	}
 	
 	public void checkForManualConflicts(List<Map<String, String>> potentialUpload){
@@ -81,12 +81,15 @@ public class ConflictIdentifier {
 	  return true;  
 	}
 	
-	public String generateManualResolveConflictMessage(File selectedFile, String conflictType, String oldValue){
+	public String generateManualResolveConflictMessage(File selectedFile, String conflictType, String oldValue) {
+		if (selectedFile == null) {
+			return "Conflict Type: " +  conflictType + ", Conflicting Value: " + oldValue;
+		}
+		
 		return "Upload: " + selectedFile.getName() + ", Conflict Type: " +  conflictType + ", Conflicting Value: " + oldValue;
 	}
 	
 	public void handleNewTypeConflict(int rowMapIndex, String key, Map<String, String> rowEntry){
-		numManualConflicts++;
 		String conflictMessage = generateManualResolveConflictMessage(App.selectedFile, "TypeConflict", rowEntry.get(key));
 		ConflictWindow.manualConflictsArrayList.add(conflictMessage);
 		

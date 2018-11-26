@@ -21,7 +21,6 @@ public class SubmitCorrectionButtonListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		this.correctValue = ManualConflictResolvePanel.correctValue.getText();
 		UploadButtonListener.newUpload.get((int) currentConflictData.get(0)).put((String) currentConflictData.get(1), correctValue);
-		ConflictIdentifier.numManualConflicts--;
 		ResolveConflictListener.conflictWindowInstance.manualConflictsArrayList.remove(currentConflict);
 		ResolveConflictListener.conflictWindowInstance.model.removeElement(currentConflict);
 
