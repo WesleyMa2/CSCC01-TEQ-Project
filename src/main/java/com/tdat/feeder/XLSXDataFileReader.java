@@ -63,10 +63,8 @@ public class XLSXDataFileReader implements DataFileReader {
         } catch (Exception e) {
             iCareTemplate = App.EMPTY;
         }
-        System.out.println("[Template]: " + iCareTemplate);///
 
         // Gather third row information and put it in a list
-
         rowIterator.next();
         Row firstRow = rowIterator.next();
         // Loops through each cell in third row

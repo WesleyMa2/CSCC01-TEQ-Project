@@ -24,7 +24,7 @@ public class SubmitCorrectionButtonListener implements ActionListener{
 		ConflictIdentifier.numManualConflicts--;
 		ResolveConflictListener.conflictWindowInstance.manualConflictsArrayList.remove(currentConflict);
 		ResolveConflictListener.conflictWindowInstance.model.removeElement(currentConflict);
-		System.out.println("Conflict resolved, please continue resolving any remaining conflicts. If none remain, close this menu by clicking 'Exit Conflict Review Session'");
+
 		ManualConflictResolvePanel.f.dispose();
 	}
 

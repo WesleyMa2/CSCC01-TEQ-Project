@@ -89,7 +89,7 @@ public class ConflictIdentifier {
 		numManualConflicts++;
 		String conflictMessage = generateManualResolveConflictMessage(App.selectedFile, "TypeConflict", rowEntry.get(key));
 		ConflictWindow.manualConflictsArrayList.add(conflictMessage);
-		//System.out.println(ConflictWindow.manualConflictsArrayList);
+		
 		ArrayList<Object> conflictData = new ArrayList<Object>();
 		conflictData.add(rowMapIndex);
 		conflictData.add(key);

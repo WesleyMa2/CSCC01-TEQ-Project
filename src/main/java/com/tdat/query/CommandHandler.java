@@ -42,7 +42,6 @@ public class CommandHandler {
       }
       throw new InvalidQueryException();
     } catch (InvalidQueryException e) {
-      System.out.println("Error: The query has syntax errors");
       return false;
     }
   }

@@ -19,8 +19,7 @@ public class DistributionHandler extends ChartHandler {
     if (columnIndex == -1) {
       throw new InvalidQueryException();
     }
-    System.out.println("Creating a Distribution chart:");
-    System.out.println("[Column]:\t" + arguments[columnIndex].replace("-", " "));
+
     DistributionChartScheme result = new DistributionChartScheme(
         arguments[columnIndex].replace("-", " "),
         getChartType(arguments));
@@ -31,7 +30,6 @@ public class DistributionHandler extends ChartHandler {
 
   @Override
   public void handle(String[] arguments) throws InvalidQueryException {
-
     App.reportsList.add(generateChartScheme(arguments));
   }
 }
