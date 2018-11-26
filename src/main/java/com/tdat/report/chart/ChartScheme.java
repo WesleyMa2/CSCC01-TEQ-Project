@@ -11,17 +11,18 @@ public abstract class ChartScheme {
     private String xTitle;
     private String yTitle;
     private ChartType graphType;
-    protected List<String> xAxisLabels;
-    protected List<ChartDataSet> dataSet;
+    private List<String> xAxisLabels;
+    private List<ChartDataSet> dataSet;
 
     public ChartScheme(ChartType graphType) {
         this.graphType = graphType;
-        clear();
+        xAxisLabels = new ArrayList<String>();
+        dataSet = new ArrayList<ChartDataSet>();
     }
 
     protected void clear(){
-        xAxisLabels = new ArrayList<String>();
-        dataSet = new ArrayList<ChartDataSet>();
+        xAxisLabels.clear();
+        dataSet.clear();
     }
 
     public String getMainTitle() {
