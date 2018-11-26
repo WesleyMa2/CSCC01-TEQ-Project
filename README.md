@@ -24,7 +24,7 @@
 
 #### Acceptance/GUI Tests
 1. Start the app (follow the steps in **Instructions (shell)**)
-2. From the root of the repo, navigate to ```./deliverables/4/```
+2. From the root of the repo, navigate to ```./deliverables/5/```
 2. Open ```Acceptance Tests.pdf``` then follow the instructions
 
 ## Repository Contents
