@@ -6,6 +6,10 @@
 
 *Learn more about the project [here](../../tree/master/resources/Scarborough_Newcomers_Software_Engineering_Project.pdf "Project Presentation").*
 
+## Video Demo
+[View the Video Demo](https://www.youtube.com/watch?v=gIpR2qcagFU "View the Video")<br><br/>
+[![Video Demo](https://img.youtube.com/vi/gIpR2qcagFU/0.jpg)](https://www.youtube.com/watch?v=gIpR2qcagFU)
+
 ## Instructions (shell)
 1. In the shell, make sure you are in root of the repo
 2. Start the web app with ```cd chartjs``` then ``` $ node index.js```
@@ -33,6 +37,7 @@ root
   |             └── 2
   |             └── 3
   |             └── 4
+  |             └── 5
   └── reports
   └── src
   |     └── main 
