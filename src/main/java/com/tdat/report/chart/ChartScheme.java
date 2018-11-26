@@ -16,11 +16,12 @@ public abstract class ChartScheme {
 
     public ChartScheme(ChartType graphType) {
         this.graphType = graphType;
+
         xAxisLabels = new ArrayList<String>();
         dataSet = new ArrayList<ChartDataSet>();
     }
 
-    protected void clear(){
+    public void clear(){
         xAxisLabels.clear();
         dataSet.clear();
     }
