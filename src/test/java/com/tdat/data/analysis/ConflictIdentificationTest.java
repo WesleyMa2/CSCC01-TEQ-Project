@@ -45,7 +45,7 @@ public class ConflictIdentificationTest {
 		testMap1.put("ASDA", "bobby");
 		testMap2.put("SSAA", "Mistake2");
 		testMap2.put("ABBB", "2");
-	    assertTrue(manualConflictCheck1.numManualConflicts >= 0);
+	    assertTrue(manualConflictCheck1.manualConflictData.size() >= 0);
 	}
 	
 	@Test
@@ -58,7 +58,7 @@ public class ConflictIdentificationTest {
 		testMap1.put("ASDASD", "bobby");
 		testMap2.put("MBNB", "Mistake3");
 		testMap2.put("QWEQWE", "8");	    
-		assertTrue(manualConflictCheck2.numManualConflicts >= 0);
+		assertTrue(manualConflictCheck2.manualConflictData.size() >= 0);
 	}
 	
 }

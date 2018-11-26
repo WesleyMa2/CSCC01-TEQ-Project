@@ -10,7 +10,6 @@ import com.tdat.app.App;
 import com.tdat.gui.ConflictWindow;
 
 public class ConflictIdentifier {
-	public static int numManualConflicts = 0;
 	public static int numAutomaticallyResolvedConflicts = 0;
 	public static Map<String, ArrayList<Object>> manualConflictData = new HashMap<String, ArrayList<Object>>();
 	
@@ -84,7 +83,6 @@ public class ConflictIdentifier {
 	}
 	
 	public void handleNewTypeConflict(int rowMapIndex, String key, Map<String, String> rowEntry){
-		numManualConflicts++;
 		String conflictMessage = generateManualResolveConflictMessage(App.selectedFile, "TypeConflict", rowEntry.get(key));
 		ConflictWindow.manualConflictsArrayList.add(conflictMessage);
 		
