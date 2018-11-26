@@ -1,6 +1,5 @@
 package com.tdat.query.handler;
 
-
 import com.tdat.query.InvalidQueryException;
 import com.tdat.report.chart.ChartScheme;
 import com.tdat.report.chart.ChartType;
@@ -8,8 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Abstract class meant to handle commands for generating graphs. Contains helper methods to help
- * with parsing the user query.
+ * Abstract class meant to handle commands for generating graphs. Contains
+ * helper methods to help with parsing the user query.
  */
 public abstract class ChartHandler implements Handler {
 
@@ -24,8 +23,8 @@ public abstract class ChartHandler implements Handler {
   }
 
   /**
-   * Abstract method to add a chartScheme abject to list of ones to be generated based off user
-   * query
+   * Abstract method to add a chartScheme abject to list of ones to be generated
+   * based off user query
    *
    * @param arguments user query
    * @return json
@@ -40,15 +39,14 @@ public abstract class ChartHandler implements Handler {
    * @return json
    * @throws InvalidQueryException when query is invalid
    */
-  protected abstract ChartScheme generateChartScheme(String[] arguments)
-      throws InvalidQueryException;
+  protected abstract ChartScheme generateChartScheme(String[] arguments) throws InvalidQueryException;
 
   /**
-   * A method to check that a given query contains key(param name), as well as the arguments that
-   * follow
+   * A method to check that a given query contains key(param name), as well as the
+   * arguments that follow
    *
    * @param arguments user query
-   * @param key the keyword to check for
+   * @param key       the keyword to check for
    * @return the index of the arguments, -1 if invalid query
    */
   protected int checkForKey(String[] arguments, String key) {
@@ -63,10 +61,9 @@ public abstract class ChartHandler implements Handler {
     return withIndex + 1;
   }
 
-
   /**
-   * A method that returns a list of all of the users chosen titles Looks for "... with
-   * [title;x-axis;y-axis] ..."
+   * A method that returns a list of all of the users chosen titles Looks for "...
+   * with [title;x-axis;y-axis] ..."
    *
    * @param arguments user query
    * @return list of titles
@@ -87,28 +84,24 @@ public abstract class ChartHandler implements Handler {
     return titlesList;
   }
 
-
   protected String getTitle(String[] arguments) throws InvalidQueryException {
     List<String> titlesList = getTitlesList(arguments);
-    System.out.println("[Title]:\t\t" + titlesList.get(0));
     return titlesList.get(0);
   }
 
   protected String getXTitle(String[] arguments) throws InvalidQueryException {
     List<String> titlesList = getTitlesList(arguments);
-    System.out.println("[XTitle]:\t" + titlesList.get(1));
     return titlesList.get(1);
   }
 
   protected String getYTitle(String[] arguments) throws InvalidQueryException {
     List<String> titlesList = getTitlesList(arguments);
-    System.out.println("[YTitle]:\t" + titlesList.get(2));
     return titlesList.get(2);
   }
 
   /**
-   * A method that returns the ChartType selected by the user's query Looks for "...  as
-   * [LINE/TABLE/BAR] ..."
+   * A method that returns the ChartType selected by the user's query Looks for
+   * "... as [LINE/TABLE/BAR] ..."
    *
    * @param arguments user query
    * @return the selected ChartType
@@ -119,9 +112,8 @@ public abstract class ChartHandler implements Handler {
     if (chartTypeIndex == -1) {
       throw new InvalidQueryException();
     }
+
     try {
-      System.out
-          .println("[ChartType]:\t" + ChartType.valueOf(arguments[chartTypeIndex].toUpperCase()));
       return ChartType.valueOf(arguments[chartTypeIndex].toUpperCase());
     } catch (Exception e) {
       throw new InvalidQueryException();

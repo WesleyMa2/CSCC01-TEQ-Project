@@ -60,7 +60,7 @@ public ConflictWindow(){
 	        	App.selectedFile = null;
 	        	ConflictWindow.manualConflictsArrayList.clear();
 	        	ConflictWindow.automaticConflictsArrayList.clear();
-	        	System.out.println("\nFile was not uploaded because manual conflicts were left unresolved");
+
 	        	f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 	        }

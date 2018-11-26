@@ -13,7 +13,6 @@ public class TDATQLListener implements ActionListener {
     // Make's sure the query isn't empty
     String query = ReportsPanel.getTdatqlQuery().getText().trim();
     if (query.length() < 1){
-      System.out.println("Error: query is empty");
       return;
     }
 

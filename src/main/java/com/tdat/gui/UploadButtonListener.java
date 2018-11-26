@@ -66,11 +66,7 @@ public class UploadButtonListener implements ActionListener {
                 "   Fiscal year: " + App.selectedYear;
         UploadPanel.DLM.addElement(historyEntry);
         App.fileUploadDict.put(historyEntry, this.selectedFile);
-        System.out.println("\n[File Uploaded]");
-        System.out.println(" File:\t\t" + App.selectedFile.getName());
-        System.out.println(" Type:\t" + App.selectedFileType);
-        System.out.println(" Path:\t" + selectedFile.getAbsolutePath());
-        System.out.println(" Year:\t" + App.selectedYear);
+
         if (!Uploader.upload(App.selectedYear, App.selectedFile)) {
           System.out.println("File Not Found!");
         }

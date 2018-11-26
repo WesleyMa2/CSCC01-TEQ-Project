@@ -1,6 +1,7 @@
 package com.tdat.feeder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.time.Year;
@@ -29,26 +30,31 @@ class UploaderTest {
     @DisplayName("Test uploading single iCare file")
     void uploadOneFile() {
         App.selectedFileType = ".xlsx";
-        if (!Uploader.upload(Year.of(2018), testICare1)){
-            System.out.println("File not found!");
+        if (!Uploader.upload(Year.of(2018), testICare1)) {
+            fail("File not found!");
         }
+
         TableData data = MasterData.getYearData(Year.of(2018));
-        assertEquals(new HashSet<>(Arrays.asList("children","AA", "AB", "AC", "AD", "Template")), new HashSet<>(data.getColumnList()));
+        assertEquals(new HashSet<>(Arrays.asList("children", "AA", "AB", "AC", "AD", "Template")),
+                new HashSet<>(data.getColumnList()));
     }
 
     @Test
     @DisplayName("Test uploading two iCare files")
     void uploadTwoFiles() {
         App.selectedFileType = ".xlsx";
-        if (!Uploader.upload(Year.of(2018), testICare1) || !Uploader.upload(Year.of(2018), testICare2)){
-            System.out.println("File not found!");
+        if (!Uploader.upload(Year.of(2018), testICare1) || !Uploader.upload(Year.of(2018), testICare2)) {
+            fail("File not found!");
         }
+
         TableData data = MasterData.getYearData(Year.of(2018));
-        assertEquals(new HashSet<>(Arrays.asList("AA", "AB", "AC", "AD", "BA", "BB", "BD", "BC", "children", "Template")), new HashSet<>(data.getColumnList()));
+        assertEquals(
+                new HashSet<>(Arrays.asList("AA", "AB", "AC", "AD", "BA", "BB", "BD", "BC", "children", "Template")),
+                new HashSet<>(data.getColumnList()));
     }
 
     @AfterAll
-    public static void cleanUp(){
+    public static void cleanUp() {
         MasterData.clear();
     }
 }

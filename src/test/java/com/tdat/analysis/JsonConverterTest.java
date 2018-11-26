@@ -41,10 +41,8 @@ class JsonConverterTest {
     @Test
     @DisplayName("Test creating json object with null input")
     void dneColumnEntries() throws NullPointerException {
-
         mock = new MockChartScheme(null, null);
 
-        System.out.println(">> " + mock);
         assertThrows(NullPointerException.class, () -> {
             JsonConverter.serializeObject(mock);
         });
