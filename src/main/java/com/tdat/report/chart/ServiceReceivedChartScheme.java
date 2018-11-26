@@ -20,6 +20,7 @@ public class ServiceReceivedChartScheme extends ChartScheme {
 
     @Override
     public String toJson() {
+        clear();
         List<String> servicesList = ServiceReceivedVerifier.getAllServices();
         Collections.sort(servicesList);
         ChartDataSet servicesReferred = new ChartDataSet("Referred", new ArrayList<>());
@@ -36,8 +37,8 @@ public class ServiceReceivedChartScheme extends ChartScheme {
             trimmedServicesList.add(service.replace(" Referrals", ""));
         }
 
-        this.dataSet = Arrays.asList(servicesReferred, servicesReceived);
-        this.xAxisLabels = trimmedServicesList;
+        getDataSet().addAll(Arrays.asList(servicesReferred, servicesReceived));
+        getXAxisLabels().addAll(trimmedServicesList);
 
         return JsonConverter.serializeObject(this);
     }
