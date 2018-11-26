@@ -34,9 +34,12 @@ public class ConflictIdentifier {
 		}
 	}
 	
-	public String generateAutomaticallyResolvedConflictMessage(File selectedFile, String conflictType, String oldValue, String newValue){
-		return "Upload: " + selectedFile.getName() + ", Conflict Type: " +  conflictType + ", Old Value: " + oldValue + ", New Value: " + newValue;
+	public String generateAutomaticallyResolvedConflictMessage(File selectedFile, String conflictType, String oldValue, String newValue) {
+		if (selectedFile == null) {
+			return "Conflict Type: " +  conflictType + ", Old Value: " + oldValue + ", New Value: " + newValue;
+		}
 		
+		return "Upload: " + selectedFile.getName() + ", Conflict Type: " +  conflictType + ", Old Value: " + oldValue + ", New Value: " + newValue;
 	}
 	
 	public void checkForManualConflicts(List<Map<String, String>> potentialUpload){
@@ -78,7 +81,11 @@ public class ConflictIdentifier {
 	  return true;  
 	}
 	
-	public String generateManualResolveConflictMessage(File selectedFile, String conflictType, String oldValue){
+	public String generateManualResolveConflictMessage(File selectedFile, String conflictType, String oldValue) {
+		if (selectedFile == null) {
+			return "Conflict Type: " +  conflictType + ", Conflicting Value: " + oldValue;
+		}
+		
 		return "Upload: " + selectedFile.getName() + ", Conflict Type: " +  conflictType + ", Conflicting Value: " + oldValue;
 	}
 	
