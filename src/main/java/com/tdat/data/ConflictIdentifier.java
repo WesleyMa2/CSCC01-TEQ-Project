@@ -13,8 +13,6 @@ public class ConflictIdentifier {
 	public static int numManualConflicts = 0;
 	public static int numAutomaticallyResolvedConflicts = 0;
 	public static Map<String, ArrayList<Object>> manualConflictData = new HashMap<String, ArrayList<Object>>();
-	public ConflictIdentifier(){
-	}
 	
 	public void checkForAutomaticConflicts(List<Map<String, String>> potentialUpload){
 		
