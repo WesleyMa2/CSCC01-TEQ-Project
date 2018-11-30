@@ -2,7 +2,6 @@ package com.tdat.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import com.tdat.data.ConflictIdentifier;
 
@@ -11,7 +10,7 @@ public class ResolveConflictListener implements ActionListener {
 	public static ConflictWindow conflictWindowInstance;
 	
 	public ResolveConflictListener(ConflictWindow specificInstance){
-		this.conflictWindowInstance = specificInstance;
+		conflictWindowInstance = specificInstance;
 	}
 
 	@Override
