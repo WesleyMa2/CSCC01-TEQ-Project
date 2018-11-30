@@ -19,8 +19,8 @@ public class MainWindow {
 	
 	public MainWindow() {
 		frame = new JFrame(App.appTitle);
-		frame.setMinimumSize(new Dimension(800, 600));
-		frame.setSize(new Dimension(800, 600));
+		frame.setMinimumSize(new Dimension(1000, 600));
+		frame.setSize(new Dimension(1000, 600));
         frame.setResizable(true);
         frame.setLocationRelativeTo(null);
 
